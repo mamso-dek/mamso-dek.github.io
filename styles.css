@@ -230,6 +230,66 @@ h2 {
   gap: 1rem;
 }
 
+.media-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.media-status {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  border-style: dashed;
+}
+
+.media-card {
+  min-height: 260px;
+}
+
+.media-preview {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  object-fit: cover;
+  background: #efe9df;
+  margin-bottom: 0.7rem;
+}
+
+.media-doc {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+
+.media-type {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.media-title {
+  margin-top: 0.4rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.02rem;
+  word-break: break-word;
+}
+
+.comment-note {
+  color: var(--muted);
+}
+
 .card {
   grid-column: span 4;
   border: 1px solid var(--line);

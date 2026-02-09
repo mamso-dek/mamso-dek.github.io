@@ -27,7 +27,9 @@
           <li><a href="#a-propos">A propos</a></li>
           <li><a href="#parcours">Parcours</a></li>
           <li><a href="#projets">Projets</a></li>
+          <li><a href="#publications">Publications</a></li>
           <li><a href="#competences">Competences</a></li>
+          <li><a href="#commentaires">Commentaires</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -127,6 +129,38 @@
         </div>
       </section>
 
+      <section id="publications" class="reveal">
+        <div class="section-head">
+          <h2>Publications</h2>
+          <p>
+            Images, documents et videos publies automatiquement depuis le
+            dossier <code>media/</code> de ce repo GitHub.
+          </p>
+        </div>
+
+        <div class="media-actions">
+          <a
+            class="btn btn-secondary"
+            href="https://github.com/mamso-dek/mamso-dek.github.io/upload/main/media"
+            target="_blank"
+            rel="noopener"
+            >Publier un fichier</a
+          >
+          <a
+            class="btn btn-secondary"
+            href="https://github.com/mamso-dek/mamso-dek.github.io/tree/main/media"
+            target="_blank"
+            rel="noopener"
+            >Voir le dossier media</a
+          >
+        </div>
+
+        <div id="media-status" class="panel media-status">
+          Chargement des publications...
+        </div>
+        <div id="media-grid" class="grid media-grid" aria-live="polite"></div>
+      </section>
+
       <section id="competences" class="panel reveal">
         <h2>Competences</h2>
         <ul class="tags">
@@ -143,6 +177,15 @@
           <li>LaTeX</li>
           <li>Data visualisation</li>
         </ul>
+      </section>
+
+      <section id="commentaires" class="panel reveal">
+        <h2>Commentaires</h2>
+        <p class="comment-note">
+          Les visiteurs peuvent commenter avec leur compte GitHub.
+        </p>
+        <div id="comments-root"></div>
+        <noscript>Activez JavaScript pour afficher les commentaires.</noscript>
       </section>
 
       <section id="contact" class="contact reveal">
