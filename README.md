@@ -4,7 +4,9 @@ Site statique (HTML/CSS/JS) pret pour GitHub Pages en 0 euro.
 
 ## Fichiers
 
-- `index.html`: contenu du portfolio
+- `index.html`: page À propos
+- `publications.html`: page Publications (projets + médias)
+- `contact.html`: page Contact
 - `styles.css`: design responsive
 - `script.js`: animations
 - `assets/cvPro.pdf`: CV telechargeable

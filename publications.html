@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publications | Massavo Salako</title>
+    <meta
+      name="description"
+      content="Publications de Massavo Salako: projets quantitatifs, images, documents et vidéos."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-left" aria-hidden="true"></div>
+    <div class="bg-shape bg-shape-right" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html">Massavo Salako</a>
+      <nav aria-label="Navigation principale">
+        <ul class="nav-list">
+          <li><a href="index.html">À propos</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="publications" class="reveal">
+        <div class="section-head">
+          <h1>Publications</h1>
+          <p>Cette page regroupe les projets et les médias publiés.</p>
+        </div>
+
+        <div id="projets-publication" class="section-head section-head-compact">
+          <h2>Projets</h2>
+          <p>Sélection de projets académiques et de recherche quantitative.</p>
+        </div>
+        <div class="grid">
+          <article id="projet-pnl" class="card">
+            <h3>Décomposition du Profit &amp; Loss (BRVM)</h3>
+            <p>
+              Analyse des variations de P&amp;L par facteurs de risque pour mieux
+              expliquer les mouvements de performance.
+            </p>
+            <div class="card-actions">
+              <a
+                href="https://github.com/mamso-dek"
+                target="_blank"
+                rel="noopener"
+                aria-label="Voir le projet P&L"
+                >Voir sur GitHub</a
+              >
+              <button
+                class="comment-btn"
+                type="button"
+                data-comment-scope="project"
+                data-comment-term="projet-decomposition-profit-loss-brvm"
+                data-comment-title="Commentaires: Décomposition du Profit &amp; Loss (BRVM)"
+              >
+                Commenter ce projet
+              </button>
+            </div>
+          </article>
+          <article id="projet-options" class="card">
+            <h3>Modélisation et simulation de prix d'options</h3>
+            <p>
+              Construction de modèles de valorisation et simulations numériques
+              pour étudier les comportements des produits dérivés.
+            </p>
+            <div class="card-actions">
+              <a
+                href="https://github.com/mamso-dek"
+                target="_blank"
+                rel="noopener"
+                aria-label="Voir le projet options"
+                >Voir sur GitHub</a
+              >
+              <button
+                class="comment-btn"
+                type="button"
+                data-comment-scope="project"
+                data-comment-term="projet-modelisation-simulation-prix-options"
+                data-comment-title="Commentaires: Modélisation et simulation de prix d'options"
+              >
+                Commenter ce projet
+              </button>
+            </div>
+          </article>
+          <article id="projet-garch" class="card">
+            <h3>Estimation de modèles GARCH</h3>
+            <p>
+              Estimation et analyse de modèles de variance conditionnelle pour
+              l'étude de la volatilité de données financières.
+            </p>
+            <div class="card-actions">
+              <a
+                href="https://github.com/mamso-dek"
+                target="_blank"
+                rel="noopener"
+                aria-label="Voir le projet garch"
+                >Voir sur GitHub</a
+              >
+              <button
+                class="comment-btn"
+                type="button"
+                data-comment-scope="project"
+                data-comment-term="projet-estimation-modeles-garch"
+                data-comment-title="Commentaires: Estimation de modèles GARCH"
+              >
+                Commenter ce projet
+              </button>
+            </div>
+          </article>
+        </div>
+        <div id="project-comments-panel" class="panel inline-comments" hidden>
+          <h3 id="project-comments-title" class="comment-target-title">
+            Commentaires du projet
+          </h3>
+          <p class="comment-note">
+            Les commentaires sont liés au projet sélectionné.
+          </p>
+          <div id="project-comments-root"></div>
+        </div>
+
+        <div id="medias-publication" class="section-head section-head-compact">
+          <h2>Médias publiés</h2>
+          <p>
+            Images, documents et vidéos publiés automatiquement depuis le
+            dossier <code>media/</code> de ce repo GitHub.
+          </p>
+        </div>
+
+        <div class="media-actions">
+          <a
+            class="btn btn-secondary"
+            href="https://github.com/mamso-dek/mamso-dek.github.io/upload/main/media"
+            target="_blank"
+            rel="noopener"
+            >Publier un fichier</a
+          >
+          <a
+            class="btn btn-secondary"
+            href="https://github.com/mamso-dek/mamso-dek.github.io/tree/main/media"
+            target="_blank"
+            rel="noopener"
+            >Voir le dossier médias</a
+          >
+        </div>
+
+        <div id="media-status" class="panel media-status">
+          Chargement des publications...
+        </div>
+        <div id="media-grid" class="grid media-grid" aria-live="polite"></div>
+        <div id="publication-comments-panel" class="panel inline-comments" hidden>
+          <h3 id="publication-comments-title" class="comment-target-title">
+            Commentaires de la publication
+          </h3>
+          <p class="comment-note">
+            Les commentaires sont liés à la publication sélectionnée.
+          </p>
+          <div id="publication-comments-root"></div>
+          <noscript>Activez JavaScript pour afficher les commentaires.</noscript>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Massavo Salako. Tous droits réservés.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

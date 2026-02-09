@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio | Massavo Salako</title>
+    <title>À propos | Massavo Salako</title>
     <meta
       name="description"
-      content="Portfolio de Massavo Salako: modélisation statistique, data science, économétrie et projets quantitatifs."
+      content="À propos de Massavo Salako: parcours, compétences et outils en génie mathématique et modélisation."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,35 +21,27 @@
     <div class="bg-shape bg-shape-right" aria-hidden="true"></div>
 
     <header class="site-header">
-      <a class="brand" href="#top">Massavo Salako</a>
+      <a class="brand" href="index.html">Massavo Salako</a>
       <nav aria-label="Navigation principale">
         <ul class="nav-list">
-          <li><a href="#a-propos">À propos</a></li>
-          <li class="nav-dropdown">
-            <a href="#publications">Publications</a>
-            <ul class="dropdown-menu" aria-label="Sous-menu Publications">
-              <li><a href="#projets-publication">Projets</a></li>
-              <li><a href="#medias-publication">Médias</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="index.html">À propos</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </header>
 
-    <main id="top">
+    <main>
       <section class="hero reveal">
         <p class="eyebrow">Ingénieur en Génie Mathématique et Modélisation</p>
-        <h1>
-          Je transforme les données en analyses utiles pour la décision.
-        </h1>
+        <h1>Je transforme les données en analyses utiles pour la décision.</h1>
         <p class="hero-copy">
           Spécialisé en modélisation statistique, économétrie et finance
           quantitative. Je travaille sur des problèmes réels de prévision,
           risque et aide à la décision.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#publications">Voir mes publications</a>
+          <a class="btn btn-primary" href="publications.html">Voir mes publications</a>
           <a class="btn btn-secondary" href="assets/cvPro.pdf" target="_blank" rel="noopener">Télécharger mon CV</a>
         </div>
       </section>
@@ -63,6 +55,7 @@
           indicateurs lisibles pour des équipes économiques, financières ou
           décisionnelles.
         </p>
+
         <div class="section-head section-head-compact">
           <h2>Parcours récent</h2>
         </div>
@@ -93,6 +86,7 @@
             </p>
           </article>
         </div>
+
         <div class="section-head section-head-compact">
           <h2>Compétences et outils</h2>
         </div>
@@ -121,137 +115,6 @@
             </ul>
           </article>
         </div>
-      </section>
-
-      <section id="publications" class="reveal">
-        <div class="section-head">
-          <h2>Publications</h2>
-          <p>
-            Cette section regroupe les projets et les médias publiés.
-          </p>
-        </div>
-
-        <div id="projets-publication" class="section-head section-head-compact">
-          <h3>Projets</h3>
-          <p>Sélection de projets académiques et de recherche quantitative.</p>
-        </div>
-        <div class="grid">
-          <article id="projet-pnl" class="card">
-            <h3>Décomposition du Profit &amp; Loss (BRVM)</h3>
-            <p>
-              Analyse des variations de P&amp;L par facteurs de risque pour mieux
-              expliquer les mouvements de performance.
-            </p>
-            <div class="card-actions">
-              <a href="https://github.com/mamso-dek" target="_blank" rel="noopener" aria-label="Voir le projet P&L">Voir sur GitHub</a>
-              <button
-                class="comment-btn"
-                type="button"
-                data-comment-scope="project"
-                data-comment-term="projet-decomposition-profit-loss-brvm"
-                data-comment-title="Commentaires: Décomposition du Profit &amp; Loss (BRVM)"
-              >
-                Commenter ce projet
-              </button>
-            </div>
-          </article>
-          <article id="projet-options" class="card">
-            <h3>Modélisation et simulation de prix d'options</h3>
-            <p>
-              Construction de modèles de valorisation et simulations numériques
-              pour étudier les comportements des produits dérivés.
-            </p>
-            <div class="card-actions">
-              <a href="https://github.com/mamso-dek" target="_blank" rel="noopener" aria-label="Voir le projet options">Voir sur GitHub</a>
-              <button
-                class="comment-btn"
-                type="button"
-                data-comment-scope="project"
-                data-comment-term="projet-modelisation-simulation-prix-options"
-                data-comment-title="Commentaires: Modélisation et simulation de prix d'options"
-              >
-                Commenter ce projet
-              </button>
-            </div>
-          </article>
-          <article id="projet-garch" class="card">
-            <h3>Estimation de modèles GARCH</h3>
-            <p>
-              Estimation et analyse de modèles de variance conditionnelle pour
-              l'étude de la volatilité de données financières.
-            </p>
-            <div class="card-actions">
-              <a href="https://github.com/mamso-dek" target="_blank" rel="noopener" aria-label="Voir le projet garch">Voir sur GitHub</a>
-              <button
-                class="comment-btn"
-                type="button"
-                data-comment-scope="project"
-                data-comment-term="projet-estimation-modeles-garch"
-                data-comment-title="Commentaires: Estimation de modèles GARCH"
-              >
-                Commenter ce projet
-              </button>
-            </div>
-          </article>
-        </div>
-        <div id="project-comments-panel" class="panel inline-comments" hidden>
-          <h3 id="project-comments-title" class="comment-target-title">
-            Commentaires du projet
-          </h3>
-          <p class="comment-note">
-            Les commentaires sont liés au projet sélectionné.
-          </p>
-          <div id="project-comments-root"></div>
-        </div>
-
-        <div id="medias-publication" class="section-head section-head-compact">
-          <h3>Médias publiés</h3>
-          <p>
-            Images, documents et vidéos publiés automatiquement depuis le
-            dossier <code>media/</code> de ce repo GitHub.
-          </p>
-        </div>
-
-        <div class="media-actions">
-          <a
-            class="btn btn-secondary"
-            href="https://github.com/mamso-dek/mamso-dek.github.io/upload/main/media"
-            target="_blank"
-            rel="noopener"
-            >Publier un fichier</a
-          >
-          <a
-            class="btn btn-secondary"
-            href="https://github.com/mamso-dek/mamso-dek.github.io/tree/main/media"
-            target="_blank"
-            rel="noopener"
-            >Voir le dossier médias</a
-          >
-        </div>
-
-        <div id="media-status" class="panel media-status">
-          Chargement des publications...
-        </div>
-        <div id="media-grid" class="grid media-grid" aria-live="polite"></div>
-        <div id="publication-comments-panel" class="panel inline-comments" hidden>
-          <h3 id="publication-comments-title" class="comment-target-title">
-            Commentaires de la publication
-          </h3>
-          <p class="comment-note">
-            Les commentaires sont liés à la publication sélectionnée.
-          </p>
-          <div id="publication-comments-root"></div>
-          <noscript>Activez JavaScript pour afficher les commentaires.</noscript>
-        </div>
-      </section>
-
-      <section id="contact" class="contact reveal">
-        <h2>Contact</h2>
-        <p>
-          Écrivez-moi à <a href="mailto:smassavo@gmail.com">smassavo@gmail.com</a>
-          ou visitez mon profil <a href="https://github.com/mamso-dek" target="_blank" rel="noopener">GitHub</a>.
-        </p>
-        <p>Localisation: Cotonou, Bénin.</p>
       </section>
     </main>
 

@@ -90,62 +90,9 @@ body {
   color: var(--muted);
   text-decoration: none;
   font-weight: 500;
-}
-
-.nav-dropdown {
-  position: relative;
-}
-
-.nav-dropdown > a {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-}
-
-.nav-dropdown > a::after {
-  content: "▾";
-  font-size: 0.68rem;
-  transform: translateY(1px);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 0.4rem);
-  left: 0;
-  min-width: 240px;
-  list-style: none;
-  margin: 0;
-  padding: 0.4rem;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(8px);
-  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
-  z-index: 30;
-}
-
-.dropdown-menu a {
-  display: block;
-  color: var(--ink);
-  padding: 0.45rem 0.62rem;
-  border-radius: 8px;
-  text-decoration: none;
-}
-
-.dropdown-menu a:hover,
-.dropdown-menu a:focus-visible {
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent-soft) 45%, white);
-}
-
-.nav-dropdown:hover .dropdown-menu,
-.nav-dropdown:focus-within .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  min-height: 40px;
 }
 
 .nav-list a:hover,
@@ -492,7 +439,7 @@ h2 {
 @media (max-width: 760px) {
   .site-header {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 0.65rem;
     padding-inline: 0.9rem;
   }
@@ -506,43 +453,6 @@ h2 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.55rem;
-  }
-
-  .nav-dropdown {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-dropdown > a::after {
-    display: none;
-  }
-
-  .dropdown-menu {
-    position: static;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    min-width: 0;
-    border: none;
-    box-shadow: none;
-    background: transparent;
-    padding: 0;
-    margin-top: 0.35rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.35rem;
-    width: 100%;
-  }
-
-  .dropdown-menu a {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 0.3rem 0.58rem;
-    font-size: 0.86rem;
-    background: color-mix(in srgb, white 80%, transparent);
   }
 
   .card {
@@ -569,4 +479,20 @@ h2 {
     width: 100%;
     text-align: center;
   }
+
+  .nav-list a {
+    min-height: 36px;
+  }
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.2rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.contact-list a {
+  color: var(--accent);
 }
