@@ -565,7 +565,7 @@ h2 {
     position: absolute;
     top: calc(100% + 0.35rem);
     right: 0.9rem;
-    width: min(280px, calc(100vw - 1.8rem));
+    width: min(188px, calc(100vw - 1.8rem));
     margin-top: 0;
     z-index: 40;
   }
