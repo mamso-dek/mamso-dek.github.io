@@ -121,7 +121,7 @@ async function loadMediaFromGitHub() {
 
     if (mediaFiles.length === 0) {
       status.textContent =
-        "Aucun media publie pour le moment. Utilisez le bouton 'Publier un fichier'.";
+        "Aucun média publié pour le moment. Utilisez le bouton 'Publier un fichier'.";
       grid.innerHTML = "";
       return;
     }
@@ -129,10 +129,10 @@ async function loadMediaFromGitHub() {
     mediaFiles.sort((a, b) => b.name.localeCompare(a.name, "fr"));
     grid.innerHTML = "";
     mediaFiles.forEach((file) => grid.appendChild(createMediaCard(file)));
-    status.textContent = `${mediaFiles.length} publication(s) chargee(s).`;
+    status.textContent = `${mediaFiles.length} publication(s) chargée(s).`;
   } catch (error) {
     status.textContent =
-      "Impossible de charger automatiquement. Verifiez que le dossier media/ existe et contient des fichiers.";
+      "Impossible de charger automatiquement. Vérifiez que le dossier media/ existe et contient des fichiers.";
     grid.innerHTML = "";
   }
 }
