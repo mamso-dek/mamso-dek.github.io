@@ -25,8 +25,17 @@
       <nav aria-label="Navigation principale">
         <ul class="nav-list">
           <li><a href="#a-propos">À propos</a></li>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#publications">Publications</a></li>
+          <li class="nav-dropdown">
+            <a href="#publications">Publications</a>
+            <ul class="dropdown-menu" aria-label="Sous-menu Publications">
+              <li><a href="#publications">Vue d'ensemble</a></li>
+              <li><a href="#projets-publication">Projets</a></li>
+              <li><a href="#medias-publication">Médias</a></li>
+              <li><a href="#projet-pnl">Projet: Profit &amp; Loss</a></li>
+              <li><a href="#projet-options">Projet: Prix d'options</a></li>
+              <li><a href="#projet-garch">Projet: Modèles GARCH</a></li>
+            </ul>
+          </li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -44,7 +53,7 @@
           risque et aide à la décision.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#projets">Voir mes projets</a>
+          <a class="btn btn-primary" href="#publications">Voir mes publications</a>
           <a class="btn btn-secondary" href="assets/cvPro.pdf" target="_blank" rel="noopener">Télécharger mon CV</a>
         </div>
       </section>
@@ -107,13 +116,20 @@
         </ul>
       </section>
 
-      <section id="projets" class="reveal">
+      <section id="publications" class="reveal">
         <div class="section-head">
-          <h2>Projets</h2>
+          <h2>Publications</h2>
+          <p>
+            Cette section regroupe les projets et les médias publiés.
+          </p>
+        </div>
+
+        <div id="projets-publication" class="section-head section-head-compact">
+          <h3>Projets</h3>
           <p>Sélection de projets académiques et de recherche quantitative.</p>
         </div>
         <div class="grid">
-          <article class="card">
+          <article id="projet-pnl" class="card">
             <h3>Décomposition du Profit &amp; Loss (BRVM)</h3>
             <p>
               Analyse des variations de P&amp;L par facteurs de risque pour mieux
@@ -132,7 +148,7 @@
               </button>
             </div>
           </article>
-          <article class="card">
+          <article id="projet-options" class="card">
             <h3>Modélisation et simulation de prix d'options</h3>
             <p>
               Construction de modèles de valorisation et simulations numériques
@@ -151,7 +167,7 @@
               </button>
             </div>
           </article>
-          <article class="card">
+          <article id="projet-garch" class="card">
             <h3>Estimation de modèles GARCH</h3>
             <p>
               Estimation et analyse de modèles de variance conditionnelle pour
@@ -180,11 +196,9 @@
           </p>
           <div id="project-comments-root"></div>
         </div>
-      </section>
 
-      <section id="publications" class="reveal">
-        <div class="section-head">
-          <h2>Publications</h2>
+        <div id="medias-publication" class="section-head section-head-compact">
+          <h3>Médias publiés</h3>
           <p>
             Images, documents et vidéos publiés automatiquement depuis le
             dossier <code>media/</code> de ce repo GitHub.
