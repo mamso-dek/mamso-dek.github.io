@@ -483,6 +483,25 @@ h2 {
   height: 36px;
 }
 
+.social-links-inline .social-link svg {
+  width: 17px;
+  height: 17px;
+}
+
+.site-footer .social-links {
+  margin-bottom: 0.55rem;
+}
+
+.site-footer .social-link {
+  width: 34px;
+  height: 34px;
+}
+
+.site-footer .social-link svg {
+  width: 17px;
+  height: 17px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -582,6 +601,25 @@ h2 {
   .card {
     grid-column: span 12;
   }
+
+  .social-links {
+    gap: 0.55rem;
+  }
+
+  .social-link {
+    width: 32px;
+    height: 32px;
+  }
+
+  .social-link svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .social-links-inline .social-link {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -613,9 +651,23 @@ h2 {
     font-size: 1.55rem;
   }
 
+  .social-links {
+    gap: 0.45rem;
+  }
+
   .social-link {
-    width: 38px;
-    height: 38px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .social-link svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .social-links-inline .social-link {
+    width: 27px;
+    height: 27px;
   }
 }
 
