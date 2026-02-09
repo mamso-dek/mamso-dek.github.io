@@ -76,10 +76,14 @@ Types supportes:
 
 Le site utilise `utterances` (commentaires via GitHub Issues).
 
-1. Dans le repo GitHub, verifie que `Issues` est active.
-2. Installe l'app `utterances` sur ton compte GitHub:
-   `https://github.com/apps/utterances`
-3. Donne acces au repo `mamso-dek.github.io`.
-4. Recharge le site: la section `Commentaires` sera active.
+1. Ouvre les parametres du repo:
+   `https://github.com/mamso-dek/mamso-dek.github.io/settings`
+2. Dans `General`, section `Features`, active la case `Issues`.
+3. Ouvre la gestion des apps GitHub:
+   `https://github.com/settings/installations`
+4. Sur la ligne `utterances`, clique `Configure`.
+5. Dans `Repository access`, choisis `Only select repositories`, puis ajoute
+   `mamso-dek.github.io` (ou `All repositories`).
+6. Sauvegarde puis recharge ton site.
 
 Note: les visiteurs doivent avoir un compte GitHub pour commenter.

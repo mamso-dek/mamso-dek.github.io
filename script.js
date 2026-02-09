@@ -146,7 +146,6 @@ function mountComments() {
   commentsScript.async = true;
   commentsScript.setAttribute("repo", siteConfig.commentsRepo);
   commentsScript.setAttribute("issue-term", "pathname");
-  commentsScript.setAttribute("label", "commentaire");
   commentsScript.setAttribute("theme", "github-light");
   commentsScript.setAttribute("crossorigin", "anonymous");
 
