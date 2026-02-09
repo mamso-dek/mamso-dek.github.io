@@ -553,6 +553,7 @@ h2 {
     gap: 0.65rem;
     padding-inline: 0.9rem;
     position: sticky;
+    overflow: visible;
   }
 
   .menu-toggle {
@@ -561,12 +562,12 @@ h2 {
 
   .site-header nav {
     display: none;
-    width: 100%;
-    margin-top: 0.25rem;
-  }
-
-  .site-header.is-open {
-    flex-wrap: wrap;
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 0.9rem;
+    width: min(280px, calc(100vw - 1.8rem));
+    margin-top: 0;
+    z-index: 40;
   }
 
   .site-header.is-open nav {
