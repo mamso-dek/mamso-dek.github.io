@@ -25,11 +25,9 @@
       <nav aria-label="Navigation principale">
         <ul class="nav-list">
           <li><a href="#a-propos">À propos</a></li>
-          <li><a href="#parcours">Parcours</a></li>
           <li><a href="#projets">Projets</a></li>
           <li><a href="#publications">Publications</a></li>
           <li><a href="#competences">Compétences</a></li>
-          <li><a href="#commentaires">Commentaires</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -59,12 +57,9 @@
           d'ingénieur de conception en modélisation aléatoire, statistique et
           finance. Mon objectif est de produire des modèles robustes et des
           indicateurs lisibles pour des équipes économiques, financières ou
-          decisionnelles.
+          décisionnelles.
         </p>
-      </section>
-
-      <section id="parcours" class="reveal">
-        <div class="section-head">
+        <div class="section-head section-head-compact">
           <h2>Parcours récent</h2>
         </div>
         <div class="timeline">
@@ -108,7 +103,18 @@
               Analyse des variations de P&amp;L par facteurs de risque pour mieux
               expliquer les mouvements de performance.
             </p>
-            <a href="https://github.com/mamso-dek" target="_blank" rel="noopener" aria-label="Voir le projet P&L">Voir sur GitHub</a>
+            <div class="card-actions">
+              <a href="https://github.com/mamso-dek" target="_blank" rel="noopener" aria-label="Voir le projet P&L">Voir sur GitHub</a>
+              <button
+                class="comment-btn"
+                type="button"
+                data-comment-scope="project"
+                data-comment-term="projet-decomposition-profit-loss-brvm"
+                data-comment-title="Commentaires: Décomposition du Profit &amp; Loss (BRVM)"
+              >
+                Commenter ce projet
+              </button>
+            </div>
           </article>
           <article class="card">
             <h3>Modélisation et simulation de prix d'options</h3>
@@ -116,7 +122,18 @@
               Construction de modèles de valorisation et simulations numériques
               pour étudier les comportements des produits dérivés.
             </p>
-            <a href="https://github.com/mamso-dek" target="_blank" rel="noopener" aria-label="Voir le projet options">Voir sur GitHub</a>
+            <div class="card-actions">
+              <a href="https://github.com/mamso-dek" target="_blank" rel="noopener" aria-label="Voir le projet options">Voir sur GitHub</a>
+              <button
+                class="comment-btn"
+                type="button"
+                data-comment-scope="project"
+                data-comment-term="projet-modelisation-simulation-prix-options"
+                data-comment-title="Commentaires: Modélisation et simulation de prix d'options"
+              >
+                Commenter ce projet
+              </button>
+            </div>
           </article>
           <article class="card">
             <h3>Estimation de modèles GARCH</h3>
@@ -124,8 +141,28 @@
               Estimation et analyse de modèles de variance conditionnelle pour
               des séries temporelles financières.
             </p>
-            <a href="https://github.com/mamso-dek" target="_blank" rel="noopener" aria-label="Voir le projet garch">Voir sur GitHub</a>
+            <div class="card-actions">
+              <a href="https://github.com/mamso-dek" target="_blank" rel="noopener" aria-label="Voir le projet garch">Voir sur GitHub</a>
+              <button
+                class="comment-btn"
+                type="button"
+                data-comment-scope="project"
+                data-comment-term="projet-estimation-modeles-garch"
+                data-comment-title="Commentaires: Estimation de modèles GARCH"
+              >
+                Commenter ce projet
+              </button>
+            </div>
           </article>
+        </div>
+        <div id="project-comments-panel" class="panel inline-comments" hidden>
+          <h3 id="project-comments-title" class="comment-target-title">
+            Commentaires du projet
+          </h3>
+          <p class="comment-note">
+            Les commentaires sont liés au projet sélectionné.
+          </p>
+          <div id="project-comments-root"></div>
         </div>
       </section>
 
@@ -159,6 +196,16 @@
           Chargement des publications...
         </div>
         <div id="media-grid" class="grid media-grid" aria-live="polite"></div>
+        <div id="publication-comments-panel" class="panel inline-comments" hidden>
+          <h3 id="publication-comments-title" class="comment-target-title">
+            Commentaires de la publication
+          </h3>
+          <p class="comment-note">
+            Les commentaires sont liés à la publication sélectionnée.
+          </p>
+          <div id="publication-comments-root"></div>
+          <noscript>Activez JavaScript pour afficher les commentaires.</noscript>
+        </div>
       </section>
 
       <section id="competences" class="panel reveal">
@@ -177,15 +224,6 @@
           <li>LaTeX</li>
           <li>Data visualisation</li>
         </ul>
-      </section>
-
-      <section id="commentaires" class="panel reveal">
-        <h2>Commentaires</h2>
-        <p class="comment-note">
-          Les visiteurs peuvent commenter avec leur compte GitHub.
-        </p>
-        <div id="comments-root"></div>
-        <noscript>Activez JavaScript pour afficher les commentaires.</noscript>
       </section>
 
       <section id="contact" class="contact reveal">

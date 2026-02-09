@@ -74,7 +74,11 @@ Types supportes:
 
 ## Activer les commentaires publics (gratuit)
 
-Le site utilise `utterances` (commentaires via GitHub Issues).
+Le site utilise `utterances` (commentaires via GitHub Issues), directement
+depuis les boutons:
+
+- `Commenter ce projet` dans la section Projets
+- `Commenter cette publication` dans la section Publications
 
 1. Ouvre les parametres du repo:
    `https://github.com/mamso-dek/mamso-dek.github.io/settings`
@@ -85,5 +89,6 @@ Le site utilise `utterances` (commentaires via GitHub Issues).
 5. Dans `Repository access`, choisis `Only select repositories`, puis ajoute
    `mamso-dek.github.io` (ou `All repositories`).
 6. Sauvegarde puis recharge ton site.
+7. Ouvre une publication ou un projet et clique sur le bouton de commentaire.
 
 Note: les visiteurs doivent avoir un compte GitHub pour commenter.

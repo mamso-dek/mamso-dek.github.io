@@ -32,6 +32,15 @@ const mediaTypeByExt = {
   document: ["pdf", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "txt", "csv"],
 };
 
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function getExtension(filename) {
   const dotIdx = filename.lastIndexOf(".");
   if (dotIdx === -1) return "";
@@ -44,6 +53,17 @@ function getMediaType(filename) {
   if (mediaTypeByExt.video.includes(ext)) return "video";
   if (mediaTypeByExt.document.includes(ext)) return "document";
   return "other";
+}
+
+function createCommentButton(scope, term, titleText) {
+  const button = document.createElement("button");
+  button.className = "comment-btn";
+  button.type = "button";
+  button.dataset.commentScope = scope;
+  button.dataset.commentTerm = term;
+  button.dataset.commentTitle = titleText;
+  button.textContent = scope === "project" ? "Commenter ce projet" : "Commenter cette publication";
+  return button;
 }
 
 function makePreview(file, mediaType) {
@@ -87,14 +107,89 @@ function createMediaCard(file) {
   title.textContent = file.name;
   card.appendChild(title);
 
+  const actions = document.createElement("div");
+  actions.className = "card-actions";
+
   const link = document.createElement("a");
   link.href = file.download_url;
   link.target = "_blank";
   link.rel = "noopener";
   link.textContent = "Ouvrir";
-  card.appendChild(link);
+  actions.appendChild(link);
 
+  const term = `publication-${slugify(file.name)}`;
+  const commentTitle = `Commentaires: ${file.name}`;
+  actions.appendChild(createCommentButton("publication", term, commentTitle));
+
+  card.appendChild(actions);
   return card;
+}
+
+function mountUtterances(root, issueTerm) {
+  root.innerHTML = "";
+
+  const commentsScript = document.createElement("script");
+  commentsScript.src = "https://utteranc.es/client.js";
+  commentsScript.async = true;
+  commentsScript.setAttribute("repo", siteConfig.commentsRepo);
+  commentsScript.setAttribute("issue-term", issueTerm);
+  commentsScript.setAttribute("theme", "github-light");
+  commentsScript.setAttribute("crossorigin", "anonymous");
+
+  root.appendChild(commentsScript);
+}
+
+function openCommentsFor(scope, term, title) {
+  const panelId =
+    scope === "project" ? "#project-comments-panel" : "#publication-comments-panel";
+  const titleId =
+    scope === "project" ? "#project-comments-title" : "#publication-comments-title";
+  const rootId =
+    scope === "project" ? "#project-comments-root" : "#publication-comments-root";
+
+  const panel = document.querySelector(panelId);
+  const titleNode = document.querySelector(titleId);
+  const root = document.querySelector(rootId);
+
+  if (!panel || !titleNode || !root) return;
+
+  titleNode.textContent = title;
+  panel.hidden = false;
+  mountUtterances(root, term);
+  panel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function bindProjectComments() {
+  const projectButtons = document.querySelectorAll(
+    ".comment-btn[data-comment-scope='project']"
+  );
+
+  projectButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const term = button.dataset.commentTerm;
+      const title = button.dataset.commentTitle;
+      if (!term || !title) return;
+      openCommentsFor("project", term, title);
+    });
+  });
+}
+
+function bindPublicationComments() {
+  const mediaGrid = document.querySelector("#media-grid");
+  if (!mediaGrid) return;
+
+  mediaGrid.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+
+    const button = target.closest(".comment-btn[data-comment-scope='publication']");
+    if (!button) return;
+
+    const term = button.dataset.commentTerm;
+    const title = button.dataset.commentTitle;
+    if (!term || !title) return;
+    openCommentsFor("publication", term, title);
+  });
 }
 
 async function loadMediaFromGitHub() {
@@ -137,20 +232,6 @@ async function loadMediaFromGitHub() {
   }
 }
 
-function mountComments() {
-  const commentsRoot = document.querySelector("#comments-root");
-  if (!commentsRoot) return;
-
-  const commentsScript = document.createElement("script");
-  commentsScript.src = "https://utteranc.es/client.js";
-  commentsScript.async = true;
-  commentsScript.setAttribute("repo", siteConfig.commentsRepo);
-  commentsScript.setAttribute("issue-term", "pathname");
-  commentsScript.setAttribute("theme", "github-light");
-  commentsScript.setAttribute("crossorigin", "anonymous");
-
-  commentsRoot.appendChild(commentsScript);
-}
-
+bindProjectComments();
+bindPublicationComments();
 loadMediaFromGitHub();
-mountComments();
