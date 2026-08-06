@@ -3,191 +3,252 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
     <title>À propos | Massavo Salako</title>
     <meta
       name="description"
-      content="À propos de Massavo Salako: parcours, compétences et outils en génie mathématique et modélisation."
+      content="Portfolio de Massavo Salako, ingénieur en génie mathématique et modélisation."
     />
+    <script>
+      (() => {
+        const saved = localStorage.getItem("massavo-theme");
+        const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Sora:wght@500;600;700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="bg-shape bg-shape-left" aria-hidden="true"></div>
-    <div class="bg-shape bg-shape-right" aria-hidden="true"></div>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
 
     <header class="site-header">
-      <a class="brand" href="index.html">Massavo Salako</a>
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="site-menu"
-        aria-label="Ouvrir le menu"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav id="site-menu" aria-label="Navigation principale">
-        <ul class="nav-list">
-          <li><a href="index.html">À propos</a></li>
-          <li><a href="publications.html">Publications</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="Accueil de Massavo Salako">
+          Massavo Salako
+        </a>
+        <div class="header-actions">
+          <nav id="site-menu" aria-label="Navigation principale">
+            <ul class="nav-list">
+              <li><a class="is-active" href="index.html" aria-current="page">À propos</a></li>
+              <li><a href="publications.html">Travaux</a></li>
+              <li><a href="enseignement.html">Enseignement</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+          <button class="theme-toggle" type="button" aria-label="Activer le mode sombre">
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+            </svg>
+          </button>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-menu"
+            aria-label="Ouvrir le menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
     </header>
 
-    <main>
-      <section class="hero reveal">
-        <p class="eyebrow">Ingénieur en Génie Mathématique et Modélisation</p>
-        <h1>Je transforme les données en analyses utiles pour la décision.</h1>
-        <p class="hero-copy">
-          Spécialisé en modélisation statistique, économétrie et finance
-          quantitative. Je travaille sur des problèmes réels de prévision,
-          risque et aide à la décision.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="publications.html">Voir mes publications</a>
-          <a class="btn btn-secondary" href="assets/cvPro.pdf" target="_blank" rel="noopener">Télécharger mon CV</a>
-          <a
-            class="btn btn-secondary"
-            href="https://www.linkedin.com/in/emmanuel-salako-812a18281/"
-            target="_blank"
-            rel="noopener"
-            >LinkedIn</a
-          >
+    <main id="contenu">
+      <section class="hero section-shell reveal">
+        <div class="hero-copy">
+          <h1>Massavo Emmanuel Salako</h1>
+          <p class="hero-role">Ingénieur en génie mathématique et modélisation</p>
+          <p class="hero-intro">
+            Je conçois des modèles mathématiques et des outils numériques pour
+            analyser, simuler et éclairer la décision.
+          </p>
+          <div class="text-actions">
+            <a class="text-link" href="publications.html">
+              Voir mes travaux
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="text-link" href="assets/cvPro.pdf" target="_blank" rel="noopener">
+              Télécharger mon CV
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <figure class="math-signature" aria-label="Monogramme MS et courbe mathématique">
+          <svg viewBox="0 0 360 360" role="img" aria-hidden="true">
+            <defs>
+              <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                <path d="M30 0H0V30" fill="none" stroke="currentColor" stroke-width="0.65"></path>
+              </pattern>
+            </defs>
+            <rect x="38" y="38" width="284" height="284" fill="url(#grid)" opacity="0.25"></rect>
+            <path class="axis" d="M55 282H310M78 310V54"></path>
+            <path class="curve curve-soft" d="M50 276C95 235 114 248 149 221C188 190 196 246 239 175C266 131 286 109 315 74"></path>
+            <path class="curve" d="M50 287C97 278 126 231 159 245C194 260 212 220 242 224C276 228 291 189 314 164"></path>
+            <text x="180" y="220" text-anchor="middle">MS</text>
+          </svg>
+        </figure>
+      </section>
+
+      <section class="section-shell split-section reveal" aria-labelledby="titre-a-propos">
+        <div>
+          <h2 id="titre-a-propos">À propos</h2>
+          <p>
+            Ingénieur de conception en génie mathématique et modélisation, je
+            suis spécialisé en modélisation aléatoire, statistique et finance.
+            Ma formation relie modèles probabilistes, analyse de données, aide
+            à la décision et gestion des risques.
+          </p>
+          <p>
+            J’aime transformer un problème concret en une démarche quantitative
+            rigoureuse, puis restituer les résultats de manière claire et utile.
+          </p>
+        </div>
+
+        <div>
+          <h2>Parcours</h2>
+          <ol class="timeline">
+            <li>
+              <time>2025 - présent</time>
+              <div>
+                <h3>DRES, DGE/MEF</h3>
+                <p>Modélisation et prévision conjoncturelle sur données macroéconomiques.</p>
+              </div>
+            </li>
+            <li>
+              <time>2025</time>
+              <div>
+                <h3>DRES, DGE/MEF</h3>
+                <p>Mémoire sur l’explication des profits et pertes par IA explicable.</p>
+              </div>
+            </li>
+            <li>
+              <time>2024</time>
+              <div>
+                <h3>Direction des Systèmes d’Information</h3>
+                <p>Système d’aide à la décision et tableaux de bord sur SIDoFFE.</p>
+              </div>
+            </li>
+            <li>
+              <time>2022 - 2025</time>
+              <div>
+                <h3>ENSGMM, UNSTIM</h3>
+                <p>Diplôme d’ingénieur en génie mathématique et modélisation.</p>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
 
-      <section id="a-propos" class="panel reveal">
-        <h2>À propos</h2>
-        <p>
-          Je m'appelle Salako Massavo Emmanuel Abed-Nego. J'ai une formation
-          d'ingénieur de conception en modélisation aléatoire, statistique et
-          finance. Mon objectif est de produire des modèles robustes et des
-          indicateurs lisibles pour des équipes économiques, financières ou
-          décisionnelles.
-        </p>
-
-        <div class="section-head section-head-compact">
-          <h2>Parcours récent</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item">
-            <p class="time-range">Novembre 2025 - Présent</p>
-            <h3>Stagiaire, DRES (DGE/MEF) - Bénin</h3>
-            <p>
-              Études de modélisation et de prévision conjoncturelle sur données
-              macroéconomiques. Production d'analyses quantitatives pour l'aide
-              à la décision.
-            </p>
-          </article>
-          <article class="timeline-item">
-            <p class="time-range">Mai 2025 - Novembre 2025</p>
-            <h3>Stagiaire académique, DRES (DGE/MEF)</h3>
-            <p>
-              Mémoire sur l'explication des profits et pertes via réseaux de
-              neurones et méthodes d'intelligence artificielle explicable.
-            </p>
-          </article>
-          <article class="timeline-item">
-            <p class="time-range">Juin 2024 - Septembre 2024</p>
-            <h3>Stagiaire, Direction des Systèmes d'Information</h3>
-            <p>
-              Contribution à un système d'aide à la décision nationale et
-              conception de tableaux de bord d'indicateurs sur SIDoFFE.
-            </p>
-          </article>
+      <section class="section-shell expertise-section reveal" aria-labelledby="titre-competences">
+        <div class="expertise-column">
+          <h2 id="titre-competences">Compétences</h2>
+          <dl class="lined-list">
+            <div>
+              <dt>Modélisation</dt>
+              <dd>Approches statistiques, économétriques et stochastiques</dd>
+            </div>
+            <div>
+              <dt>Finance quantitative</dt>
+              <dd>Volatilité, risque, incertitude et valorisation</dd>
+            </div>
+            <div>
+              <dt>Apprentissage automatique</dt>
+              <dd>Modèles prédictifs, réseaux de neurones et explicabilité</dd>
+            </div>
+            <div>
+              <dt>Aide à la décision</dt>
+              <dd>Indicateurs, tableaux de bord et restitution quantitative</dd>
+            </div>
+            <div>
+              <dt>Analyse de données</dt>
+              <dd>Préparation, exploration, visualisation et interprétation</dd>
+            </div>
+          </dl>
         </div>
 
-        <div class="section-head section-head-compact">
-          <h2>Compétences et outils</h2>
+        <div class="expertise-column">
+          <h2>Outils</h2>
+          <dl class="lined-list">
+            <div>
+              <dt>Langages</dt>
+              <dd>Python, R, SQL, C</dd>
+            </div>
+            <div>
+              <dt>Calcul et analyse</dt>
+              <dd>MATLAB, MS Excel</dd>
+            </div>
+            <div>
+              <dt>Environnements</dt>
+              <dd>Linux, calcul haute performance</dd>
+            </div>
+            <div>
+              <dt>Documentation</dt>
+              <dd>LaTeX</dd>
+            </div>
+            <div>
+              <dt>Versionnement</dt>
+              <dd>Git, GitHub</dd>
+            </div>
+          </dl>
         </div>
-        <div class="skills-split">
-          <article class="skill-group">
-            <h3>Compétences</h3>
-            <ul class="tags">
-              <li>Modélisation statistique</li>
-              <li>Économétrie</li>
-              <li>Apprentissage automatique</li>
-              <li>Finance quantitative</li>
-              <li>Aide à la décision</li>
-              <li>Visualisation de données</li>
-            </ul>
-          </article>
-          <article class="skill-group">
-            <h3>Outils</h3>
-            <ul class="tags">
-              <li>Python</li>
-              <li>R</li>
-              <li>SQL</li>
-              <li>MATLAB</li>
-              <li>C</li>
-              <li>Linux / HPC</li>
-              <li>LaTeX</li>
-            </ul>
-          </article>
+      </section>
+
+      <section class="section-shell recent-work reveal" aria-labelledby="titre-travaux-recents">
+        <div class="section-title-row">
+          <h2 id="titre-travaux-recents">Travaux récents</h2>
+          <a class="quiet-link" href="publications.html">Tous les travaux</a>
+        </div>
+        <div class="work-links">
+          <a href="publications.html#projet-pnl">
+            <strong>Décomposition du Profit &amp; Loss (BRVM)</strong>
+            <span>Analyse des variations du P&amp;L par facteurs de risque.</span>
+            <b aria-hidden="true">→</b>
+          </a>
+          <a href="publications.html#projet-options">
+            <strong>Modélisation et simulation de prix d’options</strong>
+            <span>Étude numérique de la valorisation de produits dérivés.</span>
+            <b aria-hidden="true">→</b>
+          </a>
+          <a href="publications.html#projet-garch">
+            <strong>Modélisation de la volatilité</strong>
+            <span>Estimation et analyse de modèles GARCH sur données financières.</span>
+            <b aria-hidden="true">→</b>
+          </a>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="social-links" aria-label="Réseaux sociaux">
-        <a
-          class="social-link"
-          href="https://github.com/mamso-dek"
-          target="_blank"
-          rel="noopener"
-          aria-label="GitHub"
-        >
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path
-              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-              0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-              -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07
-              -.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2
-              -.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53
-              -1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87
-              3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38
-              A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8"
-            ></path>
-          </svg>
-          <span class="sr-only">GitHub</span>
-        </a>
-        <a
-          class="social-link"
-          href="https://www.linkedin.com/in/emmanuel-salako-812a18281/"
-          target="_blank"
-          rel="noopener"
-          aria-label="LinkedIn"
-        >
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path
-              d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16
-              1.146v13.708c0 .633-.526 1.146-1.175
-              1.146H1.175C.526 16 0 15.487 0 14.854z"
-            ></path>
-            <path
-              d="M4.943 13.5V6.169H2.542V13.5zm-1.2-8.332c.837 0 1.358-.554
-              1.358-1.248-.015-.709-.52-1.248-1.341-1.248S2.4 3.21 2.4
-              3.92c0 .694.521 1.248 1.327
-              1.248zm4.908 8.332V9.359c0-.221.016-.442.082-.6.178-.442.582
-              -.9 1.261-.9.889 0 1.244.679
-              1.244 1.673V13.5h2.401V9.255c0-2.272-1.21-3.329-2.824-3.329-1.304
-              0-1.882.717-2.208
-              1.221h.03V6.169H6.236c.03.647 0 7.331 0 7.331z"
-              fill="#fff"
-            ></path>
-          </svg>
-          <span class="sr-only">LinkedIn</span>
-        </a>
+      <div class="footer-inner">
+        <div class="footer-links" aria-label="Réseaux et contact">
+          <a href="https://github.com/mamso-dek" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.6 7.6 0 0 1 8 3.55c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/emmanuel-salako-812a18281/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M14.82 0H1.18C.53 0 0 .51 0 1.15v13.7C0 15.49.53 16 1.18 16h13.64c.65 0 1.18-.51 1.18-1.15V1.15C16 .51 15.47 0 14.82 0ZM4.94 13.5h-2.4V6.17h2.4v7.33ZM3.74 5.17c-.82 0-1.34-.55-1.34-1.25s.54-1.25 1.36-1.25 1.33.54 1.34 1.25c0 .7-.52 1.25-1.36 1.25Zm9.9 8.33h-2.4V9.53c0-.99-.36-1.67-1.25-1.67-.68 0-1.08.46-1.26.9-.07.16-.08.38-.08.6v4.14h-2.4V6.17h2.4v.98c.32-.5.9-1.22 2.19-1.22 1.61 0 2.8 1.06 2.8 3.33v4.24Z"></path></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:smassavo@gmail.com">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 2v.4l7 5.1 7-5.1V7H5Zm14 10V9.9L12 15 5 9.9V17h14Z"></path></svg>
+            Email
+          </a>
+        </div>
+        <p>© <span data-year></span> Massavo Salako</p>
       </div>
-      <p>&copy; <span id="year"></span> Massavo Salako. Tous droits réservés.</p>
     </footer>
 
     <script src="script.js"></script>

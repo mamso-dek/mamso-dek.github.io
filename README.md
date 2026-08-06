@@ -5,17 +5,18 @@ Site statique (HTML/CSS/JS) pret pour GitHub Pages en 0 euro.
 ## Fichiers
 
 - `index.html`: page À propos
-- `publications.html`: page Publications (projets + médias)
+- `publications.html`: page Travaux (projets + documents + médias)
+- `enseignement.html`: page Enseignement (cours et ateliers en préparation)
 - `contact.html`: page Contact
-- `styles.css`: design responsive
-- `script.js`: animations
+- `styles.css`: design éditorial responsive et modes clair/sombre
+- `script.js`: navigation mobile, filtres, thème, médias et commentaires
 - `assets/cvPro.pdf`: CV telechargeable
 - `media/`: images, documents et videos publies sur le site
 
 ## Tester en local
 
 ```bash
-cd /Users/massavosalako/Documents/portofolio
+cd /Users/massavosalako/Projects/Web/portofolio
 python3 -m http.server 8080
 ```
 
@@ -36,7 +37,7 @@ Ton site sera servi ici:
 ### Commandes de push
 
 ```bash
-cd /Users/massavosalako/Documents/portofolio
+cd /Users/massavosalako/Projects/Web/portofolio
 git init
 git checkout -b main
 git add .

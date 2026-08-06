@@ -1,6 +1,58 @@
-const yearSlot = document.querySelector("#year");
-if (yearSlot) {
-  yearSlot.textContent = new Date().getFullYear();
+const siteConfig = {
+  githubOwner: "mamso-dek",
+  githubRepo: "mamso-dek.github.io",
+  mediaFolder: "media",
+  commentsRepo: "mamso-dek/mamso-dek.github.io",
+  themeStorageKey: "massavo-theme",
+};
+
+document.querySelectorAll("[data-year]").forEach((slot) => {
+  slot.textContent = new Date().getFullYear();
+});
+
+function currentTheme() {
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+}
+
+function updateThemeUi() {
+  const dark = currentTheme() === "dark";
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+
+  document.querySelectorAll(".theme-toggle").forEach((button) => {
+    button.setAttribute(
+      "aria-label",
+      dark ? "Activer le mode clair" : "Activer le mode sombre"
+    );
+    button.setAttribute("title", dark ? "Mode clair" : "Mode sombre");
+  });
+
+  if (themeColor) {
+    themeColor.setAttribute("content", dark ? "#111216" : "#ffffff");
+  }
+}
+
+function syncCommentTheme() {
+  const theme = currentTheme() === "dark" ? "github-dark" : "github-light";
+  document.querySelectorAll("iframe.utterances-frame").forEach((frame) => {
+    frame.contentWindow?.postMessage(
+      { type: "set-theme", theme },
+      "https://utteranc.es"
+    );
+  });
+}
+
+function bindThemeToggle() {
+  updateThemeUi();
+
+  document.querySelectorAll(".theme-toggle").forEach((button) => {
+    button.addEventListener("click", () => {
+      const nextTheme = currentTheme() === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      localStorage.setItem(siteConfig.themeStorageKey, nextTheme);
+      updateThemeUi();
+      syncCommentTheme();
+    });
+  });
 }
 
 function bindMobileMenu() {
@@ -24,72 +76,118 @@ function bindMobileMenu() {
   };
 
   toggle.addEventListener("click", () => {
-    const isOpen = header.classList.contains("is-open");
-    if (isOpen) {
+    if (header.classList.contains("is-open")) {
       closeMenu();
-      return;
+    } else {
+      openMenu();
     }
-    openMenu();
   });
 
   nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => closeMenu());
+    link.addEventListener("click", closeMenu);
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeMenu();
-    }
+    if (event.key === "Escape") closeMenu();
   });
 
   document.addEventListener("click", (event) => {
-    const target = event.target;
-    if (!(target instanceof Node)) return;
-    if (!header.contains(target)) {
+    if (event.target instanceof Node && !header.contains(event.target)) {
       closeMenu();
     }
   });
 
-  const mediaQuery = window.matchMedia("(min-width: 761px)");
-  const handleResize = () => {
-    if (mediaQuery.matches) {
-      closeMenu();
-    }
+  const desktopQuery = window.matchMedia("(min-width: 821px)");
+  const handleViewportChange = () => {
+    if (desktopQuery.matches) closeMenu();
   };
 
-  if (typeof mediaQuery.addEventListener === "function") {
-    mediaQuery.addEventListener("change", handleResize);
+  if (typeof desktopQuery.addEventListener === "function") {
+    desktopQuery.addEventListener("change", handleViewportChange);
   } else {
-    mediaQuery.addListener(handleResize);
+    desktopQuery.addListener(handleViewportChange);
   }
 }
 
-bindMobileMenu();
+function bindRevealAnimations() {
+  const items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
 
-const revealItems = document.querySelectorAll(".reveal");
+  if (
+    !("IntersectionObserver" in window) ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    items.forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
 
-const observer = new IntersectionObserver(
-  (entries, obs) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
+  const observer = new IntersectionObserver(
+    (entries, activeObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
         entry.target.classList.add("is-visible");
-        obs.unobserve(entry.target);
-      }
+        activeObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  items.forEach((item) => observer.observe(item));
+}
+
+function applyFilter(group, value) {
+  const buttons = document.querySelectorAll(
+    `[data-filter-group="${group}"]`
+  );
+  const sections = document.querySelectorAll(
+    `[data-filter-section="${group}"]`
+  );
+  const items = document.querySelectorAll(`[data-filter-item="${group}"]`);
+
+  buttons.forEach((button) => {
+    const selected = button.dataset.filterValue === value;
+    button.classList.toggle("is-selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+
+  sections.forEach((section) => {
+    section.hidden =
+      value !== "all" && section.dataset.filterCategory !== value;
+  });
+
+  let visibleItems = 0;
+  items.forEach((item) => {
+    const visible =
+      value === "all" || item.dataset.filterCategory === value;
+    item.hidden = !visible;
+    if (visible) visibleItems += 1;
+  });
+
+  if (group === "teaching") {
+    const listSection = document.querySelector(".teaching-section");
+    if (listSection) {
+      listSection.hidden = value === "resources";
+    }
+  }
+
+  document.querySelectorAll(`[data-filter-empty="${group}"]`).forEach((empty) => {
+    empty.hidden =
+      value === "all" || value === "resources" || visibleItems > 0;
+  });
+}
+
+function bindFilters() {
+  document.querySelectorAll("[data-filter-group]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const group = button.dataset.filterGroup;
+      const value = button.dataset.filterValue;
+      if (!group || !value) return;
+      applyFilter(group, value);
     });
-  },
-  { threshold: 0.18 }
-);
+  });
+}
 
-revealItems.forEach((item) => observer.observe(item));
-
-const siteConfig = {
-  githubOwner: "mamso-dek",
-  githubRepo: "mamso-dek.github.io",
-  mediaFolder: "media",
-  commentsRepo: "mamso-dek/mamso-dek.github.io",
-};
-
-const mediaTypeByExt = {
+const mediaTypeByExtension = {
   image: ["jpg", "jpeg", "png", "webp", "gif", "svg", "avif"],
   video: ["mp4", "webm", "ogg", "mov", "m4v"],
   document: ["pdf", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "txt", "csv"],
@@ -105,38 +203,37 @@ function slugify(value) {
 }
 
 function getExtension(filename) {
-  const dotIdx = filename.lastIndexOf(".");
-  if (dotIdx === -1) return "";
-  return filename.slice(dotIdx + 1).toLowerCase();
+  const dotIndex = filename.lastIndexOf(".");
+  return dotIndex === -1 ? "" : filename.slice(dotIndex + 1).toLowerCase();
 }
 
 function getMediaType(filename) {
-  const ext = getExtension(filename);
-  if (mediaTypeByExt.image.includes(ext)) return "image";
-  if (mediaTypeByExt.video.includes(ext)) return "video";
-  if (mediaTypeByExt.document.includes(ext)) return "document";
+  const extension = getExtension(filename);
+  if (mediaTypeByExtension.image.includes(extension)) return "image";
+  if (mediaTypeByExtension.video.includes(extension)) return "video";
+  if (mediaTypeByExtension.document.includes(extension)) return "document";
   return "other";
 }
 
-function createCommentButton(scope, term, titleText) {
+function createCommentButton(scope, term, title) {
   const button = document.createElement("button");
-  button.className = "comment-btn";
   button.type = "button";
+  button.className = "comment-btn";
   button.dataset.commentScope = scope;
   button.dataset.commentTerm = term;
-  button.dataset.commentTitle = titleText;
-  button.textContent = scope === "project" ? "Commenter ce projet" : "Commenter cette publication";
+  button.dataset.commentTitle = title;
+  button.textContent = "Commenter";
   return button;
 }
 
-function makePreview(file, mediaType) {
+function makeMediaPreview(file, mediaType) {
   if (mediaType === "image") {
-    const img = document.createElement("img");
-    img.className = "media-preview";
-    img.src = file.download_url;
-    img.alt = file.name;
-    img.loading = "lazy";
-    return img;
+    const image = document.createElement("img");
+    image.className = "media-preview";
+    image.src = file.download_url;
+    image.alt = "";
+    image.loading = "lazy";
+    return image;
   }
 
   if (mediaType === "video") {
@@ -148,153 +245,151 @@ function makePreview(file, mediaType) {
     return video;
   }
 
-  const doc = document.createElement("div");
-  doc.className = "media-doc";
-  doc.textContent = "Document";
-  return doc;
+  const documentPreview = document.createElement("div");
+  documentPreview.className = "media-doc";
+  documentPreview.textContent = getExtension(file.name).toUpperCase() || "DOC";
+  return documentPreview;
 }
 
-function createMediaCard(file) {
+function createMediaItem(file) {
   const mediaType = getMediaType(file.name);
-  const card = document.createElement("article");
-  card.className = "card media-card";
-  card.appendChild(makePreview(file, mediaType));
+  const item = document.createElement("article");
+  item.className = "media-item";
+  item.appendChild(makeMediaPreview(file, mediaType));
 
-  const typeTag = document.createElement("p");
-  typeTag.className = "media-type";
-  typeTag.textContent = mediaType.toUpperCase();
-  card.appendChild(typeTag);
+  const content = document.createElement("div");
+  const type = document.createElement("p");
+  type.className = "media-type";
+  type.textContent = mediaType.toUpperCase();
+  content.appendChild(type);
 
   const title = document.createElement("h3");
   title.className = "media-title";
   title.textContent = file.name;
-  card.appendChild(title);
+  content.appendChild(title);
+  item.appendChild(content);
 
   const actions = document.createElement("div");
-  actions.className = "card-actions";
+  actions.className = "media-actions";
 
-  const link = document.createElement("a");
-  link.href = file.download_url;
-  link.target = "_blank";
-  link.rel = "noopener";
-  link.textContent = "Ouvrir";
-  actions.appendChild(link);
+  const openLink = document.createElement("a");
+  openLink.href = file.download_url;
+  openLink.target = "_blank";
+  openLink.rel = "noopener";
+  openLink.textContent = "Ouvrir";
+  actions.appendChild(openLink);
 
-  const term = `publication-${slugify(file.name)}`;
-  const commentTitle = `Commentaires: ${file.name}`;
-  actions.appendChild(createCommentButton("publication", term, commentTitle));
+  actions.appendChild(
+    createCommentButton(
+      "publication",
+      `publication-${slugify(file.name)}`,
+      `Commentaires : ${file.name}`
+    )
+  );
+  item.appendChild(actions);
 
-  card.appendChild(actions);
-  return card;
+  return item;
+}
+
+function utterancesTheme() {
+  return currentTheme() === "dark" ? "github-dark" : "github-light";
 }
 
 function mountUtterances(root, issueTerm) {
   root.innerHTML = "";
-
-  const commentsScript = document.createElement("script");
-  commentsScript.src = "https://utteranc.es/client.js";
-  commentsScript.async = true;
-  commentsScript.setAttribute("repo", siteConfig.commentsRepo);
-  commentsScript.setAttribute("issue-term", issueTerm);
-  commentsScript.setAttribute("theme", "github-light");
-  commentsScript.setAttribute("crossorigin", "anonymous");
-
-  root.appendChild(commentsScript);
+  const script = document.createElement("script");
+  script.src = "https://utteranc.es/client.js";
+  script.async = true;
+  script.setAttribute("repo", siteConfig.commentsRepo);
+  script.setAttribute("issue-term", issueTerm);
+  script.setAttribute("theme", utterancesTheme());
+  script.setAttribute("crossorigin", "anonymous");
+  root.appendChild(script);
 }
 
-function openCommentsFor(scope, term, title) {
-  const panelId =
-    scope === "project" ? "#project-comments-panel" : "#publication-comments-panel";
-  const titleId =
-    scope === "project" ? "#project-comments-title" : "#publication-comments-title";
-  const rootId =
-    scope === "project" ? "#project-comments-root" : "#publication-comments-root";
+function openComments(scope, term, title) {
+  const project = scope === "project";
+  const panel = document.querySelector(
+    project ? "#project-comments-panel" : "#publication-comments-panel"
+  );
+  const heading = document.querySelector(
+    project ? "#project-comments-title" : "#publication-comments-title"
+  );
+  const root = document.querySelector(
+    project ? "#project-comments-root" : "#publication-comments-root"
+  );
+  if (!panel || !heading || !root) return;
 
-  const panel = document.querySelector(panelId);
-  const titleNode = document.querySelector(titleId);
-  const root = document.querySelector(rootId);
-
-  if (!panel || !titleNode || !root) return;
-
-  titleNode.textContent = title;
+  heading.textContent = title;
   panel.hidden = false;
   mountUtterances(root, term);
   panel.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function bindProjectComments() {
-  const projectButtons = document.querySelectorAll(
-    ".comment-btn[data-comment-scope='project']"
-  );
+function bindComments() {
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
 
-  projectButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const term = button.dataset.commentTerm;
-      const title = button.dataset.commentTitle;
-      if (!term || !title) return;
-      openCommentsFor("project", term, title);
+    const commentButton = event.target.closest(".comment-btn");
+    if (commentButton) {
+      const { commentScope, commentTerm, commentTitle } = commentButton.dataset;
+      if (commentScope && commentTerm && commentTitle) {
+        openComments(commentScope, commentTerm, commentTitle);
+      }
+      return;
+    }
+
+    const closeButton = event.target.closest(".comments-close");
+    if (!closeButton) return;
+    const panel = closeButton.closest(".comments-panel");
+    if (!panel) return;
+    panel.hidden = true;
+    panel.querySelectorAll('[id$="-comments-root"]').forEach((root) => {
+      root.innerHTML = "";
     });
-  });
-}
-
-function bindPublicationComments() {
-  const mediaGrid = document.querySelector("#media-grid");
-  if (!mediaGrid) return;
-
-  mediaGrid.addEventListener("click", (event) => {
-    const target = event.target;
-    if (!(target instanceof HTMLElement)) return;
-
-    const button = target.closest(".comment-btn[data-comment-scope='publication']");
-    if (!button) return;
-
-    const term = button.dataset.commentTerm;
-    const title = button.dataset.commentTitle;
-    if (!term || !title) return;
-    openCommentsFor("publication", term, title);
   });
 }
 
 async function loadMediaFromGitHub() {
-  const grid = document.querySelector("#media-grid");
+  const list = document.querySelector("#media-grid");
   const status = document.querySelector("#media-status");
-  if (!grid || !status) return;
+  if (!list || !status) return;
 
-  const apiUrl = `https://api.github.com/repos/${siteConfig.githubOwner}/${siteConfig.githubRepo}/contents/${siteConfig.mediaFolder}`;
-  status.textContent = "Chargement des publications depuis GitHub...";
+  const endpoint =
+    `https://api.github.com/repos/${siteConfig.githubOwner}/${siteConfig.githubRepo}/contents/${siteConfig.mediaFolder}`;
 
   try {
-    const res = await fetch(apiUrl, {
+    const response = await fetch(endpoint, {
       headers: { Accept: "application/vnd.github+json" },
     });
-    if (!res.ok) {
-      throw new Error(`GitHub API status ${res.status}`);
-    }
+    if (!response.ok) throw new Error(`GitHub API status ${response.status}`);
 
-    const payload = await res.json();
-    const files = Array.isArray(payload) ? payload : [];
-    const mediaFiles = files.filter((file) => {
-      return file.type === "file" && getMediaType(file.name) !== "other";
-    });
+    const payload = await response.json();
+    const files = Array.isArray(payload)
+      ? payload.filter(
+          (file) => file.type === "file" && getMediaType(file.name) !== "other"
+        )
+      : [];
 
-    if (mediaFiles.length === 0) {
+    if (!files.length) {
       status.textContent =
-        "Aucun média publié pour le moment. Utilisez le bouton 'Publier un fichier'.";
-      grid.innerHTML = "";
+        "Aucun média publié pour le moment. Les prochains fichiers apparaîtront automatiquement ici.";
       return;
     }
 
-    mediaFiles.sort((a, b) => b.name.localeCompare(a.name, "fr"));
-    grid.innerHTML = "";
-    mediaFiles.forEach((file) => grid.appendChild(createMediaCard(file)));
-    status.textContent = `${mediaFiles.length} publication(s) chargée(s).`;
+    files.sort((a, b) => b.name.localeCompare(a.name, "fr"));
+    list.innerHTML = "";
+    files.forEach((file) => list.appendChild(createMediaItem(file)));
+    status.textContent = `${files.length} média${files.length > 1 ? "s" : ""} publié${files.length > 1 ? "s" : ""}.`;
   } catch (error) {
     status.textContent =
-      "Impossible de charger automatiquement. Vérifiez que le dossier media/ existe et contient des fichiers.";
-    grid.innerHTML = "";
+      "Les médias ne peuvent pas être chargés pour le moment. Le dossier GitHub reste accessible ci-dessus.";
   }
 }
 
-bindProjectComments();
-bindPublicationComments();
+bindThemeToggle();
+bindMobileMenu();
+bindRevealAnimations();
+bindFilters();
+bindComments();
 loadMediaFromGitHub();
