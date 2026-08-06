@@ -94,7 +94,7 @@ function normalizeSearchText(value) {
 
 function getSearchResults(query) {
   const words = normalizeSearchText(query).split(/\s+/).filter(Boolean);
-  if (!words.length) return siteSearchIndex.slice(0, 7);
+  if (!words.length) return [];
 
   return siteSearchIndex
     .map((item) => {
@@ -149,6 +149,12 @@ function bindSiteSearch() {
 
   const renderResults = () => {
     const query = input.value;
+
+    if (!query.trim()) {
+      resultsRoot.innerHTML = "";
+      return;
+    }
+
     const results = getSearchResults(query);
 
     if (!results.length) {
@@ -159,7 +165,7 @@ function bindSiteSearch() {
       return;
     }
 
-    const label = query.trim() ? `${results.length} résultat${results.length > 1 ? "s" : ""}` : "Accès rapides";
+    const label = `${results.length} résultat${results.length > 1 ? "s" : ""}`;
     resultsRoot.innerHTML = `
       <p class="search-hint">${label}</p>
       ${results

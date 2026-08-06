@@ -401,6 +401,10 @@ p {
   overflow-y: auto;
 }
 
+.search-results:empty {
+  display: none;
+}
+
 .search-hint {
   margin: 0.3rem 0 0.65rem;
   color: var(--faint);
