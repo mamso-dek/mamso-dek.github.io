@@ -6,10 +6,11 @@ Site statique (HTML/CSS/JS) pret pour GitHub Pages en 0 euro.
 
 - `index.html`: page À propos
 - `publications.html`: page Travaux (projets + documents + médias)
+- `projets/`: fiches détaillées consultables pour chaque projet
 - `enseignement.html`: page Enseignement (cours et ateliers en préparation)
 - `contact.html`: page Contact
 - `styles.css`: design éditorial responsive et modes clair/sombre
-- `script.js`: navigation mobile, filtres, thème, médias et commentaires
+- `script.js`: navigation mobile, recherche, filtres, thème, médias et commentaires
 - `assets/cvPro.pdf`: CV telechargeable
 - `media/`: images, documents et videos publies sur le site
 
@@ -78,10 +79,10 @@ Types supportes:
 ## Activer les commentaires publics (gratuit)
 
 Le site utilise `utterances` (commentaires via GitHub Issues), directement
-depuis les boutons:
+depuis les fiches de projet et les publications:
 
-- `Commenter ce projet` dans la section Projets
-- `Commenter cette publication` dans la section Publications
+- `Afficher les commentaires` au bas de chaque fiche de projet
+- `Commenter` pour chaque média publié
 
 1. Ouvre les parametres du repo:
    `https://github.com/mamso-dek/mamso-dek.github.io/settings`
