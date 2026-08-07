@@ -1183,6 +1183,11 @@ p {
   gap: clamp(3rem, 10vw, 9rem);
 }
 
+.project-narrative > *,
+.content-body {
+  min-width: 0;
+}
+
 .project-narrative article p {
   max-width: 66ch;
   margin: 0;
@@ -1406,11 +1411,62 @@ p {
   overflow-x: auto;
   border: 1px solid var(--line);
   background: var(--surface);
+  line-height: 1.65;
+  tab-size: 2;
 }
 
 .prose pre code {
   padding: 0;
   background: transparent;
+  color: var(--text);
+  font-size: 0.86rem;
+}
+
+.prose .highlight {
+  min-width: 0;
+  max-width: 100%;
+  margin-block: 1.5rem;
+}
+
+.prose .highlight pre {
+  margin: 0;
+}
+
+.highlight .c,
+.highlight .cm,
+.highlight .c1,
+.highlight .cs {
+  color: var(--faint);
+  font-style: italic;
+}
+
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt,
+.highlight .o,
+.highlight .ow {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .se,
+.highlight .mi,
+.highlight .mf {
+  color: var(--muted);
+}
+
+.highlight .nf,
+.highlight .nb,
+.highlight .nc {
+  color: var(--text);
+  font-weight: 600;
 }
 
 .prose img,
@@ -1418,6 +1474,29 @@ p {
   max-width: 100%;
   height: auto;
   border: 1px solid var(--line);
+}
+
+.prose p > img {
+  width: 100%;
+  margin-top: 0.6rem;
+  background: #ffffff;
+}
+
+.prose mjx-container[display="true"] {
+  max-width: 100%;
+  margin-block: 1.7rem !important;
+  padding: 0.8rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.prose .figure-caption {
+  max-width: 74ch;
+  margin-top: -0.6rem;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
 }
 
 .prose table {

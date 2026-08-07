@@ -17,3 +17,24 @@ links:
 ## Résumé
 
 Présentez ici le résumé ou les informations complémentaires.
+
+## Formulation
+
+$$
+\widehat{\theta}
+=
+\underset{\theta}{\arg\min}\;L(\theta).
+$$
+
+## Exemple de code
+
+```python
+from sklearn.model_selection import cross_validate
+
+scores = cross_validate(model, X, y, cv=5)
+```
+
+![Description du graphique](/assets/publications/graphique.svg)
+
+*Source et nature des données.*
+{: .figure-caption}

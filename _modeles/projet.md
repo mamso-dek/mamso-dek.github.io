@@ -31,3 +31,27 @@ Présentez ici le problème, les données et le contexte.
 ## Résultats
 
 Présentez ici les résultats importants.
+
+## Formulation mathématique
+
+Présentez une équation dans un bloc délimité par deux symboles dollar :
+
+$$
+y_t = f(x_t,\theta) + \varepsilon_t.
+$$
+
+## Code
+
+```python
+import pandas as pd
+
+data = pd.read_csv("donnees.csv")
+print(data.describe())
+```
+
+## Figure
+
+![Description précise du graphique](/assets/projets/nom-du-projet/graphique.svg)
+
+*Indiquez la source des données et précisez si elles sont réelles ou simulées.*
+{: .figure-caption}

@@ -36,6 +36,41 @@ Chaque hypothèse devrait être associée à deux questions :
 - Comment peut-on la vérifier ou en tester les conséquences ?
 - Que se passe-t-il si elle est fausse ?
 
+Une formalisation dynamique générique peut s’écrire :
+
+$$
+\frac{dx(t)}{dt}
+=
+f\!\left(x(t),u(t),\theta\right),
+\qquad
+x(0)=x_0,
+$$
+
+où \(x(t)\) décrit l’état du système, \(u(t)\) les facteurs extérieurs et \(\theta\) les paramètres. Cette écriture oblige à distinguer ce qui évolue, ce qui agit sur le système et ce qui doit être estimé.
+
+### Explorer un modèle simple
+
+```python
+import numpy as np
+from scipy.integrate import solve_ivp
+
+def dynamics(t, state, growth, capacity):
+    population = state[0]
+    derivative = growth * population * (1 - population / capacity)
+    return [derivative]
+
+time = np.linspace(0, 20, 200)
+solution = solve_ivp(
+    dynamics,
+    t_span=(time.min(), time.max()),
+    y0=[10.0],
+    t_eval=time,
+    args=(0.35, 100.0),
+)
+```
+
+Le code n’est qu’une traduction de l’hypothèse logistique. Sa valeur dépend donc moins de la bibliothèque utilisée que de la pertinence de cette hypothèse pour le système réel.
+
 ## 4. Quelles données permettent d’identifier le modèle ?
 
 Une variable théoriquement importante n’est pas toujours observable. À l’inverse, une variable disponible n’est pas nécessairement pertinente.
@@ -49,6 +84,11 @@ La qualité de la formalisation dépend donc autant des données absentes que de
 Le critère d’utilité doit être défini avant l’estimation. Il peut s’agir d’une erreur de prévision, d’une capacité à classer des risques, d’une stabilité sous plusieurs scénarios ou d’une amélioration mesurable de la décision.
 
 Un bon modèle n’est pas nécessairement le plus complexe. C’est celui qui apporte une réponse suffisamment précise, compréhensible et robuste au regard du coût de l’erreur.
+
+![Observations simulées et modèles de complexités différentes](/assets/notes/complexite-formalisation.svg)
+
+*Schéma sur données simulées : un modèle plus flexible peut suivre davantage les observations tout en devenant moins stable.*
+{: .figure-caption}
 
 ## Une boucle plutôt qu’une ligne droite
 

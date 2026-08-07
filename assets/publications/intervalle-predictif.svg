@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">Prévision centrale et intervalle prédictif</title>
+  <desc id="desc">Une courbe centrale rouge est entourée d’une bande d’incertitude qui s’élargit dans le futur.</desc>
+  <rect width="960" height="360" fill="#ffffff"/>
+  <g font-family="Arial, sans-serif">
+    <text x="56" y="42" fill="#202124" font-size="18" font-weight="700">Prévoir une distribution, pas seulement un point</text>
+    <text x="56" y="66" fill="#6b7280" font-size="12">série et intervalle prédictif simulés</text>
+    <g stroke="#e5e7eb"><line x1="72" y1="110" x2="910" y2="110"/><line x1="72" y1="180" x2="910" y2="180"/><line x1="72" y1="250" x2="910" y2="250"/><line x1="72" y1="310" x2="910" y2="310"/></g>
+    <path d="M500 137 C570 121 635 102 700 91 C770 78 835 66 910 54 L910 282 C840 269 776 256 700 242 C630 229 567 214 500 202 Z" fill="#cf566c" opacity="0.16"/>
+    <path d="M500 153 C570 143 635 131 700 126 C770 118 835 113 910 108 L910 242 C840 231 776 221 700 211 C630 202 567 190 500 184 Z" fill="#cf566c" opacity="0.2"/>
+    <polyline points="72,235 112,219 152,228 192,196 232,205 272,177 312,191 352,157 392,169 432,146 472,158 500,151" fill="none" stroke="#334155" stroke-width="2.5"/>
+    <path d="M500 168 C570 160 635 151 700 147 C770 141 835 138 910 136" fill="none" stroke="#cf566c" stroke-width="3"/>
+    <line x1="500" y1="82" x2="500" y2="310" stroke="#9ca3af" stroke-dasharray="5 5"/>
+    <g fill="#4b5563" font-size="12">
+      <text x="428" y="330">observé</text><text x="730" y="330">horizon de prévision</text>
+      <text x="755" y="92" fill="#cf566c">intervalle à 90 %</text><text x="755" y="132" fill="#cf566c">prévision centrale</text>
+    </g>
+  </g>
+</svg>

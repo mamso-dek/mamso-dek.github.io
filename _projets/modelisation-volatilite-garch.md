@@ -26,3 +26,62 @@ steps:
 
 Les données financières présentent souvent des périodes calmes suivies de phases plus agitées. Le projet étudie cette concentration de la volatilité dans le temps et utilise des modèles GARCH pour représenter l’évolution de la variance conditionnelle.
 
+## Spécification GARCH
+
+Un modèle GARCH(1,1) sépare le rendement \(r_t\) d’une innovation standardisée \(z_t\) :
+
+$$
+r_t = \mu + \varepsilon_t,
+\qquad
+\varepsilon_t = \sigma_t z_t,
+$$
+
+avec une variance conditionnelle définie par :
+
+$$
+\sigma_t^2 =
+\omega
++ \alpha\,\varepsilon_{t-1}^{2}
++ \beta\,\sigma_{t-1}^{2}.
+$$
+
+Les contraintes \(\omega>0\), \(\alpha\geq0\) et \(\beta\geq0\) garantissent une variance positive. Lorsque \(\alpha+\beta\) est proche de 1, les chocs de volatilité disparaissent lentement.
+
+## Estimation en Python
+
+```python
+from arch import arch_model
+
+returns = 100 * prices.pct_change().dropna()
+
+model = arch_model(
+    returns,
+    mean="Constant",
+    vol="GARCH",
+    p=1,
+    q=1,
+    dist="t",
+)
+result = model.fit(disp="off")
+
+conditional_volatility = result.conditional_volatility
+forecast = result.forecast(horizon=10, reindex=False)
+```
+
+## Volatilité conditionnelle
+
+![Rendements simulés et volatilité conditionnelle GARCH](/assets/projets/modelisation-volatilite-garch/volatilite-conditionnelle.svg)
+
+*Données simulées : les barres montrent les rendements et la courbe rouge l’écart-type conditionnel estimé.*
+{: .figure-caption}
+
+Le graphique met en évidence le regroupement de la volatilité : un choc important est généralement suivi d’une période où l’incertitude estimée reste élevée.
+
+## Diagnostics nécessaires
+
+| Diagnostic | Question examinée |
+| --- | --- |
+| Résidus standardisés | Reste-t-il une structure prévisible ? |
+| Test ARCH-LM | Une hétéroscédasticité demeure-t-elle ? |
+| QQ-plot | La distribution choisie représente-t-elle les queues ? |
+| AIC / BIC | Une autre spécification est-elle plus parcimonieuse ? |

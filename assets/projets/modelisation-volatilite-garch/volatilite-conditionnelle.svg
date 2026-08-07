@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">Rendements simulés et volatilité conditionnelle</title>
+  <desc id="desc">Barres de rendements centrées autour de zéro et courbe de volatilité GARCH.</desc>
+  <rect width="960" height="360" fill="#ffffff"/>
+  <g font-family="Arial, sans-serif">
+    <text x="56" y="42" fill="#202124" font-size="18" font-weight="700">Regroupement de la volatilité</text>
+    <text x="56" y="66" fill="#6b7280" font-size="12">rendements et écart-type conditionnel · données simulées</text>
+    <g stroke="#e5e7eb" stroke-width="1">
+      <line x1="72" y1="110" x2="910" y2="110"/><line x1="72" y1="180" x2="910" y2="180"/>
+      <line x1="72" y1="250" x2="910" y2="250"/><line x1="72" y1="310" x2="910" y2="310"/>
+    </g>
+    <line x1="72" y1="180" x2="910" y2="180" stroke="#9ca3af"/>
+    <g stroke="#94a3b8" stroke-width="5">
+      <line x1="95" y1="180" x2="95" y2="162"/><line x1="125" y1="180" x2="125" y2="197"/><line x1="155" y1="180" x2="155" y2="154"/>
+      <line x1="185" y1="180" x2="185" y2="204"/><line x1="215" y1="180" x2="215" y2="148"/><line x1="245" y1="180" x2="245" y2="216"/>
+      <line x1="275" y1="180" x2="275" y2="129"/><line x1="305" y1="180" x2="305" y2="231"/><line x1="335" y1="180" x2="335" y2="118"/>
+      <line x1="365" y1="180" x2="365" y2="247"/><line x1="395" y1="180" x2="395" y2="143"/><line x1="425" y1="180" x2="425" y2="213"/>
+      <line x1="455" y1="180" x2="455" y2="158"/><line x1="485" y1="180" x2="485" y2="196"/><line x1="515" y1="180" x2="515" y2="151"/>
+      <line x1="545" y1="180" x2="545" y2="205"/><line x1="575" y1="180" x2="575" y2="126"/><line x1="605" y1="180" x2="605" y2="238"/>
+      <line x1="635" y1="180" x2="635" y2="105"/><line x1="665" y1="180" x2="665" y2="261"/><line x1="695" y1="180" x2="695" y2="137"/>
+      <line x1="725" y1="180" x2="725" y2="222"/><line x1="755" y1="180" x2="755" y2="146"/><line x1="785" y1="180" x2="785" y2="211"/>
+      <line x1="815" y1="180" x2="815" y2="156"/><line x1="845" y1="180" x2="845" y2="199"/><line x1="875" y1="180" x2="875" y2="164"/>
+    </g>
+    <path d="M82 287 C145 282 188 278 235 264 C285 247 325 216 370 222 C420 229 459 262 510 271 C560 277 590 238 630 211 C671 184 707 218 746 246 C788 274 836 278 900 283" fill="none" stroke="#cf566c" stroke-width="3"/>
+    <path d="M82 310 L82 287 C145 282 188 278 235 264 C285 247 325 216 370 222 C420 229 459 262 510 271 C560 277 590 238 630 211 C671 184 707 218 746 246 C788 274 836 278 900 283 L900 310 Z" fill="#cf566c" opacity="0.12"/>
+    <line x1="727" y1="42" x2="755" y2="42" stroke="#cf566c" stroke-width="3"/><text x="765" y="46" fill="#4b5563" font-size="11">volatilité conditionnelle</text>
+  </g>
+</svg>

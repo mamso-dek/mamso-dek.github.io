@@ -60,6 +60,54 @@ Un paragraphe normal avec un mot en **gras** et un lien vers
 
 Il n’est pas nécessaire de connaître le HTML.
 
+### Ajouter une formule
+
+Les formules utilisent la syntaxe LaTeX et sont rendues automatiquement par MathJax.
+
+Une formule dans une phrase :
+
+```markdown
+La variance conditionnelle est notée \(\sigma_t^2\).
+```
+
+Une formule centrée :
+
+```markdown
+$$
+\sigma_t^2 = \omega + \alpha\varepsilon_{t-1}^2
+              + \beta\sigma_{t-1}^2.
+$$
+```
+
+### Ajouter du code
+
+Placer trois accents graves avant et après le code, en précisant le langage :
+
+````markdown
+```python
+import pandas as pd
+
+data = pd.read_csv("donnees.csv")
+```
+````
+
+Les langages `python`, `r`, `sql`, `bash` et `json` sont notamment reconnus.
+
+### Ajouter un graphique
+
+Téléverser d’abord l’image dans `assets/`, puis l’insérer avec :
+
+```markdown
+![Description du graphique](/assets/projets/mon-projet/graphique.svg)
+
+*Données simulées ou source des données réelles.*
+{: .figure-caption}
+```
+
+Les formats `svg`, `png`, `jpg` et `webp` sont adaptés. Le format SVG reste recommandé pour les courbes et diagrammes, car il reste net sur téléphone et ordinateur.
+
+Toujours préciser si une figure utilise des données réelles, simulées ou uniquement illustratives.
+
 ## 5. Ajouter un projet
 
 Créer `_projets/nom-du-projet.md` à partir de `_modeles/projet.md`.

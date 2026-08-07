@@ -49,6 +49,53 @@ La validation ne porte pas uniquement sur une moyenne de performance. Elle exami
 - la cohérence des résidus et des erreurs ;
 - l’incertitude entourant les estimations.
 
+La sélection d’un modèle peut être formulée comme la minimisation d’un risque empirique pénalisé :
+
+$$
+\widehat{f}
+=
+\underset{f\in\mathcal{F}}{\arg\min}
+\left[
+\frac{1}{n}\sum_{i=1}^{n}
+\ell\!\left(y_i,f(x_i)\right)
++ \lambda\,\Omega(f)
+\right],
+$$
+
+où \(\ell\) mesure l’erreur, \(\Omega(f)\) la complexité et \(\lambda\) le compromis entre ajustement et généralisation.
+
+### Exemple de pipeline reproductible
+
+```python
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import TimeSeriesSplit, cross_validate
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+pipeline = make_pipeline(
+    SimpleImputer(strategy="median"),
+    StandardScaler(),
+    Ridge(alpha=1.0),
+)
+
+cv = TimeSeriesSplit(n_splits=5)
+scores = cross_validate(
+    pipeline,
+    X,
+    y,
+    cv=cv,
+    scoring=("neg_root_mean_squared_error", "r2"),
+    return_estimator=True,
+)
+```
+
+![Erreur d’apprentissage et de validation selon la complexité](/assets/publications/complexite-validation.svg)
+
+*Schéma conceptuel : l’erreur de validation permet d’identifier une complexité suffisante sans suivre aveuglément l’erreur d’apprentissage.*
+{: .figure-caption}
+
 ## 4. Interpréter sans surpromettre
 
 L’interprétation consiste à expliquer ce que le modèle apprend, mais aussi ce qu’il ne peut pas établir. Une association statistique n’est pas automatiquement une relation causale. Une prévision précise sur l’échantillon observé ne garantit pas la même précision après un changement de contexte.

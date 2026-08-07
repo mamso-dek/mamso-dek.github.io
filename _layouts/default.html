@@ -20,6 +20,22 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Sora:wght@500;600;700&amp;display=swap"
       rel="stylesheet"
     />
+    {% if page.math %}
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          processEscapes: true,
+          tags: "ams",
+        },
+        svg: {
+          fontCache: "global",
+        },
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
+    {% endif %}
     <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}" />
   </head>
   <body>
@@ -35,4 +51,3 @@
     <script src="{{ '/script.js' | relative_url }}"></script>
   </body>
 </html>
-

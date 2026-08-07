@@ -54,6 +54,48 @@ Ces outils sont complémentaires :
 | Scénario | Que se passerait-il sous une hypothèse particulière ? |
 | Test de sensibilité | Quels paramètres influencent le plus le résultat ? |
 
+Pour une probabilité de couverture \(1-\alpha\), un intervalle prédictif peut être défini à partir des quantiles conditionnels :
+
+$$
+I_{1-\alpha}(x)
+=
+\left[
+Q_{\alpha/2}(Y\mid X=x),
+Q_{1-\alpha/2}(Y\mid X=x)
+\right].
+$$
+
+L’intervalle concerne une observation future ; il est généralement plus large qu’un intervalle portant uniquement sur la moyenne conditionnelle.
+
+### Estimation de quantiles en Python
+
+```python
+from sklearn.ensemble import GradientBoostingRegressor
+
+levels = (0.05, 0.50, 0.95)
+quantile_models = {}
+
+for level in levels:
+    model = GradientBoostingRegressor(
+        loss="quantile",
+        alpha=level,
+        n_estimators=300,
+        max_depth=3,
+        random_state=42,
+    )
+    quantile_models[level] = model.fit(X_train, y_train)
+
+lower = quantile_models[0.05].predict(X_test)
+median = quantile_models[0.50].predict(X_test)
+upper = quantile_models[0.95].predict(X_test)
+empirical_coverage = ((y_test >= lower) & (y_test <= upper)).mean()
+```
+
+![Prévision centrale et intervalle prédictif simulé](/assets/publications/intervalle-predictif.svg)
+
+*Données simulées : la bande s’élargit avec l’horizon pour rendre visible l’augmentation de l’incertitude.*
+{: .figure-caption}
+
 ## Vérifier la calibration
 
 Un intervalle annoncé à 90 % devrait contenir la valeur observée environ neuf fois sur dix, sur une série suffisamment longue de situations comparables. Cette propriété, appelée calibration, doit être vérifiée empiriquement.

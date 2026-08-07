@@ -27,6 +27,44 @@ La séparation entre apprentissage et test doit reproduire la situation future. 
 
 Le modèle doit aussi être comparé à une référence simple : moyenne historique, dernière valeur observée, règle métier ou régression élémentaire. Sans cette base, il est impossible de mesurer le gain réel apporté par la complexité.
 
+Pour une cible continue, l’erreur quadratique moyenne donne une première mesure :
+
+$$
+\operatorname{RMSE}
+=
+\sqrt{
+\frac{1}{n}
+\sum_{i=1}^{n}
+\left(y_i-\widehat{y}_i\right)^2
+}.
+$$
+
+Elle doit être complétée par une analyse des erreurs selon les périodes et les segments, car deux modèles ayant le même RMSE peuvent se comporter très différemment.
+
+### Validation temporelle
+
+```python
+import numpy as np
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import TimeSeriesSplit
+
+splitter = TimeSeriesSplit(n_splits=5)
+fold_rmse = []
+
+for train_idx, test_idx in splitter.split(X):
+    model.fit(X.iloc[train_idx], y.iloc[train_idx])
+    prediction = model.predict(X.iloc[test_idx])
+    fold_rmse.append(
+        mean_squared_error(
+            y.iloc[test_idx],
+            prediction,
+            squared=False,
+        )
+    )
+
+stability = np.std(fold_rmse)
+```
+
 ## 3. La stabilité des résultats
 
 Un score moyen peut masquer des différences importantes. Le modèle doit être évalué selon les périodes, les segments et les niveaux de la variable cible.
@@ -43,6 +81,11 @@ Quelques questions utiles :
 Les erreurs contiennent souvent plus d’information que le score global. Leur analyse permet d’identifier une tendance oubliée, une variance non constante, une saisonnalité ou une structure que le modèle ne représente pas.
 
 Dans un modèle probabiliste, il faut également vérifier la calibration des probabilités ou des intervalles. Un modèle peut classer correctement les observations tout en attribuant des probabilités excessivement confiantes.
+
+![Courbe de calibration sur données simulées](/assets/notes/calibration-modele.svg)
+
+*Données simulées : une courbe proche de la diagonale indique que les probabilités annoncées correspondent aux fréquences observées.*
+{: .figure-caption}
 
 ## Quand interpréter
 

@@ -20,6 +20,10 @@ comments:
 markdown: kramdown
 permalink: pretty
 
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
 collections:
   projets:
     output: true
@@ -42,6 +46,7 @@ defaults:
       layout: project
       nav: travaux
       comments: true
+      math: true
   - scope:
       path: ""
       type: publications
@@ -49,6 +54,7 @@ defaults:
       layout: publication
       nav: travaux
       comments: false
+      math: true
   - scope:
       path: ""
       type: notes
@@ -56,12 +62,14 @@ defaults:
       layout: note
       nav: travaux
       comments: true
+      math: true
   - scope:
       path: ""
       type: enseignements
     values:
       layout: teaching
       nav: enseignement
+      math: true
 
 exclude:
   - .bundle
