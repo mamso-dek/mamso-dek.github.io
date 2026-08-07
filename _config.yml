@@ -1,0 +1,75 @@
+title: Massavo Salako
+description: Portfolio de Massavo Salako, ingénieur en génie mathématique et modélisation.
+url: https://mamso-dek.github.io
+baseurl: ""
+lang: fr
+timezone: Africa/Porto-Novo
+
+author:
+  name: Massavo Salako
+  full_name: Massavo Emmanuel Salako
+  email: smassavo@gmail.com
+  location: Cotonou, Bénin
+  github: https://github.com/mamso-dek
+  linkedin: https://www.linkedin.com/in/emmanuel-salako-812a18281/
+  cv: /assets/cvPro.pdf
+
+comments:
+  repository: mamso-dek/mamso-dek.github.io
+
+markdown: kramdown
+permalink: pretty
+
+collections:
+  projets:
+    output: true
+    permalink: /projets/:name.html
+  publications:
+    output: true
+    permalink: /publications/:name.html
+  notes:
+    output: true
+    permalink: /notes/:name.html
+  enseignements:
+    output: true
+    permalink: /enseignement/:name.html
+
+defaults:
+  - scope:
+      path: ""
+      type: projets
+    values:
+      layout: project
+      nav: travaux
+      comments: true
+  - scope:
+      path: ""
+      type: publications
+    values:
+      layout: publication
+      nav: travaux
+      comments: false
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: note
+      nav: travaux
+      comments: true
+  - scope:
+      path: ""
+      type: enseignements
+    values:
+      layout: teaching
+      nav: enseignement
+
+exclude:
+  - .bundle
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
+  - GUIDE_CONTENU.md
+  - README.md
+  - scripts
+  - vendor
+  - _modeles

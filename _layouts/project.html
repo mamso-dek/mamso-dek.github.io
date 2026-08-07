@@ -1,0 +1,83 @@
+---
+layout: default
+main_class: project-page
+---
+<section class="section-shell project-detail-hero reveal">
+  <a class="back-link" href="{{ '/publications.html' | relative_url }}"><span aria-hidden="true">←</span> Tous les travaux</a>
+  <div class="project-detail-heading">
+    <div>
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.summary }}</p>
+    </div>
+    {% include project-detail-visual.html visual=page.visual %}
+  </div>
+  <dl class="project-facts">
+    <div><dt>Domaine</dt><dd>{{ page.domain }}</dd></div>
+    <div><dt>Type</dt><dd>{{ page.project_type }}</dd></div>
+    <div><dt>Méthodes</dt><dd>{{ page.methods }}</dd></div>
+  </dl>
+</section>
+
+<section class="section-shell project-narrative reveal">
+  <article class="prose">
+    {{ content }}
+  </article>
+  <aside>
+    <p class="mono-label">OBJECTIF</p>
+    <p>{{ page.objective }}</p>
+  </aside>
+</section>
+
+{% if page.steps %}
+<section class="section-shell project-process reveal" aria-labelledby="titre-demarche">
+  <h2 id="titre-demarche">Démarche</h2>
+  <ol>
+    {% for step in page.steps %}
+      <li>
+        <span>{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
+        <div><h3>{{ step.title }}</h3><p>{{ step.description }}</p></div>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
+
+<section class="section-shell project-resources reveal" aria-labelledby="titre-ressources">
+  <div>
+    <h2 id="titre-ressources">Ressources du projet</h2>
+    <p>{{ page.resources_intro | default: "Les fichiers associés à ce travail sont regroupés ici afin de conserver le contexte du projet." }}</p>
+  </div>
+  {% if page.resources %}
+    <div class="resource-links">
+      {% for resource in page.resources %}
+        <a class="text-link" href="{% if resource.external %}{{ resource.url }}{% else %}{{ resource.url | relative_url }}{% endif %}"{% if resource.external %} target="_blank" rel="noopener"{% endif %}>{{ resource.label }} <span aria-hidden="true">↗</span></a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <a class="text-link" href="mailto:{{ site.author.email }}?subject={{ page.contact_subject | uri_escape }}">Demander plus d’informations <span aria-hidden="true">→</span></a>
+  {% endif %}
+</section>
+
+{% if page.notebook_html %}
+<section class="section-shell embedded-resource reveal" aria-labelledby="titre-notebook">
+  <div class="section-title-row">
+    <div>
+      <h2 id="titre-notebook">Notebook interactif</h2>
+      <p>Le calcul, le code et les résultats peuvent être parcourus sans quitter le site.</p>
+    </div>
+    {% if page.notebook_source %}
+      <a class="quiet-link" href="{{ page.notebook_source | relative_url }}">Télécharger le fichier .ipynb</a>
+    {% endif %}
+  </div>
+  <iframe
+    class="notebook-frame"
+    src="{{ page.notebook_html | relative_url }}"
+    title="Notebook du projet {{ page.title | escape }}"
+    loading="lazy"
+  ></iframe>
+</section>
+{% endif %}
+
+{% if page.comments %}
+  {% include discussion.html term=page.comment_term title=page.title kind="ce projet" %}
+{% endif %}

@@ -1,0 +1,35 @@
+{% case include.visual %}
+  {% when "pnl" %}
+    <figure class="project-detail-visual" aria-label="Illustration des contributions au profit et à la perte">
+      <svg viewBox="0 0 560 220" aria-hidden="true">
+        <path class="chart-axis" d="M30 111H530"></path>
+        <g class="chart-bars"><path d="M55 111V64M83 111V81M111 111V42M139 111V92M167 111V149M195 111V172M223 111V133M251 111V73M279 111V31M307 111V57M335 111V124M363 111V159M391 111V96M419 111V63M447 111V83M475 111V103M503 111V74"></path></g>
+        <path class="chart-line" d="M34 96C92 46 143 73 191 86C240 99 260 31 314 44C367 56 405 111 452 78C485 55 506 67 526 80"></path>
+      </svg>
+    </figure>
+  {% when "options" %}
+    <figure class="project-detail-visual" aria-label="Illustration de trajectoires de prix simulées">
+      <svg viewBox="0 0 560 220" aria-hidden="true">
+        <path class="chart-axis" d="M30 188H530M42 196V24"></path>
+        <g class="simulation-paths">
+          <path d="M43 141L83 118L123 134L163 91L203 108L243 70L283 93L323 51L363 69L403 45L443 66L483 31L527 48"></path>
+          <path d="M43 141L83 148L123 125L163 139L203 116L243 130L283 96L323 111L363 88L403 103L443 76L483 89L527 69"></path>
+          <path d="M43 141L83 162L123 151L163 170L203 144L243 158L283 139L323 152L363 130L403 147L443 121L483 136L527 112"></path>
+          <path class="chart-line" d="M43 141L83 138L123 132L163 127L203 120L243 114L283 105L323 99L363 92L403 86L443 78L483 72L527 62"></path>
+        </g>
+      </svg>
+    </figure>
+  {% when "garch" %}
+    <figure class="project-detail-visual" aria-label="Illustration de la volatilité conditionnelle">
+      <svg viewBox="0 0 560 220" aria-hidden="true">
+        <path class="chart-axis" d="M30 188H530M42 196V24"></path>
+        <path class="volatility-band" d="M43 111L76 127L109 96L142 139L175 124L208 153L241 73L274 137L307 98L340 29L373 81L406 64L439 118L472 91L527 130L527 169L472 139L439 172L406 116L373 132L340 94L307 154L274 176L241 118L208 183L175 165L142 177L109 134L76 163L43 148Z"></path>
+        <path class="chart-line" d="M43 129L76 145L109 115L142 158L175 143L208 168L241 94L274 156L307 118L340 58L373 103L406 89L439 140L472 113L527 150"></path>
+      </svg>
+    </figure>
+  {% else %}
+    <figure class="project-detail-visual project-visual-placeholder" aria-hidden="true">
+      <span>PROJET</span>
+    </figure>
+{% endcase %}
+

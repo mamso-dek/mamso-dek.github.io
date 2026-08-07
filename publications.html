@@ -1,216 +1,91 @@
-<!doctype html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff" />
-    <title>Travaux | Massavo Salako</title>
-    <meta
-      name="description"
-      content="Projets, publications, documents et médias de Massavo Salako."
-    />
-    <script>
-      (() => {
-        const saved = localStorage.getItem("massavo-theme");
-        const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
-      })();
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Sora:wght@500;600;700&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <a class="skip-link" href="#contenu">Aller au contenu</a>
+---
+layout: default
+title: Travaux
+description: Projets, publications et notes de Massavo Salako.
+nav: travaux
+permalink: /publications.html
+---
+{% assign projects = site.projets | sort: "order" %}
+{% assign publications = site.publications | sort: "year" | reverse %}
+{% assign notes = site.notes | sort: "date" | reverse %}
 
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="brand" href="index.html" aria-label="Accueil de Massavo Salako">Massavo Salako</a>
-        <div class="header-actions">
-          <nav id="site-menu" aria-label="Navigation principale">
-            <ul class="nav-list">
-              <li><a href="index.html">À propos</a></li>
-              <li><a class="is-active" href="publications.html" aria-current="page">Travaux</a></li>
-              <li><a href="enseignement.html">Enseignement</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </nav>
-          <button class="search-toggle" type="button" aria-label="Rechercher sur le site" title="Rechercher (Ctrl/⌘ K)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.4"></circle><path d="m16 16 4.2 4.2"></path></svg>
-          </button>
-          <button class="theme-toggle" type="button" aria-label="Activer le mode sombre">
-            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
-            </svg>
-            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
-            </svg>
-          </button>
-          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Ouvrir le menu">
-            <span></span><span></span><span></span>
-          </button>
+<section class="page-intro section-shell reveal">
+  <h1>Travaux</h1>
+  <p>
+    Projets, publications et notes où les mathématiques rencontrent les
+    données, la modélisation et la décision.
+  </p>
+</section>
+
+<div class="section-shell filter-rail reveal" role="group" aria-label="Filtrer les travaux">
+  <button class="filter-button is-selected" type="button" data-filter-group="work" data-filter-value="all">Tous</button>
+  <button class="filter-button" type="button" data-filter-group="work" data-filter-value="projects">Projets</button>
+  <button class="filter-button" type="button" data-filter-group="work" data-filter-value="publications">Publications</button>
+  <button class="filter-button" type="button" data-filter-group="work" data-filter-value="notes">Notes</button>
+</div>
+
+{% if projects.size > 0 %}
+<section class="section-shell work-section reveal" data-filter-section="work" data-filter-category="projects" aria-labelledby="titre-projets">
+  <h2 id="titre-projets">Projets</h2>
+  {% for project in projects %}
+    <article class="work-entry">
+      <p class="entry-index" aria-hidden="true">0{{ forloop.index }}</p>
+      <div class="entry-content">
+        <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+        <p>{{ project.summary }}</p>
+        <p class="entry-methods">{{ project.methods_label }}</p>
+        <div class="entry-actions">
+          <a class="text-link" href="{{ project.url | relative_url }}">Explorer le projet <span aria-hidden="true">→</span></a>
+          {% if project.comments %}<a class="quiet-link" href="{{ project.url | relative_url }}#discussion">Discussion</a>{% endif %}
         </div>
       </div>
-    </header>
+      {% include project-card-visual.html visual=project.visual %}
+    </article>
+  {% endfor %}
+</section>
+{% endif %}
 
-    <main id="contenu">
-      <section class="page-intro section-shell reveal">
-        <h1>Travaux</h1>
-        <p>
-          Une sélection de projets, d’études et de ressources où les
-          mathématiques rencontrent les données et la décision.
-        </p>
-      </section>
-
-      <div class="section-shell filter-rail reveal" role="group" aria-label="Filtrer les travaux">
-        <button class="filter-button is-selected" type="button" data-filter-group="work" data-filter-value="all">Tous</button>
-        <button class="filter-button" type="button" data-filter-group="work" data-filter-value="projects">Projets</button>
-        <button class="filter-button" type="button" data-filter-group="work" data-filter-value="documents">Publications &amp; documents</button>
-        <button class="filter-button" type="button" data-filter-group="work" data-filter-value="media">Médias</button>
+{% if publications.size > 0 %}
+<section class="section-shell work-section reveal" data-filter-section="work" data-filter-category="publications" aria-labelledby="titre-publications">
+  <h2 id="titre-publications">Publications</h2>
+  {% for publication in publications %}
+    <article class="work-entry compact-entry">
+      <p class="entry-index" aria-hidden="true">{{ publication.year }}</p>
+      <div class="entry-content">
+        <h3><a href="{{ publication.url | relative_url }}">{{ publication.title }}</a></h3>
+        <p>{{ publication.authors }}</p>
+        <p class="entry-methods">{{ publication.venue }}</p>
       </div>
-
-      <section class="section-shell work-section reveal" data-filter-section="work" data-filter-category="projects" aria-labelledby="titre-projets">
-        <h2 id="titre-projets">Projets sélectionnés</h2>
-
-        <article id="projet-pnl" class="work-entry">
-          <p class="entry-index" aria-hidden="true">01</p>
-          <div class="entry-content">
-            <h3><a href="projets/decomposition-pnl-brvm.html">Décomposition du Profit &amp; Loss (BRVM)</a></h3>
-            <p>
-              Analyse des variations du P&amp;L par facteurs de risque afin de
-              mieux comprendre les mouvements de performance.
-            </p>
-            <p class="entry-methods">FINANCE QUANTITATIVE · ANALYSE DU RISQUE · MODÉLISATION</p>
-            <div class="entry-actions">
-              <a class="text-link" href="projets/decomposition-pnl-brvm.html">Lire le projet <span aria-hidden="true">→</span></a>
-              <a class="quiet-link" href="projets/decomposition-pnl-brvm.html#discussion">Discussion</a>
-            </div>
-          </div>
-          <figure class="project-visual" aria-label="Illustration abstraite des contributions au profit et à la perte">
-            <svg viewBox="0 0 360 132" aria-hidden="true">
-              <path class="chart-axis" d="M20 66H340"></path>
-              <g class="chart-bars">
-                <path d="M38 66V43M55 66V51M72 66V30M89 66V57M106 66V84M123 66V100M140 66V76M157 66V47M174 66V21M191 66V37M208 66V72M225 66V91M242 66V58M259 66V42M276 66V53M293 66V62M310 66V48"></path>
-              </g>
-              <path class="chart-line" d="M24 56C62 30 89 46 119 52C151 59 165 20 198 27C231 34 255 63 286 47C307 36 320 41 337 49"></path>
-            </svg>
-          </figure>
-        </article>
-
-        <article id="projet-options" class="work-entry">
-          <p class="entry-index" aria-hidden="true">02</p>
-          <div class="entry-content">
-            <h3><a href="projets/simulation-prix-options.html">Modélisation et simulation de prix d’options</a></h3>
-            <p>
-              Construction de modèles de valorisation et simulations numériques
-              pour étudier le comportement de produits dérivés.
-            </p>
-            <p class="entry-methods">SIMULATION NUMÉRIQUE · PRODUITS DÉRIVÉS · INCERTITUDE</p>
-            <div class="entry-actions">
-              <a class="text-link" href="projets/simulation-prix-options.html">Lire le projet <span aria-hidden="true">→</span></a>
-              <a class="quiet-link" href="projets/simulation-prix-options.html#discussion">Discussion</a>
-            </div>
-          </div>
-          <figure class="project-visual" aria-label="Illustration abstraite de trajectoires simulées">
-            <svg viewBox="0 0 360 132" aria-hidden="true">
-              <path class="chart-axis" d="M20 111H340M26 118V14"></path>
-              <g class="simulation-paths">
-                <path d="M27 84L52 73L77 82L102 58L127 67L152 47L177 56L202 32L227 42L252 28L277 39L302 19L337 29"></path>
-                <path d="M27 84L52 88L77 76L102 83L127 70L152 79L177 60L202 69L227 56L252 64L277 48L302 54L337 43"></path>
-                <path d="M27 84L52 96L77 90L102 101L127 86L152 94L177 83L202 90L227 78L252 88L277 73L302 81L337 68"></path>
-                <path class="chart-line" d="M27 84L52 82L77 78L102 76L127 72L152 69L177 64L202 61L227 57L252 54L277 49L302 46L337 40"></path>
-              </g>
-            </svg>
-          </figure>
-        </article>
-
-        <article id="projet-garch" class="work-entry">
-          <p class="entry-index" aria-hidden="true">03</p>
-          <div class="entry-content">
-            <h3><a href="projets/modelisation-volatilite-garch.html">Modélisation de la volatilité</a></h3>
-            <p>
-              Estimation et analyse de modèles GARCH appliqués à des données
-              financières pour étudier la variance conditionnelle.
-            </p>
-            <p class="entry-methods">ÉCONOMÉTRIE · GARCH · DONNÉES FINANCIÈRES</p>
-            <div class="entry-actions">
-              <a class="text-link" href="projets/modelisation-volatilite-garch.html">Lire le projet <span aria-hidden="true">→</span></a>
-              <a class="quiet-link" href="projets/modelisation-volatilite-garch.html#discussion">Discussion</a>
-            </div>
-          </div>
-          <figure class="project-visual" aria-label="Illustration abstraite de la volatilité">
-            <svg viewBox="0 0 360 132" aria-hidden="true">
-              <path class="chart-axis" d="M20 111H340M26 118V14"></path>
-              <path class="volatility-band" d="M27 70L48 78L69 62L90 84L111 76L132 91L153 51L174 83L195 62L216 18L237 47L258 38L279 72L300 58L337 78L337 99L300 83L279 97L258 69L237 77L216 54L195 92L174 105L153 78L132 109L111 100L90 107L69 85L48 101L27 91Z"></path>
-              <path class="chart-line" d="M27 80L48 89L69 73L90 95L111 87L132 100L153 64L174 94L195 76L216 34L237 61L258 54L279 84L300 70L337 89"></path>
-            </svg>
-          </figure>
-        </article>
-
-      </section>
-
-      <section class="section-shell work-section reveal" data-filter-section="work" data-filter-category="documents" aria-labelledby="titre-documents">
-        <div class="section-title-row">
-          <h2 id="titre-documents">Publications &amp; documents</h2>
-        </div>
-        <div class="honest-empty">
-          <p>Les rapports techniques et documents de recherche validés seront publiés ici progressivement.</p>
-          <a class="text-link" href="assets/cvPro.pdf" target="_blank" rel="noopener">Consulter mon CV <span aria-hidden="true">↗</span></a>
-        </div>
-      </section>
-
-      <section class="section-shell work-section reveal" data-filter-section="work" data-filter-category="media" aria-labelledby="titre-medias">
-        <div class="section-title-row">
-          <div>
-            <h2 id="titre-medias">Médias</h2>
-            <p class="muted-copy">Images, vidéos et documents ajoutés au dépôt GitHub.</p>
-          </div>
-          <div class="utility-links">
-            <a href="https://github.com/mamso-dek/mamso-dek.github.io/upload/main/media" target="_blank" rel="noopener">Publier un fichier ↗</a>
-            <a href="https://github.com/mamso-dek/mamso-dek.github.io/tree/main/media" target="_blank" rel="noopener">Ouvrir le dossier ↗</a>
-          </div>
-        </div>
-        <div id="media-status" class="media-status" role="status">Chargement des médias…</div>
-        <div id="media-grid" class="media-list" aria-live="polite"></div>
-        <div id="publication-comments-panel" class="comments-panel" hidden>
-          <div class="comments-heading">
-            <div>
-              <p class="mono-label">DISCUSSION</p>
-              <h3 id="publication-comments-title">Commentaires de la publication</h3>
-            </div>
-            <button class="comments-close" type="button" aria-label="Fermer les commentaires">×</button>
-          </div>
-          <p class="muted-copy">Les commentaires sont liés au média sélectionné et utilisent GitHub.</p>
-          <div id="publication-comments-root"></div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-links" aria-label="Réseaux et contact">
-          <a href="https://github.com/mamso-dek" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.6 7.6 0 0 1 8 3.55c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg>
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/emmanuel-salako-812a18281/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M14.82 0H1.18C.53 0 0 .51 0 1.15v13.7C0 15.49.53 16 1.18 16h13.64c.65 0 1.18-.51 1.18-1.15V1.15C16 .51 15.47 0 14.82 0ZM4.94 13.5h-2.4V6.17h2.4v7.33ZM3.74 5.17c-.82 0-1.34-.55-1.34-1.25s.54-1.25 1.36-1.25 1.33.54 1.34 1.25c0 .7-.52 1.25-1.36 1.25Zm9.9 8.33h-2.4V9.53c0-.99-.36-1.67-1.25-1.67-.68 0-1.08.46-1.26.9-.07.16-.08.38-.08.6v4.14h-2.4V6.17h2.4v.98c.32-.5.9-1.22 2.19-1.22 1.61 0 2.8 1.06 2.8 3.33v4.24Z"></path></svg>
-            LinkedIn
-          </a>
-          <a href="mailto:smassavo@gmail.com">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5Zm2 2v.4l7 5.1 7-5.1V7H5Zm14 10V9.9L12 15 5 9.9V17h14Z"></path></svg>
-            Email
-          </a>
-        </div>
-        <p>© <span data-year></span> Massavo Salako</p>
+      <div class="entry-actions entry-resource-actions">
+        <a class="text-link" href="{{ publication.url | relative_url }}">Consulter <span aria-hidden="true">→</span></a>
+        {% for link in publication.links %}
+          <a class="quiet-link" href="{% if link.external %}{{ link.url }}{% else %}{{ link.url | relative_url }}{% endif %}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.label }}</a>
+        {% endfor %}
       </div>
-    </footer>
+    </article>
+  {% endfor %}
+</section>
+{% endif %}
 
-    <script src="script.js"></script>
-  </body>
-</html>
+{% if notes.size > 0 %}
+<section class="section-shell work-section reveal" data-filter-section="work" data-filter-category="notes" aria-labelledby="titre-notes">
+  <h2 id="titre-notes">Notes</h2>
+  {% for note in notes %}
+    <article class="work-entry compact-entry">
+      <p class="entry-index" aria-hidden="true">{{ note.date | date: "%Y" }}</p>
+      <div class="entry-content">
+        <h3><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
+        <p>{{ note.summary }}</p>
+        {% if note.tags %}<p class="entry-methods">{{ note.tags | join: " · " | upcase }}</p>{% endif %}
+      </div>
+      <div class="entry-actions entry-resource-actions">
+        <a class="text-link" href="{{ note.url | relative_url }}">Lire la note <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  {% endfor %}
+</section>
+{% endif %}
+
+<div class="section-shell filter-empty" data-filter-empty="work" hidden>
+  Aucun contenu n’est encore publié dans cette catégorie.
+</div>

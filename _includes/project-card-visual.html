@@ -1,0 +1,37 @@
+{% case include.visual %}
+  {% when "pnl" %}
+    <figure class="project-visual" aria-label="Illustration abstraite des contributions au profit et à la perte">
+      <svg viewBox="0 0 360 132" aria-hidden="true">
+        <path class="chart-axis" d="M20 66H340"></path>
+        <g class="chart-bars">
+          <path d="M38 66V43M55 66V51M72 66V30M89 66V57M106 66V84M123 66V100M140 66V76M157 66V47M174 66V21M191 66V37M208 66V72M225 66V91M242 66V58M259 66V42M276 66V53M293 66V62M310 66V48"></path>
+        </g>
+        <path class="chart-line" d="M24 56C62 30 89 46 119 52C151 59 165 20 198 27C231 34 255 63 286 47C307 36 320 41 337 49"></path>
+      </svg>
+    </figure>
+  {% when "options" %}
+    <figure class="project-visual" aria-label="Illustration abstraite de trajectoires simulées">
+      <svg viewBox="0 0 360 132" aria-hidden="true">
+        <path class="chart-axis" d="M20 111H340M26 118V14"></path>
+        <g class="simulation-paths">
+          <path d="M27 84L52 73L77 82L102 58L127 67L152 47L177 56L202 32L227 42L252 28L277 39L302 19L337 29"></path>
+          <path d="M27 84L52 88L77 76L102 83L127 70L152 79L177 60L202 69L227 56L252 64L277 48L302 54L337 43"></path>
+          <path d="M27 84L52 96L77 90L102 101L127 86L152 94L177 83L202 90L227 78L252 88L277 73L302 81L337 68"></path>
+          <path class="chart-line" d="M27 84L52 82L77 78L102 76L127 72L152 69L177 64L202 61L227 57L252 54L277 49L302 46L337 40"></path>
+        </g>
+      </svg>
+    </figure>
+  {% when "garch" %}
+    <figure class="project-visual" aria-label="Illustration abstraite de la volatilité">
+      <svg viewBox="0 0 360 132" aria-hidden="true">
+        <path class="chart-axis" d="M20 111H340M26 118V14"></path>
+        <path class="volatility-band" d="M27 70L48 78L69 62L90 84L111 76L132 91L153 51L174 83L195 62L216 18L237 47L258 38L279 72L300 58L337 78L337 99L300 83L279 97L258 69L237 77L216 54L195 92L174 105L153 78L132 109L111 100L90 107L69 85L48 101L27 91Z"></path>
+        <path class="chart-line" d="M27 80L48 89L69 73L90 95L111 87L132 100L153 64L174 94L195 76L216 34L237 61L258 54L279 84L300 70L337 89"></path>
+      </svg>
+    </figure>
+  {% else %}
+    <figure class="project-visual project-visual-placeholder" aria-hidden="true">
+      <span>PROJET</span>
+    </figure>
+{% endcase %}
+

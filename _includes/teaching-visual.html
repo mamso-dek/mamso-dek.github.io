@@ -1,0 +1,22 @@
+<figure class="teaching-visual" aria-hidden="true">
+  <svg viewBox="0 0 280 100">
+    <path class="chart-axis" d="M18 80H264M28 88V12"></path>
+    {% case include.visual %}
+      {% when "python" %}
+        <path class="chart-line" d="M29 68C56 64 73 34 101 43C125 51 142 20 168 36C191 50 211 30 234 39C248 45 253 36 263 27"></path>
+        <g class="chart-bars"><path d="M46 80V67M70 80V54M94 80V44M118 80V50M142 80V35M166 80V41M190 80V47M214 80V37M238 80V44"></path></g>
+      {% when "modelisation" %}
+        <path class="chart-line" d="M29 78C47 45 66 31 94 24C125 16 168 18 263 18"></path>
+        <path class="chart-dash" d="M29 18H263M105 18V80"></path>
+      {% when "r-data" %}
+        <g class="chart-points">
+          <circle cx="48" cy="65" r="3"></circle><circle cx="67" cy="57" r="3"></circle><circle cx="82" cy="67" r="3"></circle><circle cx="101" cy="45" r="3"></circle><circle cx="119" cy="54" r="3"></circle><circle cx="137" cy="40" r="3"></circle><circle cx="157" cy="47" r="3"></circle><circle cx="178" cy="31" r="3"></circle><circle cx="196" cy="39" r="3"></circle><circle cx="218" cy="25" r="3"></circle><circle cx="239" cy="33" r="3"></circle>
+        </g>
+        <path class="chart-line" d="M38 68L249 26"></path>
+      {% else %}
+        <path class="chart-line" d="M30 24L65 51L100 63L135 70L170 74L205 76L260 78"></path>
+        <g class="chart-points"><circle cx="30" cy="24" r="3"></circle><circle cx="65" cy="51" r="3"></circle><circle cx="100" cy="63" r="3"></circle><circle cx="135" cy="70" r="3"></circle><circle cx="170" cy="74" r="3"></circle><circle cx="205" cy="76" r="3"></circle></g>
+    {% endcase %}
+  </svg>
+</figure>
+

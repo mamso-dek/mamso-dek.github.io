@@ -1,0 +1,49 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Accueil de {{ site.author.name }}">
+      {{ site.author.name }}
+    </a>
+    <div class="header-actions">
+      <nav id="site-menu" aria-label="Navigation principale">
+        <ul class="nav-list">
+          <li>
+            <a{% if page.nav == 'about' %} class="is-active" aria-current="page"{% endif %} href="{{ '/' | relative_url }}">À propos</a>
+          </li>
+          <li>
+            <a{% if page.nav == 'travaux' %} class="is-active" aria-current="page"{% endif %} href="{{ '/publications.html' | relative_url }}">Travaux</a>
+          </li>
+          <li>
+            <a{% if page.nav == 'enseignement' %} class="is-active" aria-current="page"{% endif %} href="{{ '/enseignement.html' | relative_url }}">Enseignement</a>
+          </li>
+          <li>
+            <a{% if page.nav == 'contact' %} class="is-active" aria-current="page"{% endif %} href="{{ '/contact.html' | relative_url }}">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <button class="search-toggle" type="button" aria-label="Rechercher sur le site" title="Rechercher (Ctrl/⌘ K)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.4"></circle><path d="m16 16 4.2 4.2"></path></svg>
+      </button>
+      <button class="theme-toggle" type="button" aria-label="Activer le mode sombre">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+        </svg>
+      </button>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-menu"
+        aria-label="Ouvrir le menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+

@@ -1,0 +1,68 @@
+<script id="site-search-index" type="application/json">
+[
+  {
+    "title": "À propos",
+    "type": "Page",
+    "description": "Profil, parcours, compétences et outils.",
+    "url": {{ '/' | relative_url | jsonify }},
+    "keywords": "massavo salako parcours cv compétences outils génie mathématique modélisation"
+  },
+  {
+    "title": "Travaux",
+    "type": "Page",
+    "description": "Projets, publications et notes.",
+    "url": {{ '/publications.html' | relative_url | jsonify }},
+    "keywords": "travaux projets publications notes recherche"
+  },
+  {
+    "title": "Enseignement",
+    "type": "Page",
+    "description": "Cours, TD, TP, ateliers et tutorat.",
+    "url": {{ '/enseignement.html' | relative_url | jsonify }},
+    "keywords": "enseignement cours formation atelier tutorat td tp supports pédagogiques"
+  },
+  {
+    "title": "Contact",
+    "type": "Page",
+    "description": "Email, LinkedIn, GitHub et CV.",
+    "url": {{ '/contact.html' | relative_url | jsonify }},
+    "keywords": "contact email linkedin github cv cotonou bénin"
+  }
+  {% for item in site.projets %}
+  ,{
+    "title": {{ item.title | jsonify }},
+    "type": "Projet",
+    "description": {{ item.summary | default: item.description | jsonify }},
+    "url": {{ item.url | relative_url | jsonify }},
+    "keywords": {{ item.search_terms | default: "" | jsonify }}
+  }
+  {% endfor %}
+  {% for item in site.publications %}
+  ,{
+    "title": {{ item.title | jsonify }},
+    "type": "Publication",
+    "description": {{ item.summary | default: item.description | jsonify }},
+    "url": {{ item.url | relative_url | jsonify }},
+    "keywords": {{ item.search_terms | default: "" | jsonify }}
+  }
+  {% endfor %}
+  {% for item in site.notes %}
+  ,{
+    "title": {{ item.title | jsonify }},
+    "type": "Note",
+    "description": {{ item.summary | default: item.description | jsonify }},
+    "url": {{ item.url | relative_url | jsonify }},
+    "keywords": {{ item.search_terms | default: "" | jsonify }}
+  }
+  {% endfor %}
+  {% for item in site.enseignements %}
+  ,{
+    "title": {{ item.title | jsonify }},
+    "type": "Enseignement",
+    "description": {{ item.summary | default: item.description | jsonify }},
+    "url": {{ item.url | relative_url | jsonify }},
+    "keywords": {{ item.search_terms | default: "" | jsonify }}
+  }
+  {% endfor %}
+]
+</script>

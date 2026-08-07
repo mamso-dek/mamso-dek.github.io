@@ -1,98 +1,41 @@
 # Portfolio de Massavo Salako
 
-Site statique (HTML/CSS/JS) pret pour GitHub Pages en 0 euro.
+Portfolio personnel construit avec Jekyll et hébergé gratuitement sur GitHub Pages.
 
-## Fichiers
+## Principe
 
-- `index.html`: page À propos
-- `publications.html`: page Travaux (projets + documents + médias)
-- `projets/`: fiches détaillées consultables pour chaque projet
-- `enseignement.html`: page Enseignement (cours et ateliers en préparation)
-- `contact.html`: page Contact
-- `styles.css`: design éditorial responsive et modes clair/sombre
-- `script.js`: navigation mobile, recherche, filtres, thème, médias et commentaires
-- `assets/cvPro.pdf`: CV telechargeable
-- `media/`: images, documents et videos publies sur le site
+Le design est défini une seule fois dans les layouts. Les contenus sont ensuite rédigés en Markdown :
 
-## Tester en local
+- `_projets/` : projets ;
+- `_publications/` : publications ;
+- `_notes/` : notes ;
+- `_enseignements/` : cours, TD/TP, ateliers et tutorat ;
+- `_modeles/` : modèles prêts à réutiliser ;
+- `assets/` : PDF, images, vidéos, notebooks et supports.
 
-```bash
-cd /Users/massavosalako/Projects/Web/portofolio
-python3 -m http.server 8080
-```
+Jekyll transforme automatiquement chaque fichier Markdown en page web et actualise les listes et la recherche.
 
-Puis ouvre `http://localhost:8080`.
+## Ajouter du contenu
 
-## Publication sur GitHub Pages
+Le mode d’emploi détaillé se trouve dans `GUIDE_CONTENU.md`.
 
-### Cas recommande (site a la racine)
-
-Si ton pseudo GitHub est `mamso-dek`, cree un repo nomme:
-
-`mamso-dek.github.io`
-
-Ton site sera servi ici:
-
-`https://mamso-dek.github.io`
-
-### Commandes de push
+## Tester localement
 
 ```bash
-cd /Users/massavosalako/Projects/Web/portofolio
-git init
-git checkout -b main
-git add .
-git commit -m "Initial portfolio"
-git remote add origin https://github.com/mamso-dek/mamso-dek.github.io.git
-git push -u origin main
+bundle install
+bundle exec jekyll serve
 ```
 
-Si ton pseudo GitHub est different, remplace `mamso-dek`.
+Puis ouvrir `http://127.0.0.1:4000`.
 
-### Activer Pages (si necessaire)
+## Hébergement
 
-1. Ouvre le repo sur GitHub.
-2. Va dans `Settings` -> `Pages`.
-3. Choisis `Deploy from a branch`.
-4. Branche: `main`, dossier: `/ (root)`.
-5. Attends 1 a 3 minutes.
+Le dépôt `mamso-dek.github.io` est publié gratuitement à l’adresse :
 
-## URL finale
+https://mamso-dek.github.io
 
-- Repo `mamso-dek.github.io` -> `https://mamso-dek.github.io`
-- Repo `portfolio` -> `https://mamso-dek.github.io/portfolio/`
+GitHub Pages reconstruit le site après chaque modification validée sur la branche `main`.
 
-## Publier images, documents et videos
+## Commentaires
 
-1. Ouvre ton repo GitHub `mamso-dek.github.io`.
-2. Va dans le dossier `media/`.
-3. Clique `Add file` -> `Upload files`.
-4. Valide le commit sur `main`.
-5. Attends 1 a 2 minutes: la section `Publications` du site se met a jour automatiquement.
-
-Types supportes:
-
-- Images: `jpg`, `jpeg`, `png`, `webp`, `gif`, `svg`, `avif`
-- Videos: `mp4`, `webm`, `ogg`, `mov`, `m4v`
-- Documents: `pdf`, `doc`, `docx`, `ppt`, `pptx`, `xls`, `xlsx`, `txt`, `csv`
-
-## Activer les commentaires publics (gratuit)
-
-Le site utilise `utterances` (commentaires via GitHub Issues), directement
-depuis les fiches de projet et les publications:
-
-- `Afficher les commentaires` au bas de chaque fiche de projet
-- `Commenter` pour chaque média publié
-
-1. Ouvre les parametres du repo:
-   `https://github.com/mamso-dek/mamso-dek.github.io/settings`
-2. Dans `General`, section `Features`, active la case `Issues`.
-3. Ouvre la gestion des apps GitHub:
-   `https://github.com/settings/installations`
-4. Sur la ligne `utterances`, clique `Configure`.
-5. Dans `Repository access`, choisis `Only select repositories`, puis ajoute
-   `mamso-dek.github.io` (ou `All repositories`).
-6. Sauvegarde puis recharge ton site.
-7. Ouvre une publication ou un projet et clique sur le bouton de commentaire.
-
-Note: les visiteurs doivent avoir un compte GitHub pour commenter.
+Les discussions utilisent Utterances et restent attachées à chaque projet ou note. Les visiteurs se connectent avec GitHub pour commenter.

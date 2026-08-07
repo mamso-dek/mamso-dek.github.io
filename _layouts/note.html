@@ -1,0 +1,35 @@
+---
+layout: default
+main_class: content-page
+---
+<article>
+  <header class="section-shell content-hero reveal">
+    <a class="back-link" href="{{ '/publications.html' | relative_url }}"><span aria-hidden="true">←</span> Toutes les notes</a>
+    <p class="mono-label">NOTE · {{ page.date | date: "%d/%m/%Y" }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="content-summary">{{ page.summary }}</p>
+    {% if page.tags %}<p class="content-tags">{{ page.tags | join: " · " }}</p>{% endif %}
+  </header>
+  <div class="section-shell prose content-body reveal">
+    {{ content }}
+  </div>
+  {% if page.resources %}
+  <section class="section-shell content-resources reveal">
+    <h2>Ressources</h2>
+    <div class="resource-links">
+      {% for resource in page.resources %}
+        <a class="text-link" href="{% if resource.external %}{{ resource.url }}{% else %}{{ resource.url | relative_url }}{% endif %}"{% if resource.external %} target="_blank" rel="noopener"{% endif %}>{{ resource.label }} <span aria-hidden="true">↗</span></a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</article>
+{% if page.notebook_html %}
+<section class="section-shell embedded-resource reveal">
+  <h2>Notebook</h2>
+  <iframe class="notebook-frame" src="{{ page.notebook_html | relative_url }}" title="Notebook de la note {{ page.title | escape }}" loading="lazy"></iframe>
+</section>
+{% endif %}
+{% if page.comments %}
+  {% include discussion.html term=page.comment_term title=page.title kind="cette note" %}
+{% endif %}
