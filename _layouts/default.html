@@ -20,6 +20,9 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=Sora:wght@500;600;700&amp;display=swap"
       rel="stylesheet"
     />
+    {% if page.hero_image %}
+    <link rel="preload" as="image" href="{{ page.hero_image | relative_url }}" fetchpriority="high" />
+    {% endif %}
     {% if page.math %}
     <script>
       window.MathJax = {

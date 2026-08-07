@@ -519,72 +519,78 @@ p {
 /* About */
 
 .hero {
-  min-height: 530px;
-  padding-block: clamp(4.5rem, 9vw, 7rem) 3.5rem;
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(270px, 0.65fr);
+  position: relative;
+  min-height: clamp(540px, 68vh, 670px);
+  display: flex;
   align-items: center;
-  gap: clamp(3rem, 9vw, 8rem);
+  isolation: isolate;
+  overflow: hidden;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(10, 12, 14, 0.95) 0%,
+      rgba(10, 12, 14, 0.88) 38%,
+      rgba(10, 12, 14, 0.52) 65%,
+      rgba(10, 12, 14, 0.18) 100%
+    ),
+    url("/assets/images/about-cover.webp");
+  background-position: center, center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.hero::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-block: 1px solid rgba(255, 255, 255, 0.12);
+  content: "";
+  pointer-events: none;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(5rem, 9vw, 7.5rem);
 }
 
 .hero h1 {
   max-width: 12ch;
+  color: #ffffff;
+  text-shadow: 0 2px 26px rgba(0, 0, 0, 0.28);
 }
 
 .hero-role {
   margin-bottom: 1.25rem;
-  color: var(--accent);
+  color: #f0b7c1;
   font-family: var(--font-display);
   font-size: clamp(1.1rem, 2vw, 1.45rem);
   font-weight: 600;
 }
 
 .hero-intro {
-  max-width: 56ch;
+  max-width: 52ch;
   margin-bottom: 2.3rem;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.8);
   font-size: clamp(1.05rem, 1.5vw, 1.2rem);
 }
 
-.math-signature {
-  width: min(100%, 320px);
-  margin: 0;
-  border: 1px solid var(--line-strong);
-  color: var(--line-strong);
-  aspect-ratio: 1;
+.hero .text-link {
+  border-color: rgba(255, 255, 255, 0.48);
+  color: #ffffff;
 }
 
-.math-signature svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+.hero .text-link:hover {
+  border-color: #f0b7c1;
+  color: #f0b7c1;
 }
 
-.math-signature .axis,
 .project-visual .chart-axis,
 .teaching-visual .chart-axis {
   fill: none;
   stroke: var(--line-strong);
   stroke-width: 1;
-}
-
-.math-signature .curve {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 2;
-}
-
-.math-signature .curve-soft {
-  stroke: var(--line-strong);
-  stroke-dasharray: 4 5;
-  stroke-width: 1;
-}
-
-.math-signature text {
-  fill: var(--accent);
-  font-family: Georgia, serif;
-  font-size: 118px;
-  letter-spacing: -0.08em;
 }
 
 .split-section,
@@ -1756,11 +1762,6 @@ p {
 }
 
 @media (max-width: 980px) {
-  .hero {
-    grid-template-columns: minmax(0, 1fr) 260px;
-    gap: 3rem;
-  }
-
   .work-entry {
     grid-template-columns: 42px 1fr;
   }
@@ -1845,15 +1846,16 @@ p {
   }
 
   .hero {
-    min-height: auto;
-    padding-block: 4rem 3rem;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .math-signature {
-    width: min(260px, 78vw);
-    justify-self: center;
+    min-height: 560px;
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(10, 12, 14, 0.95) 0%,
+        rgba(10, 12, 14, 0.87) 68%,
+        rgba(10, 12, 14, 0.42) 100%
+      ),
+      url("/assets/images/about-cover.webp");
+    background-position: center, 64% center;
   }
 
   .split-section,
@@ -2014,7 +2016,20 @@ p {
   }
 
   .hero {
-    padding-top: 3rem;
+    min-height: 520px;
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(10, 12, 14, 0.96) 0%,
+        rgba(10, 12, 14, 0.9) 74%,
+        rgba(10, 12, 14, 0.52) 100%
+      ),
+      url("/assets/images/about-cover.webp");
+    background-position: center, 68% center;
+  }
+
+  .hero-copy {
+    padding-block: 3.5rem;
   }
 
   .hero h1 {
