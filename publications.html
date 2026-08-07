@@ -12,8 +12,8 @@ permalink: /publications.html
 <section class="page-intro section-shell reveal">
   <h1>Travaux</h1>
   <p>
-    Projets, publications et notes où les mathématiques rencontrent les
-    données, la modélisation et la décision.
+    Une sélection de travaux en modélisation mathématique et en analyse de
+    données, conçus pour comprendre des phénomènes complexes et éclairer la décision.
   </p>
 </section>
 
@@ -35,8 +35,7 @@ permalink: /publications.html
         <p>{{ project.summary }}</p>
         <p class="entry-methods">{{ project.methods_label }}</p>
         <div class="entry-actions">
-          <a class="text-link" href="{{ project.url | relative_url }}">Explorer le projet <span aria-hidden="true">→</span></a>
-          {% if project.comments %}<a class="quiet-link" href="{{ project.url | relative_url }}#discussion">Discussion</a>{% endif %}
+          <a class="text-link" href="{{ project.url | relative_url }}">Lire <span aria-hidden="true">→</span></a>
         </div>
       </div>
       {% include project-card-visual.html visual=project.visual %}
@@ -53,11 +52,11 @@ permalink: /publications.html
       <p class="entry-index" aria-hidden="true">{{ publication.year }}</p>
       <div class="entry-content">
         <h3><a href="{{ publication.url | relative_url }}">{{ publication.title }}</a></h3>
-        <p>{{ publication.authors }}</p>
-        <p class="entry-methods">{{ publication.venue }}</p>
+        <p>{{ publication.summary }}</p>
+        <p class="entry-methods">{{ publication.authors }} · {{ publication.venue }}</p>
       </div>
       <div class="entry-actions entry-resource-actions">
-        <a class="text-link" href="{{ publication.url | relative_url }}">Consulter <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="{{ publication.url | relative_url }}">Lire <span aria-hidden="true">→</span></a>
         {% for link in publication.links %}
           <a class="quiet-link" href="{% if link.external %}{{ link.url }}{% else %}{{ link.url | relative_url }}{% endif %}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.label }}</a>
         {% endfor %}
@@ -79,7 +78,7 @@ permalink: /publications.html
         {% if note.tags %}<p class="entry-methods">{{ note.tags | join: " · " | upcase }}</p>{% endif %}
       </div>
       <div class="entry-actions entry-resource-actions">
-        <a class="text-link" href="{{ note.url | relative_url }}">Lire la note <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="{{ note.url | relative_url }}">Lire <span aria-hidden="true">→</span></a>
       </div>
     </article>
   {% endfor %}
