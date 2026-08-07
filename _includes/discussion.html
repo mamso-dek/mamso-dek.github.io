@@ -1,22 +1,11 @@
 <section id="discussion" class="section-shell project-discussion content-discussion reveal" aria-labelledby="titre-discussion">
-  <div class="section-title-row">
-    <div>
-      <h2 id="titre-discussion">Discussion</h2>
-      <p>Une question ou une remarque sur {{ include.kind }} ? Cette discussion est attachée uniquement à ce contenu.</p>
-    </div>
-    <button
-      class="text-link comment-btn"
-      type="button"
-      data-comment-term="{{ include.term }}"
-      data-comment-title="Discussion : {{ include.title | escape }}"
-    >Afficher les commentaires</button>
-  </div>
-  <div class="comments-panel" hidden>
-    <div class="comments-heading">
-      <h3 class="comments-title">Commentaires</h3>
-      <button class="comments-close" type="button" aria-label="Fermer les commentaires">×</button>
-    </div>
-    <div class="comments-root"></div>
-  </div>
+  <h2 id="titre-discussion">Discussion</h2>
+  <div
+    class="comments-root"
+    data-comment-term="{{ include.term }}"
+    aria-label="Commentaires pour {{ include.title | escape }}"
+  ></div>
+  <noscript>
+    <p class="comments-noscript">Activez JavaScript pour consulter et publier des commentaires.</p>
+  </noscript>
 </section>
-

@@ -123,16 +123,36 @@ Les champs principaux sont :
 - `comment_term` : identifiant unique de sa discussion ;
 - `resources` : fichiers ou liens liés au projet.
 
-Exemple de ressources :
+Les ressources apparaissent sous forme de liste de fichiers. Chaque ligne peut préciser le type, le format, une courte description et l’action proposée au visiteur.
 
 ```yaml
 resources:
-  - label: Rapport PDF
+  - label: Rapport du projet
+    type: Rapport
+    format: PDF
+    description: Méthode, résultats et limites de l’étude.
+    action: Lire
     url: /assets/projets/prevision-inflation/rapport.pdf
+
+  - label: Notebook reproductible
+    type: Notebook
+    format: IPYNB
+    action: Télécharger
+    download: true
+    url: /assets/notebooks/prevision-inflation.ipynb
+
   - label: Code source
+    type: Code
+    format: Python
+    action: Voir le code
     url: https://github.com/manusalako/nom-du-depot
     external: true
 ```
+
+- `action: Lire` ou `action: Voir` ouvre le fichier dans le navigateur lorsque son format le permet.
+- `download: true` demande directement le téléchargement du fichier.
+- `external: true` ouvre une ressource hébergée sur un autre site dans un nouvel onglet.
+- `description` et `size` sont facultatifs.
 
 ## 6. Ajouter une publication
 

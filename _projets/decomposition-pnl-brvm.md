@@ -13,7 +13,6 @@ visual: pnl
 search_terms: finance quantitative risque brvm pnl profit loss intelligence artificielle explicabilité modélisation
 contact_subject: "Projet P&L BRVM"
 comment_term: projet-decomposition-profit-loss-brvm
-resources_intro: Le rapport, le notebook et le code pourront être ajoutés ici dès qu’ils seront prêts à être publiés.
 steps:
   - title: Structurer
     description: Identifier les variables de marché et préparer les données nécessaires à l’analyse.

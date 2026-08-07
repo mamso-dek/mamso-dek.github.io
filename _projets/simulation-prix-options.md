@@ -13,7 +13,6 @@ visual: options
 search_terms: option simulation valorisation produits dérivés finance mathématiques incertitude
 contact_subject: Projet simulation prix options
 comment_term: projet-modelisation-simulation-prix-options
-resources_intro: Le rapport, le notebook et le code pourront être ajoutés ici dès qu’ils seront prêts à être publiés.
 steps:
   - title: Formaliser
     description: Définir le produit étudié, les variables utiles et les hypothèses de valorisation.

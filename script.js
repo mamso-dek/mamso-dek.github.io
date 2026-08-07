@@ -341,45 +341,38 @@ function mountUtterances(root, issueTerm) {
   root.appendChild(script);
 }
 
-function openComments(button) {
-  const section = button.closest(".content-discussion");
-  const panel = section?.querySelector(".comments-panel");
-  const heading = section?.querySelector(".comments-title");
-  const root = section?.querySelector(".comments-root");
-  const { commentTerm, commentTitle } = button.dataset;
-  if (!panel || !heading || !root || !commentTerm || !commentTitle) return;
-
-  heading.textContent = commentTitle;
-  panel.hidden = false;
-  mountUtterances(root, commentTerm);
-  panel.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
 function bindComments() {
-  document.addEventListener("click", (event) => {
-    if (!(event.target instanceof HTMLElement)) return;
+  const roots = Array.from(
+    document.querySelectorAll(".comments-root[data-comment-term]")
+  );
+  if (!roots.length) return;
 
-    const commentButton = event.target.closest(".comment-btn");
-    if (commentButton instanceof HTMLButtonElement) {
-      openComments(commentButton);
-      return;
-    }
+  const mount = (root) => {
+    if (root.dataset.commentsMounted === "true") return;
+    const issueTerm = root.dataset.commentTerm;
+    if (!issueTerm) return;
 
-    const closeButton = event.target.closest(".comments-close");
-    if (!closeButton) return;
-    const panel = closeButton.closest(".comments-panel");
-    if (!panel) return;
-    panel.hidden = true;
-    panel.querySelector(".comments-root")?.replaceChildren();
-  });
-}
+    root.dataset.commentsMounted = "true";
+    mountUtterances(root, issueTerm);
+  };
 
-function openDiscussionFromHash() {
-  if (window.location.hash !== "#discussion") return;
-  const button = document.querySelector("#discussion .comment-btn");
-  if (button instanceof HTMLButtonElement) {
-    window.setTimeout(() => button.click(), 200);
+  if (!("IntersectionObserver" in window)) {
+    roots.forEach(mount);
+    return;
   }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        mount(entry.target);
+        observer.unobserve(entry.target);
+      });
+    },
+    { rootMargin: "320px 0px" }
+  );
+
+  roots.forEach((root) => observer.observe(root));
 }
 
 bindThemeToggle();
@@ -388,4 +381,3 @@ bindMobileMenu();
 bindRevealAnimations();
 bindFilters();
 bindComments();
-openDiscussionFromHash();

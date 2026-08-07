@@ -22,39 +22,64 @@ main_class: project-page
   <article class="prose">
     {{ content }}
   </article>
-  <aside>
-    <p class="mono-label">OBJECTIF</p>
-    <p>{{ page.objective }}</p>
+
+  <aside class="project-overview" aria-label="Vue d’ensemble du projet">
+    <div class="project-overview-block">
+      <h2 class="mono-label">Objectif</h2>
+      <p class="project-objective">{{ page.objective }}</p>
+    </div>
+
+    {% if page.steps %}
+    <div class="project-overview-block">
+      <h2 class="mono-label">Démarche</h2>
+      <ol>
+        {% for step in page.steps %}
+          <li>
+            <span>{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
+            <div>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    </div>
+    {% endif %}
   </aside>
 </section>
 
-{% if page.steps %}
-<section class="section-shell project-process reveal" aria-labelledby="titre-demarche">
-  <h2 id="titre-demarche">Démarche</h2>
-  <ol>
-    {% for step in page.steps %}
-      <li>
-        <span>{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
-        <div><h3>{{ step.title }}</h3><p>{{ step.description }}</p></div>
-      </li>
-    {% endfor %}
-  </ol>
-</section>
-{% endif %}
-
 <section class="section-shell project-resources reveal" aria-labelledby="titre-ressources">
-  <div>
-    <h2 id="titre-ressources">Ressources du projet</h2>
-    <p>{{ page.resources_intro | default: "Les fichiers associés à ce travail sont regroupés ici afin de conserver le contexte du projet." }}</p>
-  </div>
+  <h2 id="titre-ressources">Ressources</h2>
+
   {% if page.resources %}
-    <div class="resource-links">
+    <ul class="project-resource-list">
       {% for resource in page.resources %}
-        <a class="text-link" href="{% if resource.external %}{{ resource.url }}{% else %}{{ resource.url | relative_url }}{% endif %}"{% if resource.external %} target="_blank" rel="noopener"{% endif %}>{{ resource.label }} <span aria-hidden="true">↗</span></a>
+        {% assign resource_action = resource.action %}
+        {% unless resource_action %}
+          {% if resource.download %}
+            {% assign resource_action = "Télécharger" %}
+          {% else %}
+            {% assign resource_action = "Consulter" %}
+          {% endif %}
+        {% endunless %}
+        <li>
+          <a href="{% if resource.external %}{{ resource.url }}{% else %}{{ resource.url | relative_url }}{% endif %}"{% if resource.external %} target="_blank" rel="noopener"{% endif %}{% if resource.download %} download{% endif %}>
+            <span class="resource-details">
+              <span class="resource-type">
+                {{ resource.type | default: "Fichier" }}
+                {% if resource.format %}<span aria-hidden="true">·</span> {{ resource.format }}{% endif %}
+                {% if resource.size %}<span aria-hidden="true">·</span> {{ resource.size }}{% endif %}
+              </span>
+              <strong>{{ resource.label }}</strong>
+              {% if resource.description %}<span class="resource-description">{{ resource.description }}</span>{% endif %}
+            </span>
+            <span class="resource-action">{{ resource_action }} <span aria-hidden="true">↗</span></span>
+          </a>
+        </li>
       {% endfor %}
-    </div>
+    </ul>
   {% else %}
-    <a class="text-link" href="mailto:{{ site.author.email }}?subject={{ page.contact_subject | uri_escape }}">Demander plus d’informations <span aria-hidden="true">→</span></a>
+    <p class="resources-empty">(Aucune ressource publiée pour le moment.)</p>
   {% endif %}
 </section>
 
@@ -79,5 +104,5 @@ main_class: project-page
 {% endif %}
 
 {% if page.comments %}
-  {% include discussion.html term=page.comment_term title=page.title kind="ce projet" %}
+  {% include discussion.html term=page.comment_term title=page.title %}
 {% endif %}

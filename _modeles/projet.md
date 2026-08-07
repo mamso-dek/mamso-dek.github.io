@@ -17,9 +17,20 @@ published: false
 steps:
   - title: Première étape
     description: Description de la première étape.
-resources:
-  - label: Rapport PDF
-    url: /assets/projets/nom-du-projet/rapport.pdf
+# Décommentez ce bloc lorsqu’un fichier est prêt à être publié.
+# resources:
+#   - label: Rapport du projet
+#     type: Rapport
+#     format: PDF
+#     description: Présentation de la méthode et des résultats.
+#     action: Lire
+#     url: /assets/projets/nom-du-projet/rapport.pdf
+#   - label: Notebook d’analyse
+#     type: Notebook
+#     format: IPYNB
+#     action: Télécharger
+#     download: true
+#     url: /assets/notebooks/nom-du-notebook.ipynb
 # Pour intégrer un notebook HTML, retirez le symbole # des deux lignes suivantes.
 # notebook_source: /assets/notebooks/nom-du-notebook.ipynb
 # notebook_html: /assets/notebooks/rendered/nom-du-notebook.html

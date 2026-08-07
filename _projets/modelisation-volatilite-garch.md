@@ -13,7 +13,6 @@ visual: garch
 search_terms: garch volatilité économétrie variance conditionnelle données financières diagnostic statistique
 contact_subject: Projet modélisation volatilité GARCH
 comment_term: projet-estimation-modeles-garch
-resources_intro: Le rapport, le notebook et le code pourront être ajoutés ici dès qu’ils seront prêts à être publiés.
 steps:
   - title: Préparer
     description: Transformer et explorer les données financières pour caractériser leur variabilité.
