@@ -30,9 +30,9 @@ Puis ouvrir `http://127.0.0.1:4000`.
 
 ## Hébergement
 
-Le dépôt `mamso-dek.github.io` est publié gratuitement à l’adresse :
+Le dépôt `manusalako.github.io` est publié gratuitement à l’adresse :
 
-https://mamso-dek.github.io
+https://manusalako.github.io
 
 GitHub Pages reconstruit le site après chaque modification validée sur la branche `main`.
 

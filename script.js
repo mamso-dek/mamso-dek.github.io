@@ -1,5 +1,5 @@
 const siteConfig = {
-  commentsRepo: "mamso-dek/mamso-dek.github.io",
+  commentsRepo: "manusalako/manusalako.github.io",
   themeStorageKey: "massavo-theme",
 };
 

@@ -29,7 +29,7 @@ Les fichiers de départ se trouvent dans `_modeles/`.
 
 ## 3. Ajouter un contenu directement depuis GitHub
 
-1. Ouvrir le dépôt `mamso-dek.github.io`.
+1. Ouvrir le dépôt `manusalako.github.io`.
 2. Ouvrir le modèle correspondant dans `_modeles/`.
 3. Copier son contenu.
 4. Ouvrir le dossier de destination, par exemple `_projets/`.
@@ -130,7 +130,7 @@ resources:
   - label: Rapport PDF
     url: /assets/projets/prevision-inflation/rapport.pdf
   - label: Code source
-    url: https://github.com/mamso-dek/nom-du-depot
+    url: https://github.com/manusalako/nom-du-depot
     external: true
 ```
 
@@ -195,7 +195,7 @@ Les images et vidéos intégrées dans le Markdown restent dans la page concern�
 ```yaml
 resources:
   - label: Parcourir le notebook
-    url: https://nbviewer.org/github/mamso-dek/mamso-dek.github.io/blob/main/assets/notebooks/mon-notebook.ipynb
+    url: https://nbviewer.org/github/manusalako/manusalako.github.io/blob/main/assets/notebooks/mon-notebook.ipynb
     external: true
   - label: Télécharger le notebook
     url: /assets/notebooks/mon-notebook.ipynb
