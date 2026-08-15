@@ -1,3 +1,9 @@
+{% if include.image %}
+  <figure class="project-detail-visual project-detail-image">
+    <img src="{{ include.image | relative_url }}" alt="{{ include.alt | default: page.title | escape }}" />
+    {% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}
+  </figure>
+{% else %}
 {% case include.visual %}
   {% when "pnl" %}
     <figure class="project-detail-visual" aria-label="Illustration des contributions au profit et à la perte">
@@ -32,4 +38,4 @@
       <span>PROJET</span>
     </figure>
 {% endcase %}
-
+{% endif %}

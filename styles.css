@@ -934,6 +934,18 @@ p {
   display: block;
 }
 
+.project-visual-image {
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.project-visual-image img {
+  width: 100%;
+  aspect-ratio: 2.26 / 1;
+  display: block;
+  object-fit: cover;
+}
+
 .chart-bars path,
 .simulation-paths path {
   fill: none;
@@ -1137,6 +1149,25 @@ p {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.project-detail-image {
+  background: #ffffff;
+}
+
+.project-detail-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-detail-image figcaption {
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--line);
+  color: #4b5563;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  line-height: 1.5;
 }
 
 .project-facts {

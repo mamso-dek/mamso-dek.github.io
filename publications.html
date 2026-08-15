@@ -38,7 +38,7 @@ permalink: /publications.html
           <a class="text-link" href="{{ project.url | relative_url }}">Lire <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      {% include project-card-visual.html visual=project.visual %}
+      {% include project-card-visual.html visual=project.visual image=project.hero_image alt=project.hero_image_alt %}
     </article>
   {% endfor %}
 </section>

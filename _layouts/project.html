@@ -9,7 +9,12 @@ main_class: project-page
       <h1>{{ page.title }}</h1>
       <p>{{ page.summary }}</p>
     </div>
-    {% include project-detail-visual.html visual=page.visual %}
+    {% include project-detail-visual.html
+      visual=page.visual
+      image=page.hero_image
+      alt=page.hero_image_alt
+      caption=page.hero_image_caption
+    %}
   </div>
   <dl class="project-facts">
     <div><dt>Domaine</dt><dd>{{ page.domain }}</dd></div>
