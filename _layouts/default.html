@@ -40,7 +40,7 @@
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"></script>
     {% endif %}
-    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}?v={{ site.assets_version }}" />
   </head>
   <body>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -52,6 +52,6 @@
 
     {% include footer.html %}
     {% include search-index.html %}
-    <script src="{{ '/script.js' | relative_url }}"></script>
+    <script src="{{ '/script.js' | relative_url }}?v={{ site.assets_version }}"></script>
   </body>
 </html>

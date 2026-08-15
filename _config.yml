@@ -4,6 +4,7 @@ url: https://manusalako.github.io
 baseurl: ""
 lang: fr
 timezone: Africa/Porto-Novo
+assets_version: 20260815-1
 
 author:
   name: Massavo Salako
