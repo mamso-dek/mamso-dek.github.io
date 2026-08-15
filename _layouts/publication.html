@@ -5,22 +5,39 @@ main_class: content-page
 <article>
   <header class="section-shell content-hero reveal">
     <a class="back-link" href="{{ '/publications.html' | relative_url }}"><span aria-hidden="true">←</span> Toutes les publications</a>
-    <p class="mono-label">PUBLICATION · {{ page.year }}</p>
+    <p class="mono-label">{{ page.publication_type | default: "TRAVAIL DE RECHERCHE" | upcase }} · {{ page.year }}</p>
     <h1>{{ page.title }}</h1>
     <p class="content-authors">{{ page.authors }}</p>
     <p class="content-summary">{{ page.venue }}</p>
+    {% if page.status_note %}<p class="content-summary">{{ page.status_note }}</p>{% endif %}
     {% if page.links %}
       <div class="resource-links content-actions">
         {% for link in page.links %}
-          <a class="text-link" href="{% if link.external %}{{ link.url }}{% else %}{{ link.url | relative_url }}{% endif %}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.label }} <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="{% if link.external %}{{ link.url }}{% else %}{{ link.url | relative_url }}{% endif %}"{% if link.external %} target="_blank" rel="noopener"{% endif %}{% if link.download %} download{% endif %}>{{ link.label }} <span aria-hidden="true">↗</span></a>
         {% endfor %}
       </div>
     {% endif %}
   </header>
   <div class="section-shell prose content-body reveal">
     {{ content }}
+    {% if page.full_text_note %}
+      <aside class="publication-access-note" aria-label="Accès au manuscrit">
+        <p class="mono-label">ACCÈS AU MANUSCRIT</p>
+        <p>{{ page.full_text_note }}</p>
+      </aside>
+    {% endif %}
   </div>
 </article>
+{% if page.pdf_url %}
+  {% include pdf-reader.html
+    url=page.pdf_url
+    title=page.pdf_title
+    pages=page.pdf_pages
+    file_size=page.pdf_file_size
+    language=page.pdf_language
+    download=page.pdf_download
+  %}
+{% endif %}
 {% if page.comments %}
   {% include discussion.html term=page.comment_term title=page.title %}
 {% endif %}

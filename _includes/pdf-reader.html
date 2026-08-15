@@ -1,0 +1,43 @@
+<section class="section-shell document-reader reveal" aria-labelledby="titre-lecteur-pdf">
+  {% assign document_title = include.title | default: "Document PDF" %}
+  {% assign document_url = include.url | relative_url %}
+  <div class="section-title-row document-reader-heading">
+    <div>
+      <p class="mono-label">DOCUMENT COMPLET</p>
+      <h2 id="titre-lecteur-pdf">Lire le document</h2>
+      <p>
+        {{ document_title }}
+        {% if include.pages or include.file_size or include.language %}
+          <span class="document-meta">
+            {% if include.pages %}{{ include.pages }} pages{% endif %}
+            {% if include.file_size %}<span aria-hidden="true">·</span> {{ include.file_size }}{% endif %}
+            {% if include.language %}<span aria-hidden="true">·</span> {{ include.language }}{% endif %}
+          </span>
+        {% endif %}
+      </p>
+    </div>
+    <div class="document-reader-actions">
+      <a class="quiet-link" href="{{ document_url }}" target="_blank" rel="noopener">Ouvrir en plein écran</a>
+      {% if include.download %}
+        <a class="quiet-link" href="{{ document_url }}" download>Télécharger le PDF</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="pdf-reader-shell" data-pdf-reader data-pdf-url="{{ document_url }}#view=FitH">
+    <div class="pdf-reader-placeholder" data-pdf-placeholder>
+      <p>Le document sera chargé uniquement lorsque vous lancerez la lecture.</p>
+      <button class="pdf-reader-button" type="button" data-pdf-load>Lire dans la page</button>
+    </div>
+    <iframe
+      class="pdf-reader-frame"
+      title="{{ document_title | escape }}"
+      data-pdf-frame
+      loading="lazy"
+      hidden
+    ></iframe>
+    <noscript>
+      <p>Activez JavaScript ou <a href="{{ document_url }}" target="_blank" rel="noopener">ouvrez le PDF dans un nouvel onglet</a>.</p>
+    </noscript>
+  </div>
+</section>

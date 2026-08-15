@@ -152,22 +152,34 @@ resources:
 - `action: Lire` ou `action: Voir` ouvre le fichier dans le navigateur lorsque son format le permet.
 - `download: true` demande directement le téléchargement du fichier.
 - `external: true` ouvre une ressource hébergée sur un autre site dans un nouvel onglet.
-- `description` et `size` sont facultatifs.
+- `description` et `file_size` sont facultatifs.
 
 ## 6. Ajouter une publication
 
 Créer `_publications/nom-publication.md` à partir de `_modeles/publication.md`.
 
-La page accepte un résumé Markdown et plusieurs liens : PDF, DOI, dépôt de code ou page de la revue.
+### Manuscrit non publié ou privé
+
+Ne téléversez jamais le PDF complet dans le dépôt. Sur GitHub Pages, tout fichier présent dans `assets/` est public et peut être récupéré, même si aucun bouton de téléchargement n’est affiché. Publiez seulement le résumé, les méthodes, les résultats et éventuellement quelques figures autorisées.
 
 ```yaml
-links:
-  - label: Lire le PDF
-    url: /assets/publications/article.pdf
-  - label: DOI
-    url: https://doi.org/...
-    external: true
+full_text_note: Le texte intégral n’est pas diffusé publiquement à ce stade.
 ```
+
+### Document public
+
+Pour un mémoire, un rapport ou un article que vous autorisez à télécharger, téléversez le PDF puis renseignez :
+
+```yaml
+pdf_url: /assets/publications/article.pdf
+pdf_title: Titre court du document
+pdf_pages: 20
+pdf_file_size: 2,4 Mo
+pdf_language: Français
+pdf_download: true
+```
+
+Le lecteur est créé automatiquement et le fichier n’est chargé qu’après un clic sur « Lire dans la page ». Les liens externes, DOI, code ou page de revue restent dans `links`.
 
 ## 7. Ajouter une note
 

@@ -23,7 +23,9 @@ steps:
 #     type: Rapport
 #     format: PDF
 #     description: Présentation de la méthode et des résultats.
-#     action: Lire
+#     action: Télécharger
+#     download: true
+#     file_size: 2,4 Mo
 #     url: /assets/projets/nom-du-projet/rapport.pdf
 #   - label: Notebook d’analyse
 #     type: Notebook

@@ -1334,6 +1334,130 @@ p {
   scroll-margin-top: 90px;
 }
 
+/* PDF reader */
+
+.document-reader {
+  padding-block: clamp(3rem, 7vw, 6rem);
+  border-top: 1px solid var(--line);
+}
+
+.document-reader-heading {
+  align-items: end;
+}
+
+.document-reader-heading h2 {
+  margin-bottom: 0.55rem;
+}
+
+.document-reader-heading p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.document-meta {
+  margin-left: 0.55rem;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  white-space: nowrap;
+}
+
+.document-reader-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.7rem 1.4rem;
+}
+
+.pdf-reader-shell {
+  min-height: 620px;
+  margin-top: 2rem;
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    repeating-linear-gradient(135deg, transparent 0 16px, var(--line) 16px 17px);
+}
+
+.pdf-reader-placeholder {
+  min-height: 620px;
+  padding: 2rem;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.pdf-reader-placeholder p {
+  max-width: 44ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+.pdf-reader-button {
+  min-height: 48px;
+  padding: 0.75rem 1.15rem;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.pdf-reader-button:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.pdf-reader-frame {
+  width: 100%;
+  min-height: min(82vh, 940px);
+  border: 0;
+  background: #fff;
+}
+
+.publication-access-note {
+  max-width: 74ch;
+  margin-top: 3rem;
+  padding: 1.25rem 1.4rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+}
+
+.publication-access-note p:last-child {
+  margin-bottom: 0;
+  color: var(--text);
+}
+
+@media (max-width: 600px) {
+  .document-reader-heading {
+    align-items: start;
+  }
+
+  .document-reader-actions {
+    justify-content: flex-start;
+  }
+
+  .document-meta {
+    margin: 0.35rem 0 0;
+    display: block;
+    white-space: normal;
+  }
+
+  .pdf-reader-shell,
+  .pdf-reader-placeholder {
+    min-height: 480px;
+  }
+
+  .pdf-reader-frame {
+    min-height: 70vh;
+  }
+}
+
+
 /* Markdown content */
 
 .content-hero {

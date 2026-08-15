@@ -6,6 +6,7 @@ year: 2026
 venue: "Article méthodologique · Version de travail"
 publication_type: Article méthodologique
 search_terms: modélisation mathématique décision reproductibilité validation données indicateurs modèle quantitatif
+comment_term: publication-modelisation-decision-reproductible
 ---
 ## Résumé
 

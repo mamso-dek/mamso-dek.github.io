@@ -54,11 +54,12 @@ permalink: /publications.html
         <h3><a href="{{ publication.url | relative_url }}">{{ publication.title }}</a></h3>
         <p>{{ publication.summary }}</p>
         <p class="entry-methods">{{ publication.authors }} · {{ publication.venue }}</p>
+        {% if publication.status_note %}<p class="entry-methods">{{ publication.status_note }}</p>{% endif %}
       </div>
       <div class="entry-actions entry-resource-actions">
         <a class="text-link" href="{{ publication.url | relative_url }}">Lire <span aria-hidden="true">→</span></a>
         {% for link in publication.links %}
-          <a class="quiet-link" href="{% if link.external %}{{ link.url }}{% else %}{{ link.url | relative_url }}{% endif %}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.label }}</a>
+          <a class="quiet-link" href="{% if link.external %}{{ link.url }}{% else %}{{ link.url | relative_url }}{% endif %}"{% if link.external %} target="_blank" rel="noopener"{% endif %}{% if link.download %} download{% endif %}>{{ link.label }}</a>
         {% endfor %}
       </div>
     </article>

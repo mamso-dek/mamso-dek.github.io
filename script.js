@@ -375,9 +375,31 @@ function bindComments() {
   roots.forEach((root) => observer.observe(root));
 }
 
+function bindPdfReaders() {
+  document.querySelectorAll("[data-pdf-reader]").forEach((reader) => {
+    const button = reader.querySelector("[data-pdf-load]");
+    const frame = reader.querySelector("[data-pdf-frame]");
+    const placeholder = reader.querySelector("[data-pdf-placeholder]");
+    const url = reader.dataset.pdfUrl;
+
+    if (!button || !(frame instanceof HTMLIFrameElement) || !placeholder || !url) {
+      return;
+    }
+
+    button.addEventListener("click", () => {
+      frame.src = url;
+      frame.hidden = false;
+      placeholder.hidden = true;
+      frame.focus();
+    });
+  });
+}
+
+
 bindThemeToggle();
 bindSiteSearch();
 bindMobileMenu();
 bindRevealAnimations();
 bindFilters();
+bindPdfReaders();
 bindComments();

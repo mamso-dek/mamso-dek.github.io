@@ -6,6 +6,7 @@ year: 2026
 venue: "Article de synthèse · Version de travail"
 publication_type: Article de synthèse
 search_terms: incertitude prévision intervalle confiance scénario risque calibration probabilités décision modélisation
+comment_term: publication-modeliser-incertitude-prevision
 ---
 ## Résumé
 

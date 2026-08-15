@@ -68,7 +68,7 @@ main_class: project-page
               <span class="resource-type">
                 {{ resource.type | default: "Fichier" }}
                 {% if resource.format %}<span aria-hidden="true">·</span> {{ resource.format }}{% endif %}
-                {% if resource.size %}<span aria-hidden="true">·</span> {{ resource.size }}{% endif %}
+                {% if resource.file_size %}<span aria-hidden="true">·</span> {{ resource.file_size }}{% endif %}
               </span>
               <strong>{{ resource.label }}</strong>
               {% if resource.description %}<span class="resource-description">{{ resource.description }}</span>{% endif %}
@@ -82,6 +82,17 @@ main_class: project-page
     <p class="resources-empty">(Aucune ressource publiée pour le moment.)</p>
   {% endif %}
 </section>
+
+{% if page.pdf_url %}
+  {% include pdf-reader.html
+    url=page.pdf_url
+    title=page.pdf_title
+    pages=page.pdf_pages
+    file_size=page.pdf_file_size
+    language=page.pdf_language
+    download=page.pdf_download
+  %}
+{% endif %}
 
 {% if page.notebook_html %}
 <section class="section-shell embedded-resource reveal" aria-labelledby="titre-notebook">

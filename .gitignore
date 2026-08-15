@@ -4,3 +4,7 @@ _site/
 .bundle/
 vendor/
 
+
+# Manuscrits non publiés : ne jamais servir leurs sources depuis GitHub Pages.
+assets/publications/attribution-pnl-reseaux-neurones/*.pdf
+assets/publications/prevision-pib-benin/*.pdf

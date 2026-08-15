@@ -12,7 +12,7 @@ author:
   location: Cotonou, Bénin
   github: https://github.com/manusalako
   linkedin: https://www.linkedin.com/in/emmanuel-salako-812a18281/
-  cv: /assets/cvPro.pdf
+  cv: /assets/cv-massavo-salako.pdf
 
 comments:
   repository: manusalako/manusalako.github.io
@@ -53,7 +53,7 @@ defaults:
     values:
       layout: publication
       nav: travaux
-      comments: false
+      comments: true
       math: true
   - scope:
       path: ""
