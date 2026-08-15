@@ -1783,8 +1783,18 @@ p {
 }
 
 .entry-meta dd {
+  margin-left: 0;
   color: var(--muted);
   font-size: 0.82rem;
+}
+
+.teaching-empty h2 {
+  margin-bottom: 0.65rem;
+}
+
+.teaching-empty p {
+  max-width: 62ch;
+  margin-bottom: 0;
 }
 
 .teaching-visual {

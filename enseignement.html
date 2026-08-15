@@ -10,15 +10,12 @@ permalink: /enseignement.html
 <section class="page-intro teaching-intro section-shell reveal">
   <h1>Enseignement</h1>
   <p class="page-lead">
-    Partager des méthodes rigoureuses, rendre les concepts accessibles et
-    relier la théorie à la pratique.
-  </p>
-  <p>
-    Cet espace rassemble progressivement des cours, des travaux dirigés et
-    pratiques, des ateliers, du tutorat ainsi que leurs supports pédagogiques.
+    Cette rubrique présentera mes activités pédagogiques lorsqu’elles auront
+    effectivement commencé.
   </p>
 </section>
 
+{% if teachings.size > 0 %}
 <div class="section-shell filter-rail reveal" role="group" aria-label="Filtrer les contenus pédagogiques">
   <button class="filter-button is-selected" type="button" data-filter-group="teaching" data-filter-value="all">Tous</button>
   <button class="filter-button" type="button" data-filter-group="teaching" data-filter-value="courses">Cours</button>
@@ -50,3 +47,14 @@ permalink: /enseignement.html
     Aucun contenu n’est encore disponible dans cette catégorie.
   </div>
 </section>
+{% else %}
+<section class="section-shell teaching-section reveal" aria-labelledby="titre-enseignements">
+  <div class="honest-empty teaching-empty">
+    <h2 id="titre-enseignements">Aucun contenu publié pour le moment</h2>
+    <p>
+      Je n’enseigne pas encore de cours. Cette rubrique accueillera mes cours,
+      TD, TP, ateliers et supports pédagogiques lorsque ces activités auront commencé.
+    </p>
+  </div>
+</section>
+{% endif %}
