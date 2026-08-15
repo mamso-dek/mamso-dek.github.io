@@ -27,7 +27,7 @@ Les données financières présentent souvent des périodes calmes suivies de ph
 
 ## Spécification GARCH
 
-Un modèle GARCH(1,1) sépare le rendement \(r_t\) d’une innovation standardisée \(z_t\) :
+Un modèle GARCH(1,1) sépare le rendement \\(r_t\\) d’une innovation standardisée \\(z_t\\) :
 
 $$
 r_t = \mu + \varepsilon_t,
@@ -44,7 +44,7 @@ $$
 + \beta\,\sigma_{t-1}^{2}.
 $$
 
-Les contraintes \(\omega>0\), \(\alpha\geq0\) et \(\beta\geq0\) garantissent une variance positive. Lorsque \(\alpha+\beta\) est proche de 1, les chocs de volatilité disparaissent lentement.
+Les contraintes \\(\omega>0\\), \\(\alpha\geq0\\) et \\(\beta\geq0\\) garantissent une variance positive. Lorsque \\(\alpha+\beta\\) est proche de 1, les chocs de volatilité disparaissent lentement.
 
 ## Estimation en Python
 

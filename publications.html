@@ -53,7 +53,7 @@ permalink: /publications.html
       <div class="entry-content">
         <h3><a href="{{ publication.url | relative_url }}">{{ publication.title }}</a></h3>
         <p>{{ publication.summary }}</p>
-        <p class="entry-methods">{{ publication.authors }} · {{ publication.venue }}</p>
+        <p class="entry-methods">{{ publication.authors }}{% if publication.venue %} · {{ publication.venue }}{% endif %}</p>
         {% if publication.status_note %}<p class="entry-methods">{{ publication.status_note }}</p>{% endif %}
       </div>
       <div class="entry-actions entry-resource-actions">

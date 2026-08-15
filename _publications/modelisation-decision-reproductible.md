@@ -3,7 +3,7 @@ title: "De la modélisation à la décision : une démarche quantitative reprodu
 summary: Une méthode structurée pour transformer une question concrète en analyse quantitative vérifiable, interprétable et utile à la décision.
 authors: Massavo Salako
 year: 2026
-venue: "Article méthodologique · Version de travail"
+venue: Article méthodologique
 publication_type: Article méthodologique
 search_terms: modélisation mathématique décision reproductibilité validation données indicateurs modèle quantitatif
 comment_term: publication-modelisation-decision-reproductible
@@ -63,7 +63,7 @@ $$
 \right],
 $$
 
-où \(\ell\) mesure l’erreur, \(\Omega(f)\) la complexité et \(\lambda\) le compromis entre ajustement et généralisation.
+où \\(\ell\\) mesure l’erreur, \\(\Omega(f)\\) la complexité et \\(\lambda\\) le compromis entre ajustement et généralisation.
 
 ### Exemple de pipeline reproductible
 

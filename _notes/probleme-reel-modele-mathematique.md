@@ -46,7 +46,7 @@ f\!\left(x(t),u(t),\theta\right),
 x(0)=x_0,
 $$
 
-où \(x(t)\) décrit l’état du système, \(u(t)\) les facteurs extérieurs et \(\theta\) les paramètres. Cette écriture oblige à distinguer ce qui évolue, ce qui agit sur le système et ce qui doit être estimé.
+où \\(x(t)\\) décrit l’état du système, \\(u(t)\\) les facteurs extérieurs et \\(\theta\\) les paramètres. Cette écriture oblige à distinguer ce qui évolue, ce qui agit sur le système et ce qui doit être estimé.
 
 ### Explorer un modèle simple
 

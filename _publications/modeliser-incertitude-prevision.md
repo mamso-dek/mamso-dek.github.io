@@ -3,7 +3,7 @@ title: "Modéliser l’incertitude : au-delà de la prévision ponctuelle"
 summary: Pourquoi une prévision doit être accompagnée d’intervalles, de scénarios et d’une analyse des risques avant d’éclairer une décision.
 authors: Massavo Salako
 year: 2026
-venue: "Article de synthèse · Version de travail"
+venue: Article de synthèse
 publication_type: Article de synthèse
 search_terms: incertitude prévision intervalle confiance scénario risque calibration probabilités décision modélisation
 comment_term: publication-modeliser-incertitude-prevision
@@ -55,7 +55,7 @@ Ces outils sont complémentaires :
 | Scénario | Que se passerait-il sous une hypothèse particulière ? |
 | Test de sensibilité | Quels paramètres influencent le plus le résultat ? |
 
-Pour une probabilité de couverture \(1-\alpha\), un intervalle prédictif peut être défini à partir des quantiles conditionnels :
+Pour une probabilité de couverture \\(1-\alpha\\), un intervalle prédictif peut être défini à partir des quantiles conditionnels :
 
 $$
 I_{1-\alpha}(x)

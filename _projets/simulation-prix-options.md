@@ -27,13 +27,13 @@ Le prix d’une option dépend d’hypothèses sur l’évolution du sous-jacent
 
 ## Modèle de diffusion
 
-Dans le modèle de Black-Scholes, le prix \(S_t\) du sous-jacent suit un mouvement brownien géométrique :
+Dans le modèle de Black-Scholes, le prix \\(S_t\\) du sous-jacent suit un mouvement brownien géométrique :
 
 $$
 dS_t = \mu S_t\,dt + \sigma S_t\,dW_t.
 $$
 
-Sous la probabilité risque-neutre, \(\mu\) est remplacé par le taux sans risque \(r\). Pour une option d’achat européenne de strike \(K\), le payoff à maturité est :
+Sous la probabilité risque-neutre, \\(\mu\\) est remplacé par le taux sans risque \\(r\\). Pour une option d’achat européenne de strike \\(K\\), le payoff à maturité est :
 
 $$
 H(S_T) = \max(S_T-K,0),
@@ -72,7 +72,7 @@ standard_error = np.exp(-r * maturity) * payoff.std(ddof=1) / np.sqrt(n_scenario
 *Données simulées : les courbes grises représentent plusieurs scénarios et la courbe rouge leur trajectoire moyenne.*
 {: .figure-caption}
 
-Le prix estimé doit toujours être accompagné de son erreur de Monte Carlo. Une analyse de sensibilité permet ensuite d’étudier l’effet de \(\sigma\), \(T\), \(K\) et \(r\) sur la valorisation.
+Le prix estimé doit toujours être accompagné de son erreur de Monte Carlo. Une analyse de sensibilité permet ensuite d’étudier l’effet de \\(\sigma\\), \\(T\\), \\(K\\) et \\(r\\) sur la valorisation.
 
 ## Extensions possibles
 

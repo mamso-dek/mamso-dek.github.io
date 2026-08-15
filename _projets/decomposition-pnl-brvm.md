@@ -27,13 +27,13 @@ Le Profit & Loss résume la variation de valeur d’un portefeuille, mais il n�
 
 ## Formulation quantitative
 
-Pour une date \(t\), la variation du portefeuille peut être représentée par une somme de contributions et un résidu :
+Pour une date \\(t\\), la variation du portefeuille peut être représentée par une somme de contributions et un résidu :
 
 $$
 \Delta V_t = \sum_{j=1}^{p} \beta_j\,\Delta x_{j,t} + \varepsilon_t,
 $$
 
-où \(\Delta x_{j,t}\) désigne la variation du facteur de risque \(j\), \(\beta_j\) sa sensibilité estimée et \(\varepsilon_t\) la partie non expliquée. Avec un modèle non linéaire, la même logique peut être conservée grâce à des contributions locales \(\phi_j\) telles que :
+où \\(\Delta x_{j,t}\\) désigne la variation du facteur de risque \\(j\\), \\(\beta_j\\) sa sensibilité estimée et \\(\varepsilon_t\\) la partie non expliquée. Avec un modèle non linéaire, la même logique peut être conservée grâce à des contributions locales \\(\phi_j\\) telles que :
 
 $$
 \widehat{\Delta V_t} = \phi_0 + \sum_{j=1}^{p}\phi_j.
