@@ -5,12 +5,12 @@ main_class: content-page
 <article>
   <header class="section-shell content-hero reveal">
     <a class="back-link" href="{{ '/publications.html' | relative_url }}"><span aria-hidden="true">←</span> Toutes les notes</a>
-    <p class="mono-label">NOTE · {{ page.date | date: "%d/%m/%Y" }}</p>
+    <p class="mono-label">NOTE · {{ page.date | date: "%d/%m/%Y" }}{% if page.updated %} · MISE À JOUR {{ page.updated | date: "%d/%m/%Y" }}{% endif %}</p>
     <h1>{{ page.title }}</h1>
     <p class="content-summary">{{ page.summary }}</p>
     {% if page.tags %}<p class="content-tags">{{ page.tags | join: " · " }}</p>{% endif %}
   </header>
-  <div class="section-shell prose content-body reveal">
+  <div class="section-shell prose content-body">
     {{ content }}
   </div>
   {% if page.resources %}

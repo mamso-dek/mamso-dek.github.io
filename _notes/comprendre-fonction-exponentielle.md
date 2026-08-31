@@ -1,75 +1,79 @@
 ---
-title: "La fonction exponentielle : comprendre une croissance qui se multiplie"
-summary: Une introduction concrète à l’exponentielle, à l’origine du nombre e et aux phénomènes de croissance ou de décroissance qu’elle permet de modéliser.
+title: "Comprendre la fonction exponentielle"
+summary: Une lecture intuitive et rigoureuse de l’exponentielle, depuis la croissance multiplicative jusqu’à ses usages en finance, en gestion des risques et en apprentissage profond.
 date: 2026-08-15
+updated: 2026-09-01
 tags:
   - Analyse
-  - Fonctions
   - Modélisation
-search_terms: fonction exponentielle nombre e croissance décroissance logarithme intérêt composé dérivée demi-vie modélisation
+  - Finance
+  - Deep learning
+search_terms: fonction exponentielle nombre e croissance décroissance logarithme intérêt composé taux continu survie risque softmax deep learning logistique
 comment_term: note-comprendre-fonction-exponentielle
 ---
-## L’idée essentielle : multiplier plutôt qu’ajouter
+## Une idée avant toute formule
 
-Une évolution linéaire ajoute la même quantité à chaque étape. Une évolution exponentielle multiplie par le même facteur à intervalles réguliers.
+Une évolution est dite **additive** lorsqu’elle gagne la même quantité à chaque étape. Elle est **multiplicative** lorsqu’elle est multipliée par le même facteur. C’est cette seconde logique qui conduit à l’exponentielle.
 
-Partons de 100. Si l’on ajoute 10 à chaque période, on obtient une progression linéaire. Si l’on augmente de 10 %, la hausse suivante est calculée sur une quantité déjà plus grande :
+Partons de 100. Ajouter 10 à chaque période produit la suite \\(100,110,120,130,\ldots\\). Augmenter de 10 % produit plutôt \\(100,110,121,133{,}10,\ldots\\), car chaque hausse s’applique à une base déjà modifiée.
 
-| Période | Ajout de 10 | Hausse de 10 % |
+| Période \\(n\\) | Croissance additive \\(100+10n\\) | Croissance multiplicative \\(100(1{,}10)^n\\) |
 | ---: | ---: | ---: |
-| 0 | 100 | 100 |
-| 1 | 110 | 110 |
-| 2 | 120 | 121 |
-| 3 | 130 | 133,10 |
-| 4 | 140 | 146,41 |
+| 0 | 100,00 | 100,00 |
+| 1 | 110,00 | 110,00 |
+| 2 | 120,00 | 121,00 |
+| 3 | 130,00 | 133,10 |
+| 4 | 140,00 | 146,41 |
 
-La différence paraît faible au début, puis elle s’amplifie. C’est le mécanisme cumulatif de l’exponentielle : **la variation dépend de ce qui est déjà présent**.
+Une courbe n’est donc pas exponentielle simplement parce qu’elle « monte vite ». Le critère essentiel est plus précis : **sur des intervalles de même durée, la quantité est multipliée par un facteur constant**.
 
-## Définition
+## Du temps discret au temps continu
 
-Une fonction exponentielle s’écrit sous la forme
-
-$$
-f(x)=C\,a^x,
-$$
-
-où \\(C>0\\) est la valeur initiale, \\(a>0\\) est la base et \\(a\neq1\\). Lorsque \\(a>1\\), la fonction croît ; lorsque \\(0<a<1\\), elle décroît.
-
-Son caractère exponentiel apparaît dans le rapport
+En temps discret, une quantité initiale \\(y_0\\) multipliée par \\(q\\) à chaque période suit
 
 $$
-\frac{f(x+h)}{f(x)}=a^h.
+y_n=y_0q^n.
 $$
 
-Pour un même intervalle \\(h\\), le facteur multiplicatif est toujours le même, quel que soit le point de départ \\(x\\). C’est cette propriété, et non le simple fait de « croître vite », qui définit une évolution exponentielle.
+Pour décrire un phénomène en temps continu, on écrit plutôt
 
-![Croissance et décroissance exponentielles](/assets/notes/fonction-exponentielle/croissance-decroissance.svg)
+$$
+y(t)=y_0e^{kt},
+$$
 
-<p class="figure-caption">Les deux courbes restent positives et passent par le point (0, 1). La courbe \(e^x\) croît, tandis que \(e^{-x}\) décroît et se rapproche de zéro sans l’atteindre.</p>
+où \\(k\\) est le **taux instantané**. Ces deux écritures sont compatibles. Pour un pas de temps \\(\Delta t\\),
 
-## Pourquoi le nombre \\(e\\) apparaît-il ?
+$$
+q=e^{k\Delta t}
+\qquad\text{et donc}\qquad
+k=\frac{\ln q}{\Delta t}.
+$$
+
+Cette relation évite une confusion fréquente : un taux effectif par période et un taux continu ne sont pas numériquement identiques, même lorsqu’ils représentent la même évolution.
+
+L’exponentielle possède aussi une propriété structurelle remarquable :
+
+$$
+e^{k(t+s)}=e^{kt}e^{ks}.
+$$
+
+Faire évoluer le système pendant \\(t+s\\) revient à le faire évoluer pendant \\(t\\), puis pendant \\(s\\). Cette cohérence entre composition temporelle et multiplication explique pourquoi l’exponentielle apparaît naturellement dans les systèmes dynamiques.
+
+## Pourquoi la base \\(e\\) ?
 
 Le nombre
 
 $$
-e \approx 2{,}718281828
+e\approx2{,}718281828
 $$
 
-est la base dite *naturelle* de l’exponentielle. Il apparaît lorsque l’on découpe une croissance en intervalles de plus en plus petits.
-
-Imaginons un capital de 1 placé à un taux annuel de 100 %. Si l’intérêt est versé une seule fois, le capital final vaut 2. S’il est versé deux fois, chaque versement applique un taux de 50 % :
-
-$$
-\left(1+\frac{1}{2}\right)^2=2{,}25.
-$$
-
-Avec \\(n\\) versements au cours de l’année, le capital devient
+peut être approché par un problème de capitalisation. Un capital de 1 rémunéré à 100 % sur une année vaut 2 si l’intérêt est versé une seule fois. Si l’année est découpée en \\(n\\) périodes, avec un taux de \\(1/n\\) à chaque période, le capital final devient
 
 $$
 \left(1+\frac{1}{n}\right)^n.
 $$
 
-Lorsque les versements deviennent infiniment fréquents, cette quantité tend vers \\(e\\) :
+Lorsque la fréquence de capitalisation augmente indéfiniment,
 
 $$
 e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^n.
@@ -77,142 +81,237 @@ $$
 
 ![Convergence de la capitalisation vers le nombre e](/assets/notes/fonction-exponentielle/capitalisation-continue.svg)
 
-<p class="figure-caption">Augmenter la fréquence de capitalisation rapproche le résultat de \(e\), sans produire une croissance infinie sur une durée fixée.</p>
+<p class="figure-caption">La capitalisation devient de plus en plus fréquente, mais la valeur obtenue sur une durée fixée converge vers \(e\) au lieu de diverger.</p>
 
-## D’où vient cette idée ?
+Le même nombre est défini par la série
 
-L’histoire de \\(e\\) ne commence pas avec une formule unique. Les logarithmes développés au XVIIe siècle ont préparé le terrain, mais le nombre apparaît explicitement dans un autre problème. En 1683, Jacob Bernoulli étudie la capitalisation composée et encadre la limite de \\(\left(1+1/n\right)^n\\) entre 2 et 3.
+$$
+e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}
+=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots.
+$$
 
-Leibniz utilise en 1690 une lettre pour désigner ce nombre, sans employer la notation moderne. La lettre \\(e\\) apparaît dans une lettre de Leonhard Euler à Christian Goldbach en 1731. Euler rassemble ensuite, notamment dans son ouvrage de 1748, plusieurs propriétés aujourd’hui centrales : la limite précédente, le développement en série et le lien avec les logarithmes.
-
-L’exponentielle n’a donc pas été « inventée » en une seule fois. Elle est née de la rencontre entre les logarithmes, les intérêts composés, les séries et le calcul différentiel.
-
-## Pourquoi la base \\(e\\) est-elle naturelle ?
-
-Parmi toutes les fonctions \\(a^x\\), la fonction \\(e^x\\) possède une propriété remarquable :
+Cette série est à la fois une définition mathématique et un moyen de calculer numériquement l’exponentielle. Mais la propriété la plus importante pour la modélisation est
 
 $$
 \frac{d}{dx}e^x=e^x.
 $$
 
-Sa pente en chaque point est exactement égale à sa valeur. Si \\(e^x=5\\), sa pente vaut aussi 5 ; si \\(e^x=0{,}2\\), sa pente vaut 0,2.
+La fonction est égale à sa propre dérivée : sa vitesse de variation est exactement proportionnelle à sa valeur.
 
-Plus généralement, si une quantité \\(y(t)\\) varie à une vitesse proportionnelle à sa valeur actuelle,
+## L’équation fondamentale de la croissance proportionnelle
+
+Supposons qu’une quantité \\(y(t)\\) vérifie
 
 $$
 y'(t)=k\,y(t),
+\qquad y(0)=y_0.
 $$
 
-alors sa trajectoire est
+La solution est
 
 $$
 y(t)=y_0e^{kt}.
 $$
 
-Le paramètre \\(k\\) est un taux instantané :
+Cette équation dit que le changement instantané \\(y'(t)\\) dépend de l’état actuel \\(y(t)\\). Elle fournit une grille de lecture simple des paramètres :
 
-- \\(k>0\\) décrit une croissance ;
-- \\(k<0\\) décrit une décroissance ;
-- plus \\(|k|\\) est grand, plus l’évolution est rapide.
+| Paramètre | Interprétation |
+| --- | --- |
+| \\(y_0\\) | valeur initiale, dans l’unité de la quantité étudiée |
+| \\(k\\) | taux instantané, exprimé en inverse de l’unité de temps |
+| \\(k>0\\) | croissance |
+| \\(k<0\\) | décroissance |
+| \\(|k|\\) élevé | évolution rapide |
 
-Voilà pourquoi \\(e^x\\) apparaît si souvent dans les équations différentielles : elle transforme la règle « la variation est proportionnelle à la quantité présente » en une formule explicite.
+![Croissance et décroissance exponentielles](/assets/notes/fonction-exponentielle/croissance-decroissance.svg)
 
-## Trois exemples concrets
+<p class="figure-caption">Les fonctions \(e^x\) et \(e^{-x}\) sont positives et passent par \((0,1)\). Le signe du taux inverse le sens de l’évolution.</p>
 
-### 1. Un capital placé
-
-Un capital initial de 100 000 F CFA placé pendant dix ans à un taux continu de 5 % vaut
+Pour \\(k>0\\), le temps de doublement est obtenu en résolvant \\(e^{kt}=2\\) :
 
 $$
-C(10)=100\,000\,e^{0{,}05\times10}
+t_{\mathrm{doublement}}=\frac{\ln 2}{k}.
+$$
+
+Pour \\(k<0\\), la demi-vie vaut
+
+$$
+t_{1/2}=\frac{\ln 2}{|k|}.
+$$
+
+Ces formules montrent qu’un taux et une durée caractéristique racontent la même dynamique sous deux angles différents.
+
+## Exemple 1 — capitalisation et actualisation
+
+Avec une capitalisation continue au taux \\(r\\), un capital \\(C_0\\) devient
+
+$$
+C(t)=C_0e^{rt}.
+$$
+
+Ainsi, 100 000 F CFA placés pendant dix ans à un taux continu de 5 % donnent
+
+$$
+C(10)=100\,000e^{0{,}05\times10}
 \approx164\,872\ \text{F CFA}.
 $$
 
-Le modèle suppose ici que le taux reste constant. Dans la réalité, les frais, les impôts et les variations de taux doivent être ajoutés à l’analyse.
-
-### 2. Une population qui double
-
-Une culture contient initialement 500 bactéries et double toutes les trois heures. Son effectif peut s’écrire
+Il ne faut pas confondre ce calcul avec un taux **effectif annuel** de 5 %, qui donnerait
 
 $$
-N(t)=500\,2^{t/3}
-=500\,e^{(\ln 2/3)t}.
+100\,000(1{,}05)^{10}\approx162\,889\ \text{F CFA}.
 $$
 
-Après douze heures, quatre doublements ont eu lieu :
+Le taux continu équivalent à un taux effectif annuel \\(r_{\mathrm{eff}}\\) est
 
 $$
-N(12)=500\times2^4=8\,000.
+r_c=\ln(1+r_{\mathrm{eff}}).
 $$
 
-Ce modèle est pertinent au début de la croissance. Il finit par devenir irréaliste lorsque les nutriments, l’espace ou d’autres ressources deviennent limitants.
+Pour 5 %, on obtient \\(r_c=\ln(1{,}05)\approx4{,}879\%\\). Employer le bon taux est essentiel pour comparer correctement deux produits financiers.
 
-### 3. Une décroissance radioactive
-
-Si une substance possède une demi-vie de huit jours, la quantité restante après \\(t\\) jours est
+L’opération inverse est l’actualisation. Une somme future \\(F\\), reçue dans \\(t\\) années, a pour valeur actuelle
 
 $$
-Q(t)=Q_0\,2^{-t/8}.
+V_0=Fe^{-rt}.
 $$
 
-Avec 80 mg au départ, il reste après 24 jours
+Le signe négatif ne traduit pas une perte mécanique : il ramène une valeur future à la date présente.
+
+## Exemple 2 — risque, survie et temps d’attente
+
+Dans un modèle de durée exponentiel, la fonction de survie est
 
 $$
-Q(24)=80\times2^{-3}=10\ \text{mg}.
+S(t)=\mathbb{P}(T>t)=e^{-\lambda t},
 $$
 
-La même structure intervient dans de nombreux phénomènes de décroissance : désintégration radioactive, élimination simplifiée d’un médicament ou écart de température dans la loi de refroidissement de Newton.
-
-## Le logarithme répond à la question inverse
-
-L’exponentielle calcule une quantité future à partir du temps. Le logarithme naturel \\(\ln\\), fonction réciproque de \\(e^x\\), permet de retrouver le temps ou le taux :
+où \\(\lambda>0\\) est un taux de survenue constant. La probabilité que l’événement se produise avant \\(t\\) est alors
 
 $$
-\ln(e^x)=x.
+F(t)=1-e^{-\lambda t}.
 $$
 
-Par exemple, le temps nécessaire pour doubler un capital soumis à un taux continu de 5 % vérifie
+La durée moyenne vaut \\(1/\lambda\\), tandis que la durée médiane vaut \\(\ln(2)/\lambda\\). Ce modèle intervient, par exemple, comme première approximation d’un temps avant défaut, d’un temps de panne ou d’un délai entre événements.
+
+Son hypothèse forte est la **constance du taux instantané de risque**. Si l’ancienneté, l’usure, la conjoncture ou le profil individuel modifient ce taux, une loi de Weibull, un modèle de Cox ou un modèle à intensité variable sera souvent plus pertinent.
+
+## Exemple 3 — l’exponentielle dans le deep learning
+
+Pour transformer des scores réels \\(z_1,\ldots,z_m\\) en probabilités, une couche de classification utilise souvent la fonction *softmax* :
 
 $$
-2=e^{0{,}05t}
-\quad\Longrightarrow\quad
-t=\frac{\ln 2}{0{,}05}
-\approx13{,}86\ \text{ans}.
+p_i=\frac{e^{z_i}}{\sum_{j=1}^{m}e^{z_j}}.
 $$
 
-L’exponentielle et le logarithme forment donc un couple : l’une décrit l’évolution, l’autre permet de remonter à la durée ou au taux qui l’a produite.
+Chaque probabilité est positive et leur somme vaut 1. Plus intéressant encore, le rapport entre deux probabilités est
 
-## Où retrouve-t-on encore l’exponentielle ?
+$$
+\frac{p_i}{p_j}=e^{z_i-z_j}.
+$$
 
-Elle intervient notamment :
+Une différence additive entre deux scores devient donc un rapport multiplicatif entre leurs probabilités. Pour les scores \\((2,1,0)\\), la softmax donne approximativement
 
-- dans les probabilités, par exemple dans la densité de la loi normale ;
-- dans les systèmes dynamiques et les équations différentielles ;
-- dans le traitement du signal et les circuits électriques ;
-- dans les modèles de survie et les temps d’attente ;
-- dans la finance, pour l’actualisation et la capitalisation ;
-- dans les modèles matriciels, via l’exponentielle de matrice.
+$$
+(0{,}665,\ 0{,}245,\ 0{,}090).
+$$
 
-Le point commun n’est pas toujours une croissance spectaculaire. C’est souvent une loi locale simple : **à chaque instant, le changement dépend de l’état présent**.
+En pratique, calculer directement \\(e^{z_i}\\) peut provoquer un dépassement numérique lorsque les scores sont grands. On soustrait donc le maximum \\(m=\max_i z_i\\) :
 
-## Quand ne faut-il pas utiliser ce modèle ?
+$$
+p_i=\frac{e^{z_i-m}}{\sum_j e^{z_j-m}}.
+$$
 
-Une exponentielle pure suppose un taux proportionnel constant et l’absence de contrainte de capacité. Elle devient inadéquate lorsque :
+Cette transformation ne change pas les probabilités, mais stabilise fortement le calcul. C’est un exemple où comprendre l’identité algébrique de l’exponentielle conduit directement à une meilleure implémentation.
 
-- le taux évolue fortement dans le temps ;
-- une population approche une capacité maximale ;
-- une intervention extérieure modifie le mécanisme ;
-- plusieurs régimes se succèdent ;
-- les observations ne conservent pas un facteur multiplicatif à intervalles comparables.
+## Le logarithme : lire et estimer une exponentielle
 
-Dans ces situations, un modèle logistique, un modèle par morceaux ou un système dynamique plus riche peut être préférable.
+Le logarithme naturel \\(\ln\\) est la fonction réciproque de l’exponentielle :
+
+$$
+\ln(e^x)=x
+\qquad\text{et}\qquad
+e^{\ln x}=x\quad(x>0).
+$$
+
+Appliqué au modèle \\(y(t)=y_0e^{kt}\\), il donne
+
+$$
+\ln y(t)=\ln y_0+kt.
+$$
+
+Une relation exponentielle devient ainsi linéaire sur une échelle logarithmique. Si les points \\((t,\ln y_t)\\) sont approximativement alignés, cela constitue un indice en faveur d’un taux proportionnel constant.
+
+Cette linéarisation n’est cependant pas une preuve. Elle exige des valeurs strictement positives et transforme aussi la structure des erreurs. Lorsque les observations sont bruitées, il faut comparer plusieurs modèles, examiner les résidus et évaluer les performances hors échantillon plutôt que se fier uniquement à l’aspect du graphe.
+
+## Quand l’exponentielle devient-elle irréaliste ?
+
+Une exponentielle pure suppose qu’aucune contrainte ne ralentit durablement le mécanisme. Une population, une adoption technologique ou une production ne peut pourtant pas croître indéfiniment dans un environnement fini.
+
+Le modèle logistique introduit une capacité \\(K\\) :
+
+$$
+y'(t)=r\,y(t)\left(1-\frac{y(t)}{K}\right).
+$$
+
+Lorsque \\(y(t)\\) est très inférieur à \\(K\\), le facteur \\(1-y/K\\) est proche de 1 et la croissance ressemble à une exponentielle. À mesure que \\(y(t)\\) approche \\(K\\), la croissance ralentit.
+
+![Comparaison entre croissance exponentielle et croissance logistique](/assets/notes/fonction-exponentielle/exponentielle-logistique.svg)
+
+<p class="figure-caption">Les deux modèles partent de la même valeur et du même taux initial. Le modèle exponentiel conserve ce taux proportionnel, tandis que le modèle logistique ralentit sous l’effet de la capacité \(K\).</p>
+
+Voici un code Python minimal permettant de reproduire cette comparaison :
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+t = np.linspace(0, 8, 300)
+y0, r, K = 100, 0.35, 1_000
+
+exponentielle = y0 * np.exp(r * t)
+logistique = K / (1 + ((K - y0) / y0) * np.exp(-r * t))
+
+fig, ax = plt.subplots(figsize=(9, 4.8))
+ax.plot(t, exponentielle, label="Exponentielle", linewidth=2.5)
+ax.plot(t, logistique, label="Logistique", linewidth=2.5)
+ax.axhline(K, color="0.45", linestyle="--", label="Capacité K")
+ax.set(xlabel="Temps", ylabel="Quantité", ylim=(0, 1_800))
+ax.legend(frameon=False)
+ax.grid(alpha=0.2)
+plt.show()
+```
+
+## Une courte histoire de \\(e\\)
+
+Le nombre \\(e\\) n’est pas l’invention isolée d’un seul mathématicien. Les travaux sur les logarithmes au XVIIe siècle ont préparé le terrain. En 1683, Jacob Bernoulli rencontre la limite \\(\left(1+1/n\right)^n\\) en étudiant les intérêts composés. Leonhard Euler emploie ensuite la lettre \\(e\\) dans une lettre de 1731 et organise systématiquement ses propriétés dans son *Introductio in analysin infinitorum* de 1748.
+
+Cette histoire éclaire le concept : l’exponentielle se situe au croisement des intérêts composés, des logarithmes, des séries et du calcul différentiel.
+
+## Comment reconnaître un modèle exponentiel ?
+
+Avant de retenir \\(y(t)=y_0e^{kt}\\), il est utile de vérifier les points suivants :
+
+1. La quantité étudiée reste-t-elle positive ?
+2. Le changement paraît-il proportionnel au niveau courant ?
+3. Le facteur de croissance est-il approximativement stable sur des intervalles comparables ?
+4. Le logarithme des observations est-il approximativement linéaire dans le temps ?
+5. Existe-t-il une saturation, un changement de régime ou une contrainte structurelle ?
+6. Le modèle prédit-il correctement des observations qui n’ont pas servi à l’estimer ?
+
+Les quatre premières questions motivent l’exponentielle. Les deux dernières empêchent de l’utiliser par réflexe lorsqu’un modèle plus riche est nécessaire.
 
 ## À retenir
 
-La fonction exponentielle n’est pas seulement « une courbe qui monte très vite ». Elle décrit une évolution dans laquelle la même proportion s’applique de manière répétée. La base \\(e\\) devient naturelle lorsque cette évolution est pensée en temps continu, car \\(e^x\\) est sa propre dérivée. C’est cette combinaison entre multiplication, continuité et taux proportionnel qui explique sa présence dans autant de domaines.
+La fonction exponentielle traduit une règle locale simple : **la variation instantanée est proportionnelle à l’état présent**. Cette règle produit une dynamique multiplicative, relie naturellement temps discret et temps continu, et explique la présence de \\(e\\) en finance, en gestion des risques, dans les systèmes dynamiques et dans les réseaux de neurones.
 
-## Pour aller plus loin
+Comprendre l’exponentielle, ce n’est donc pas seulement savoir calculer \\(e^x\\). C’est savoir identifier l’hypothèse qu’elle encode, interpréter son taux, reconnaître ses limites et choisir un autre modèle lorsque le mécanisme réel ne peut pas croître ou décroître à taux proportionnel constant.
 
-- [Histoire du nombre e - MacTutor, Université de St Andrews](https://mathshistory.st-andrews.ac.uk/HistTopics/e/)
-- [The Exponential Function - MIT OpenCourseWare](https://ocw.mit.edu/ans7870/18/18.013a/textbook/HTML/chapter02/section01.html)
-- [Exponential Growth and Decay - OpenStax Calculus](https://openstax.org/books/calculus-volume-2/pages/2-8-exponential-growth-and-decay)
+## Références
+
+- [NIST Digital Library of Mathematical Functions — Exponential and logarithmic functions](https://dlmf.nist.gov/4.2)
+- [MacTutor History of Mathematics — The number e](https://mathshistory.st-andrews.ac.uk/HistTopics/e/)
+- [MIT OpenCourseWare — The exponential function](https://ocw.mit.edu/ans7870/18/18.013a/textbook/HTML/chapter02/section01.html)
+- [OpenStax Calculus — Exponential growth and decay](https://openstax.org/books/calculus-volume-2/pages/2-8-exponential-growth-and-decay)
+- [NIST Engineering Statistics Handbook — Exponential distribution](https://www.itl.nist.gov/div898/handbook/apr/section1/apr161.htm)
+- [PyTorch documentation — Softmax](https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.activation.Softmax.html)
