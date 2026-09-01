@@ -1506,6 +1506,20 @@ p {
   font-size: clamp(2.7rem, 5.5vw, 5.2rem);
 }
 
+.note-hero {
+  padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(2.25rem, 4vw, 3.5rem);
+}
+
+.note-hero .back-link {
+  margin-bottom: clamp(1.75rem, 3vw, 3rem);
+}
+
+.note-hero h1 {
+  max-width: 21ch;
+  font-size: clamp(2.7rem, 4.8vw, 4.65rem);
+  text-wrap: balance;
+}
+
 .content-summary,
 .content-authors {
   max-width: 68ch;
@@ -1605,6 +1619,40 @@ p {
   padding: 0.75rem 0 0.75rem 1.4rem;
   border-left: 2px solid var(--accent);
   color: var(--text);
+}
+
+.prose .note-map {
+  max-width: 74ch;
+  margin-block: 2rem 2.5rem;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.prose .note-map > :first-child {
+  margin-top: 0;
+  color: var(--text);
+}
+
+.prose .note-map ul {
+  margin-bottom: 0;
+  columns: 2;
+  column-gap: 2.5rem;
+}
+
+.prose .note-map li {
+  break-inside: avoid;
+}
+
+.prose .note-map a {
+  color: var(--muted);
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.2em;
+}
+
+.prose .note-map a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
 }
 
 .prose code {
@@ -2363,12 +2411,26 @@ p {
     align-self: center;
   }
 
-  .project-detail-heading h1 {
-    font-size: clamp(2.35rem, 11vw, 3.4rem);
+  .project-detail-heading h1,
+  .content-hero h1 {
+    font-size: clamp(2rem, 8.5vw, 2.85rem);
+    text-wrap: balance;
   }
 
-  .content-hero h1 {
-    font-size: clamp(2.35rem, 11vw, 3.4rem);
+  .note-hero {
+    padding-block: 2rem 2.25rem;
+  }
+
+  .note-hero .back-link {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose .note-map {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .prose .note-map ul {
+    columns: 1;
   }
 
   .notebook-frame {

@@ -1,6 +1,6 @@
 ---
 title: "La fonction exponentielle, de l’intuition au modèle"
-summary: Pourquoi l’exponentielle apparaît-elle dès qu’une variation dépend de l’état présent ? Une exploration intuitive, mathématique et computationnelle, avec des applications en finance, en gestion des risques et en deep learning.
+summary: Pourquoi l’exponentielle apparaît-elle dès qu’une variation dépend de l’état présent ? Une exploration intuitive et mathématique, prolongée par des applications en finance, en risque et en calcul scientifique.
 date: 2026-08-15
 updated: 2026-09-01
 tags:
@@ -10,13 +10,26 @@ tags:
 search_terms: fonction exponentielle nombre e croissance décroissance logarithme intérêt composé taux continu calibration survie risque softmax deep learning logistique
 comment_term: note-comprendre-fonction-exponentielle
 ---
-## Une idée avant toute formule
+## Une idée avant toute formule {#intuition}
 
 Une évolution est dite **additive** lorsqu’elle gagne la même quantité à chaque étape. Elle est **multiplicative** lorsqu’elle est multipliée par le même facteur. C’est cette seconde logique qui conduit à l’exponentielle.
 
 > **L’idée en une phrase.** Une quantité suit une dynamique exponentielle lorsque son taux de variation est proportionnel à sa valeur actuelle. Plus elle est grande, plus sa variation absolue est grande ; plus elle est petite, plus cette variation ralentit.
 
 Cette note poursuit quatre objectifs : comprendre ce que l’exponentielle modélise, expliquer pourquoi la base \\(e\\) est naturelle, apprendre à interpréter et estimer son taux, puis reconnaître les situations où ce modèle devient insuffisant.
+
+<div class="note-map" markdown="1">
+**Plan de lecture**
+
+- [Intuition : ajouter ou multiplier ?](#intuition)
+- [Du temps discret au temps continu](#discret-continu)
+- [Pourquoi la base naturelle e ?](#nombre-e)
+- [L’équation différentielle fondamentale](#equation-fondamentale)
+- [Applications en finance, risque et deep learning](#applications)
+- [Estimer une dynamique exponentielle](#estimation)
+- [Calcul numérique et stabilité](#calcul-numerique)
+- [Limites du modèle](#limites)
+</div>
 
 Partons de 100. Ajouter 10 à chaque période produit la suite \\(100,110,120,130,\ldots\\). Augmenter de 10 % produit plutôt \\(100,110,121,133{,}10,\ldots\\), car chaque hausse s’applique à une base déjà modifiée.
 
@@ -38,7 +51,24 @@ $$
 
 Autrement dit, gagner 5 unités n’a pas le même sens lorsque la quantité vaut 10 ou 10 000. En revanche, croître de 5 % décrit la même variation relative dans les deux cas.
 
-## Du temps discret au temps continu
+### Exponentielle générale et exponentielle naturelle
+
+Une fonction exponentielle réelle s’écrit couramment
+
+$$
+f(x)=C\,a^x,
+\qquad C>0,\quad a>0,\quad a\neq1.
+$$
+
+La base \\(a\\) fixe le facteur de multiplication lorsque \\(x\\) augmente d’une unité. Toutes ces fonctions peuvent cependant être écrites avec la même base :
+
+$$
+a^x=e^{x\ln a}.
+$$
+
+La fonction \\(e^x\\) n’est donc pas une exponentielle parmi d’autres choisie arbitrairement. Elle fournit le langage commun des croissances multiplicatives continues ; le nombre \\(\ln a\\) devient alors leur taux instantané.
+
+## Du temps discret au temps continu {#discret-continu}
 
 En temps discret, une quantité initiale \\(y_0\\) multipliée par \\(q\\) à chaque période suit
 
@@ -84,7 +114,7 @@ $$
 
 Faire évoluer le système pendant \\(t+s\\) revient à le faire évoluer pendant \\(t\\), puis pendant \\(s\\). Cette cohérence entre composition temporelle et multiplication explique pourquoi l’exponentielle apparaît naturellement dans les systèmes dynamiques.
 
-## Pourquoi la base \\(e\\) ?
+## Pourquoi la base \\(e\\) ? {#nombre-e}
 
 Le nombre
 
@@ -123,7 +153,7 @@ $$
 
 La fonction est égale à sa propre dérivée : sa vitesse de variation est exactement proportionnelle à sa valeur.
 
-## L’équation fondamentale de la croissance proportionnelle
+## L’équation fondamentale de la croissance proportionnelle {#equation-fondamentale}
 
 Supposons qu’une quantité \\(y(t)\\) vérifie
 
@@ -168,7 +198,11 @@ $$
 
 Ces formules montrent qu’un taux et une durée caractéristique racontent la même dynamique sous deux angles différents.
 
-## Exemple 1 — capitalisation et actualisation
+## Trois domaines d’application {#applications}
+
+Les exemples suivants ne partagent pas seulement la même notation. Ils reposent tous sur une transformation multiplicative : accumulation d’un capital, survie face à un événement aléatoire ou conversion de scores en probabilités.
+
+### 1. Capitalisation et actualisation
 
 Avec une capitalisation continue au taux \\(r\\), un capital \\(C_0\\) devient
 
@@ -205,7 +239,7 @@ $$
 
 Le signe négatif ne traduit pas une perte mécanique : il ramène une valeur future à la date présente.
 
-## Exemple 2 — risque, survie et temps d’attente
+### 2. Risque, survie et temps d’attente
 
 Dans un modèle de durée exponentiel, la fonction de survie est
 
@@ -223,7 +257,9 @@ La durée moyenne vaut \\(1/\lambda\\), tandis que la durée médiane vaut \\(\l
 
 Son hypothèse forte est la **constance du taux instantané de risque**. Si l’ancienneté, l’usure, la conjoncture ou le profil individuel modifient ce taux, une loi de Weibull, un modèle de Cox ou un modèle à intensité variable sera souvent plus pertinent.
 
-## Exemple 3 — l’exponentielle dans le deep learning
+Il faut ici distinguer deux objets : la **fonction exponentielle** \\(e^x\\), qui est un outil mathématique, et la **loi exponentielle**, qui est un modèle probabiliste particulier construit avec cet outil. Utiliser une exponentielle dans une formule ne signifie pas automatiquement que la variable aléatoire étudiée suit une loi exponentielle.
+
+### 3. L’exponentielle dans le deep learning
 
 Pour transformer des scores réels \\(z_1,\ldots,z_m\\) en probabilités, une couche de classification utilise souvent la fonction *softmax* :
 
@@ -266,7 +302,7 @@ print(softmax_stable([2.0, 1.0, 0.0]))
 
 Le même principe apparaît dans la fonction *log-sum-exp*, fréquemment utilisée pour calculer des log-vraisemblances sans perdre en précision numérique.
 
-## Le logarithme : lire et estimer une exponentielle
+## Le logarithme : lire et estimer une exponentielle {#estimation}
 
 Le logarithme naturel \\(\ln\\) est la fonction réciproque de l’exponentielle :
 
@@ -286,7 +322,34 @@ Une relation exponentielle devient ainsi linéaire sur une échelle logarithmiqu
 
 Cette linéarisation n’est cependant pas une preuve. Elle exige des valeurs strictement positives et transforme aussi la structure des erreurs. Lorsque les observations sont bruitées, il faut comparer plusieurs modèles, examiner les résidus et évaluer les performances hors échantillon plutôt que se fier uniquement à l’aspect du graphe.
 
-## Calcul numérique : deux détails qui comptent
+### Une estimation reproductible en quelques lignes
+
+Lorsque l’hypothèse \\(y_t=y_0e^{kt}\varepsilon_t\\) est raisonnable et que le bruit \\(\varepsilon_t\\) agit de manière multiplicative, prendre le logarithme conduit à une régression linéaire :
+
+$$
+\ln y_t=\ln y_0+kt+\ln\varepsilon_t.
+$$
+
+Le coefficient de \\(t\\) estime alors \\(k\\). Le code suivant ajuste le modèle, reconstruit les valeurs sur l’échelle d’origine et calcule les erreurs relatives :
+
+```python
+import numpy as np
+
+t = np.arange(6, dtype=float)
+y = np.array([120, 128, 139, 149, 161, 174], dtype=float)
+
+k_estime, log_y0_estime = np.polyfit(t, np.log(y), deg=1)
+y_ajuste = np.exp(log_y0_estime + k_estime * t)
+erreurs_relatives = (y - y_ajuste) / y_ajuste
+
+print(f"Taux continu estimé : {100 * k_estime:.2f} % par période")
+print(f"Facteur multiplicatif : {np.exp(k_estime):.4f}")
+print(f"Erreur relative maximale : {100 * np.abs(erreurs_relatives).max():.2f} %")
+```
+
+Cette procédure n’est adaptée que si le mécanisme et la structure du bruit justifient la transformation logarithmique. Si les erreurs sont plutôt additives sur l’échelle originale, ou si certains \\(y_t\\) sont nuls ou négatifs, il faut estimer directement un modèle non linéaire ou choisir une autre spécification.
+
+## Calcul numérique : deux détails qui comptent {#calcul-numerique}
 
 Sur ordinateur, les formules mathématiquement équivalentes ne sont pas toujours numériquement équivalentes. Lorsque \\(x\\) est très proche de zéro, calculer \\(e^x-1\\) par `np.exp(x) - 1` soustrait deux nombres presque égaux et peut perdre des chiffres significatifs. NumPy fournit `np.expm1(x)` précisément pour ce cas. De même, `np.log1p(x)` calcule \\(\\ln(1+x)\\) avec davantage de précision lorsque \\(x\\) est petit.
 
@@ -303,7 +366,7 @@ print(taux_reconstitue) # 0.05, à la précision machine
 
 Ce détail est utile dans les calculs de taux, de rendement, de vraisemblance et plus généralement dans les algorithmes manipulant de très petites variations.
 
-## Quand l’exponentielle devient-elle irréaliste ?
+## Quand l’exponentielle devient-elle irréaliste ? {#limites}
 
 Une exponentielle pure suppose qu’aucune contrainte ne ralentit durablement le mécanisme. Une population, une adoption technologique ou une production ne peut pourtant pas croître indéfiniment dans un environnement fini.
 
@@ -386,3 +449,4 @@ Comprendre l’exponentielle, ce n’est donc pas seulement savoir calculer \\(e
 - [OpenStax Calculus — Exponential growth and decay](https://openstax.org/books/calculus-volume-2/pages/2-8-exponential-growth-and-decay)
 - [NIST Engineering Statistics Handbook — Exponential distribution](https://www.itl.nist.gov/div898/handbook/apr/section1/apr161.htm)
 - [PyTorch documentation — Softmax](https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.activation.Softmax.html)
+- [NumPy documentation — `expm1`](https://numpy.org/doc/stable/reference/generated/numpy.expm1.html)
