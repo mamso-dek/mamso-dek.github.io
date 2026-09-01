@@ -193,3 +193,39 @@ Le test final est préenregistré avec la graine 20269000 et 250 000 trajectoire
 ### Prochain jalon
 
 Exécuter la sensibilité aux coûts aller simple de 0, 10, 25 et 50 points de base. Chaque politique doit être réentraînée avec son propre coût sous le budget commun de 2 000 époques. Les comparaisons utiliseront le jeu de développement ; le test final restera fermé.
+
+## 2026-09-01 — Exécution 6
+
+### Travail réalisé
+
+- Réentraînement complet de politiques distinctes pour 0, 10 et 50 points de base, avec 2 000 époques chacune ; réutilisation exacte du checkpoint central à 25 points de base.
+- Utilisation de nombres aléatoires communs entre scénarios : mêmes graines d’initialisation, d’entraînement, de validation et de développement.
+- Comparaison à la delta Black–Scholes, à Leland et à l’absence de couverture sur 100 000 trajectoires de développement.
+- Calcul de 1 000 réplications bootstrap appariées par coût.
+- Ajout des quantiles de perte 50 %, 90 %, 95 %, 99 % et 99,5 % afin de ne pas interpréter la CVaR sans examiner la forme de la distribution.
+- Conservation des historiques échantillonnés et des checkpoints privés ; le test final n’a pas été ouvert.
+
+### Résultats par coût
+
+| Coût aller simple | CVaR réseau | CVaR Leland | Amélioration | IC bootstrap 95 % | Turnover réseau | Turnover Leland |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 pb | 0,8946 | 1,0014 | 0,1068 | [0,0997 ; 0,1143] | 258,20 | 273,78 |
+| 10 pb | 1,1696 | 1,2867 | 0,1171 | [0,1103 ; 0,1246] | 246,85 | 268,90 |
+| 25 pb | 1,5586 | 1,7185 | 0,1599 | [0,1528 ; 0,1672] | 233,78 | 262,54 |
+| 50 pb | 2,1628 | 2,4443 | 0,2815 | [0,2729 ; 0,2903] | 216,93 | 253,85 |
+
+Les quatre intervalles sont strictement positifs sur le jeu de développement. L’avantage absolu de CVaR augmente avec le coût, surtout entre 25 et 50 points de base. En parallèle, le turnover neuronal diminue régulièrement lorsque le coût appris augmente. La politique utilise donc bien l’inventaire précédent pour négocier moins lorsque les frictions deviennent plus pénalisantes.
+
+### Forme de la distribution
+
+Le réseau ne domine pas Leland selon toutes les mesures. Son écart-type de P&L est plus élevé dans les quatre scénarios : par exemple 0,4921 contre 0,4302 sans coûts, et 0,5989 contre 0,5460 à 50 points de base. C’est cohérent avec l’objectif retenu, qui cible la queue gauche du P&L et non la variance globale.
+
+Sans coûts, la perte médiane du réseau vaut 0,0597 contre -0,0063 pour la delta, mais le quantile de perte à 99 % baisse de 1,1678 à 1,0091. À 50 points de base, le réseau améliore à la fois la médiane de perte, 1,1561 contre 1,2587 pour Leland, et le quantile 99 %, 2,2872 contre 2,6196. L’intérêt de la politique devient donc plus général lorsque les coûts sont élevés.
+
+### Limites
+
+La courbe de coût repose sur une seule graine d’apprentissage par scénario, sauf le scénario central dont la stabilité multigraine a déjà été vérifiée à 1 000 époques. Les minima de validation restent proches de la limite de calcul, entre les époques 1 972 et 2 000. Les résultats montrent une structure cohérente, mais les scénarios extrêmes devront être répétés avant la conclusion finale.
+
+### Prochain jalon
+
+Tester 10, 20 et 30 dates de rééquilibrage avec réentraînement au coût central, puis évaluer la politique centrale sous des volatilités de 15 %, 25 % et 30 %. Conserver la graine finale 20269000 fermée. Répliquer ensuite les coûts 0 et 50 points de base sur des graines supplémentaires si la structure se maintient.

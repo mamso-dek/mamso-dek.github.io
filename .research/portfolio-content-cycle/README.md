@@ -7,9 +7,10 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** le contrôle à 2 000 époques est terminé ; la durée de référence est figée comme budget expérimental et un test final séparé est préenregistré
-- **Résultat provisoire :** sur le test de développement, l’amélioration de CVaR face à Leland vaut 0,1599, IC bootstrap 95 % [0,1521 ; 0,1677] ; la convergence théorique n’est pas revendiquée
-- **Prochain jalon :** réentraîner les politiques à plusieurs niveaux de coût, puis réaliser les sensibilités aux paramètres de marché avant d’ouvrir le test final
+- **Statut :** la sensibilité aux coûts de 0, 10, 25 et 50 points de base est terminée avec réentraînement de chaque politique
+- **Résultat provisoire :** le réseau réduit la CVaR face à Leland aux quatre coûts ; l’avantage absolu passe de 0,1068 sans coût à 0,2815 à 50 points de base, tandis que le turnover appris diminue
+- **Prochain jalon :** tester la fréquence de rééquilibrage et la volatilité hors entraînement, puis répéter les scénarios extrêmes sur plusieurs graines
+- **Temps restant :** quatre jours sur le cycle ; le test final préenregistré reste fermé
 
 Les fichiers de référence sont :
 
