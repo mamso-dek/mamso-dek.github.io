@@ -71,7 +71,7 @@ Les mesures suivantes seront produites sans changer leur définition :
 - coût de transaction moyen ;
 - turnover notionnel moyen.
 
-Le bootstrap apparié utilisera 5 000 réplications et une graine dédiée fixée avant le test. Il estimera en priorité l'écart de CVaR entre réseau et Leland, puis les écarts secondaires face à la delta et les écarts de coût et de turnover.
+Le bootstrap apparié utilisera 5 000 réplications. Les graines, fixées avant le test, sont 20269101 pour la CVaR face à Leland, 20269102 pour la CVaR face à la delta, puis 20269103 à 20269106 pour les coûts et turnovers face aux deux références. Il estimera en priorité l'écart de CVaR entre réseau et Leland, puis les écarts secondaires face à la delta et les écarts de coût et de turnover.
 
 ## Décision sur la borne de position
 
@@ -94,3 +94,5 @@ La borne 1,25 est conservée parce qu'elle appartient au modèle central préenr
 - vérifier l'absence de la graine 20269000 dans les artefacts existants ;
 - inspecter le script final sans l'exécuter ;
 - enregistrer les versions logicielles, la durée et l'empreinte du fichier de résultats.
+
+Le script `benchmarks/final_evaluation.py` fonctionne en audit seul par défaut. L'ouverture exige simultanément l'option `--open-final-test`, la phrase exacte consignée dans le script, un dépôt propre, le checkpoint attendu et l'absence de `final-test-opening.json` et `final-test-results.json`. Le marqueur est créé avant la simulation afin qu'une interruption ne puisse pas provoquer une seconde ouverture silencieuse.

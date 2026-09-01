@@ -513,3 +513,25 @@ Les intervalles bootstrap rééchantillonnent les trajectoires mais ne couvrent 
 ### Prochain jalon
 
 Écrire et auditer le script d'évaluation finale sans l'exécuter, vérifier les empreintes et l'absence de la graine réservée dans les résultats, puis lancer une seule fois les 250 000 trajectoires préenregistrées. Aucun réentraînement ne sera effectué après cette ouverture.
+
+## 2026-09-01 — Exécution 13
+
+### Travail réalisé
+
+- Préparation de `benchmarks/final_evaluation.py` sans appel au simulateur final.
+- Verrouillage dans le code de la graine 20269000, de la taille 250 000, des 5 000 réplications bootstrap, des six graines bootstrap et de l'empreinte du checkpoint central.
+- Ajout d'un mode audit par défaut : il vérifie le checkpoint, ses métadonnées, l'architecture, l'état Git et l'absence d'une ouverture antérieure.
+- Ajout d'une double autorisation pour l'exécution réelle : option explicite et phrase exacte.
+- Ajout d'un marqueur écrit avant toute simulation. Une interruption laissera ainsi une trace et empêchera une relance silencieuse.
+- Préparation des quatre stratégies gelées, des quantiles de perte, des comparaisons appariées et de la décision confirmatoire automatique.
+- Ajout de deux tests portant sur l'autorisation et les quantiles de perte.
+
+### Garanties méthodologiques
+
+Le mode audit ne génère aucune trajectoire avec la graine réservée. L'exécution finale refusera de démarrer si le dépôt n'est pas propre, si le checkpoint diffère du SHA-256 gelé ou si un résultat ou marqueur final existe déjà. Les paramètres finaux ne sont pas exposés comme options de ligne de commande et ne pourront donc pas être ajustés au moment du lancement.
+
+La comparaison confirmatoire reste CVaR(Leland) moins CVaR(réseau), avec un intervalle bootstrap bilatéral à 95 %. Les autres comparaisons sont secondaires et seront toutes conservées, quel que soit leur sens.
+
+### Prochain jalon
+
+Valider la suite complète, enregistrer le script dans Git, exécuter son mode audit sur le dépôt propre, puis seulement lors de la prochaine exécution ouvrir le test final si tous les contrôles sont verts.
