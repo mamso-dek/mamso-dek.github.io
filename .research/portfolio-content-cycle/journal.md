@@ -329,3 +329,50 @@ Le réseau améliore aussi les quantiles de perte à 95 %, 99 % et 99,5 % face a
 ### Prochain jalon
 
 Évaluer au moins une corrélation nulle et un stress de volatilité de la variance afin de vérifier si l’avantage survit à d’autres paramétrages Heston. Ensuite, répéter les coûts extrêmes et les fréquences sensibles sur plusieurs graines d’apprentissage avant le gel du protocole.
+
+## 2026-09-01 — Exécution 9
+
+### Travail réalisé
+
+- Construction d’une grille factorielle stylisée croisant \(\rho\in\{-0{,}70,0\}\) et \(\xi\in\{0{,}35,0{,}60\}\), tous les autres paramètres restant identiques.
+- Utilisation des mêmes matrices de chocs pour les quatre scénarios afin de réduire le bruit des comparaisons qualitatives.
+- Évaluation sur 100 000 trajectoires de développement par scénario, avec 1 000 réplications bootstrap appariées face à Leland figé et au proxy Leland observant la variance instantanée.
+- Contrôle couplé à 4 et 8 sous-pas sur les deux scénarios à forte volatilité de variance. Cette vérification est prioritaire car \(\xi=0{,}60\) viole la condition de Feller.
+- Conservation de la même politique GBM figée, du même coût et de la même prime commune. Le réseau ne reçoit toujours pas la variance comme variable d’état.
+
+### Résultats de la grille
+
+| \(\xi\) | \(\rho\) | Condition de Feller | CVaR réseau | Leland figé | Proxy Leland | Amélioration face au proxy | IC bootstrap 95 % |
+| ---: | ---: | :---: | ---: | ---: | ---: | ---: | ---: |
+| 0,35 | -0,70 | oui | 1,8809 | 2,0246 | 1,9253 | 0,0444 | [0,0366 ; 0,0516] |
+| 0,35 | 0 | oui | 2,0630 | 2,3112 | 2,1472 | 0,0842 | [0,0760 ; 0,0925] |
+| 0,60 | -0,70 | non | 2,3082 | 2,4774 | 2,3136 | 0,0054 | [-0,0055 ; 0,0162] |
+| 0,60 | 0 | non | 2,7011 | 3,0022 | 2,6797 | -0,0215 | [-0,0346 ; -0,0086] |
+
+Une amélioration positive favorise le réseau. Celui-ci bat Leland figé dans les quatre scénarios, avec des améliorations comprises entre 0,1438 et 0,3010 et des intervalles entièrement positifs. Cette référence figée ne s’adapte toutefois pas à la variance stochastique.
+
+Face au proxy qui observe la variance instantanée, le résultat dépend du régime. Le réseau gagne dans les deux scénarios à volatilité de variance modérée. Sous \(\xi=0{,}60\) avec levier, l’écart devient indiscernable de zéro. Sous \(\xi=0{,}60\) sans levier, le proxy fait significativement mieux de 0,0215 en CVaR. Cette perte d’avantage est un résultat négatif à conserver.
+
+### Contrôle du scénario critique
+
+Dans le stress à forte volatilité de variance, la part de variances nulles aux dates observées passe de 0,204 % avec quatre sous-pas à 0,127 % avec huit sous-pas. Les moments du spot et de la variance restent à moins de 1,34 et 0,16 erreur-type de leurs espérances respectives.
+
+Pour \(\rho=0\), l’écart proxy moins réseau vaut -0,0437 à quatre sous-pas et -0,0430 à huit sous-pas sur les 50 000 trajectoires couplées. L’inversion ne vient donc pas du choix entre ces deux grilles. Pour \(\rho=-0{,}70\), l’écart reste proche de zéro : 0,0034 puis 0,0033.
+
+### Interprétation prudente
+
+Le réseau ne reçoit que le log-moneyness, le temps restant et l’inventaire précédent. Lorsque la volatilité de la variance est forte et que \(\rho=0\), le spot courant contient moins d’information indirecte sur la variance cachée que dans un régime de levier négatif. Le proxy adaptatif, lui, observe cette variance directement. Ce déficit d’information est une explication plausible de l’inversion, mais il n’est pas démontré causalement par la grille seule.
+
+Une ablation ajoutant la variance à l’état d’une politique entraînée sous Heston permettrait de tester ce mécanisme. Elle constituerait toutefois un modèle différent de la politique GBM évaluée ici et devra être présentée séparément, sans réinterpréter après coup le test de transfert.
+
+### Limites et décisions
+
+- La grille n’est pas calibrée et ne couvre ni maturités, ni strikes, ni paramètres de retour à la moyenne différents.
+- Les scénarios à \(\xi=0{,}60\) violent la condition de Feller ; la full truncation et le contrôle de grille limitent le biais numérique sans l’annuler.
+- Les intervalles restent conditionnels à une seule politique entraînée.
+- La robustesse générale sous Heston est rejetée : le résultat doit être formulé par régime et par niveau d’information de la référence.
+- Le prochain effort de calcul portera sur l’incertitude d’apprentissage aux coûts extrêmes, plus directement liée à la conclusion principale.
+
+### Prochain jalon
+
+Réentraîner plusieurs graines supplémentaires à 0 et 50 points de base sous le budget figé de 2 000 époques, puis comparer la dispersion inter-graines, les intervalles appariés et le turnover. Garder le test final fermé.

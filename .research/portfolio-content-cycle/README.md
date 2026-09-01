@@ -7,9 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** les sensibilités au coût, à la fréquence, à la volatilité et un premier changement de modèle Heston sont terminés sur les jeux de développement
-- **Résultat provisoire :** dans le scénario Heston stylisé, le réseau figé réduit la CVaR de 0,1437 face à Leland figé et de 0,0444 face à un proxy de Leland alimenté par la variance instantanée ; ce résultat ne vaut ni calibration de marché ni comparaison à une delta Heston optimale
-- **Prochain jalon :** varier les paramètres Heston, puis répéter les scénarios extrêmes sur plusieurs graines avant toute ouverture du test final
+- **Statut :** les sensibilités au coût, à la fréquence, à la volatilité et une grille Heston à quatre scénarios sont terminées sur les jeux de développement
+- **Résultat provisoire :** le réseau bat Leland figé dans les quatre scénarios Heston, mais face au proxy observant la variance il gagne dans les deux scénarios modérés, devient comparable sous forte volatilité de variance avec levier et perd sans levier
+- **Prochain jalon :** répéter les coûts extrêmes sur plusieurs graines d’apprentissage, puis réaliser les ablations prioritaires avant toute ouverture du test final
 - **Temps restant :** quatre jours sur le cycle ; le test final préenregistré reste fermé
 
 Les fichiers de référence sont :
