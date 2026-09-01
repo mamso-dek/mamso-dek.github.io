@@ -1,19 +1,22 @@
 ---
-title: "Comprendre la fonction exponentielle"
-summary: Une lecture intuitive et rigoureuse de l’exponentielle, depuis la croissance multiplicative jusqu’à ses usages en finance, en gestion des risques et en apprentissage profond.
+title: "La fonction exponentielle, de l’intuition au modèle"
+summary: Pourquoi l’exponentielle apparaît-elle dès qu’une variation dépend de l’état présent ? Une exploration intuitive, mathématique et computationnelle, avec des applications en finance, en gestion des risques et en deep learning.
 date: 2026-08-15
 updated: 2026-09-01
 tags:
   - Analyse
   - Modélisation
-  - Finance
-  - Deep learning
-search_terms: fonction exponentielle nombre e croissance décroissance logarithme intérêt composé taux continu survie risque softmax deep learning logistique
+  - Calcul scientifique
+search_terms: fonction exponentielle nombre e croissance décroissance logarithme intérêt composé taux continu calibration survie risque softmax deep learning logistique
 comment_term: note-comprendre-fonction-exponentielle
 ---
 ## Une idée avant toute formule
 
 Une évolution est dite **additive** lorsqu’elle gagne la même quantité à chaque étape. Elle est **multiplicative** lorsqu’elle est multipliée par le même facteur. C’est cette seconde logique qui conduit à l’exponentielle.
+
+> **L’idée en une phrase.** Une quantité suit une dynamique exponentielle lorsque son taux de variation est proportionnel à sa valeur actuelle. Plus elle est grande, plus sa variation absolue est grande ; plus elle est petite, plus cette variation ralentit.
+
+Cette note poursuit quatre objectifs : comprendre ce que l’exponentielle modélise, expliquer pourquoi la base \\(e\\) est naturelle, apprendre à interpréter et estimer son taux, puis reconnaître les situations où ce modèle devient insuffisant.
 
 Partons de 100. Ajouter 10 à chaque période produit la suite \\(100,110,120,130,\ldots\\). Augmenter de 10 % produit plutôt \\(100,110,121,133{,}10,\ldots\\), car chaque hausse s’applique à une base déjà modifiée.
 
@@ -26,6 +29,14 @@ Partons de 100. Ajouter 10 à chaque période produit la suite \\(100,110,120,13
 | 4 | 140,00 | 146,41 |
 
 Une courbe n’est donc pas exponentielle simplement parce qu’elle « monte vite ». Le critère essentiel est plus précis : **sur des intervalles de même durée, la quantité est multipliée par un facteur constant**.
+
+Cette distinction peut aussi se lire localement. Dans un modèle exponentiel continu, ce n’est pas la variation absolue \\(y^{\prime}(t)\\) qui reste constante, mais la variation *relative* :
+
+$$
+\frac{y'(t)}{y(t)}=k.
+$$
+
+Autrement dit, gagner 5 unités n’a pas le même sens lorsque la quantité vaut 10 ou 10 000. En revanche, croître de 5 % décrit la même variation relative dans les deux cas.
 
 ## Du temps discret au temps continu
 
@@ -50,6 +61,20 @@ k=\frac{\ln q}{\Delta t}.
 $$
 
 Cette relation évite une confusion fréquente : un taux effectif par période et un taux continu ne sont pas numériquement identiques, même lorsqu’ils représentent la même évolution.
+
+Elle donne aussi un moyen direct de retrouver le taux continu à partir de deux observations positives. Si \\(y(t_1)=y_1\\) et \\(y(t_2)=y_2\\), alors
+
+$$
+k=\frac{\ln(y_2/y_1)}{t_2-t_1}.
+$$
+
+Par exemple, une quantité qui passe de 500 à 650 en quatre ans possède, sur cette période, un taux continu moyen
+
+$$
+k=\frac{\ln(650/500)}{4}\approx0{,}0656,
+$$
+
+soit environ 6,56 % par an en convention continue. Le facteur annuel correspondant est \\(e^k\approx1{,}0678\\), donc un taux effectif d’environ 6,78 %. Ce calcul décrit le taux constant qui relie exactement les deux points ; il ne prouve pas que le mécanisme est réellement exponentiel entre ces dates ou après elles.
 
 L’exponentielle possède aussi une propriété structurelle remarquable :
 
@@ -83,7 +108,7 @@ $$
 
 <p class="figure-caption">La capitalisation devient de plus en plus fréquente, mais la valeur obtenue sur une durée fixée converge vers \(e\) au lieu de diverger.</p>
 
-Le même nombre est défini par la série
+Plus généralement, l’exponentielle peut être représentée par la série
 
 $$
 e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}
@@ -113,7 +138,7 @@ $$
 y(t)=y_0e^{kt}.
 $$
 
-Cette équation dit que le changement instantané \\(y'(t)\\) dépend de l’état actuel \\(y(t)\\). Elle fournit une grille de lecture simple des paramètres :
+Cette équation dit que le changement instantané \\(y^{\prime}(t)\\) dépend de l’état actuel \\(y(t)\\). Elle fournit une grille de lecture simple des paramètres :
 
 | Paramètre | Interprétation |
 | --- | --- |
@@ -121,7 +146,9 @@ Cette équation dit que le changement instantané \\(y'(t)\\) dépend de l’ét
 | \\(k\\) | taux instantané, exprimé en inverse de l’unité de temps |
 | \\(k>0\\) | croissance |
 | \\(k<0\\) | décroissance |
-| \\(|k|\\) élevé | évolution rapide |
+| \\(\lvert k \rvert\\) élevé | évolution rapide |
+
+L’unité de \\(k\\) est l’inverse de l’unité de temps. Si \\(t\\) est mesuré en années, \\(k\\) s’exprime en \\(\text{année}^{-1}\\). Le produit \\(kt\\) est ainsi sans unité, comme doit l’être l’argument d’une exponentielle.
 
 ![Croissance et décroissance exponentielles](/assets/notes/fonction-exponentielle/croissance-decroissance.svg)
 
@@ -224,6 +251,21 @@ $$
 
 Cette transformation ne change pas les probabilités, mais stabilise fortement le calcul. C’est un exemple où comprendre l’identité algébrique de l’exponentielle conduit directement à une meilleure implémentation.
 
+```python
+import numpy as np
+
+def softmax_stable(scores):
+    scores = np.asarray(scores, dtype=float)
+    scores_centres = scores - scores.max()
+    poids = np.exp(scores_centres)
+    return poids / poids.sum()
+
+print(softmax_stable([2.0, 1.0, 0.0]))
+# [0.66524096 0.24472847 0.09003057]
+```
+
+Le même principe apparaît dans la fonction *log-sum-exp*, fréquemment utilisée pour calculer des log-vraisemblances sans perdre en précision numérique.
+
 ## Le logarithme : lire et estimer une exponentielle
 
 Le logarithme naturel \\(\ln\\) est la fonction réciproque de l’exponentielle :
@@ -243,6 +285,23 @@ $$
 Une relation exponentielle devient ainsi linéaire sur une échelle logarithmique. Si les points \\((t,\ln y_t)\\) sont approximativement alignés, cela constitue un indice en faveur d’un taux proportionnel constant.
 
 Cette linéarisation n’est cependant pas une preuve. Elle exige des valeurs strictement positives et transforme aussi la structure des erreurs. Lorsque les observations sont bruitées, il faut comparer plusieurs modèles, examiner les résidus et évaluer les performances hors échantillon plutôt que se fier uniquement à l’aspect du graphe.
+
+## Calcul numérique : deux détails qui comptent
+
+Sur ordinateur, les formules mathématiquement équivalentes ne sont pas toujours numériquement équivalentes. Lorsque \\(x\\) est très proche de zéro, calculer \\(e^x-1\\) par `np.exp(x) - 1` soustrait deux nombres presque égaux et peut perdre des chiffres significatifs. NumPy fournit `np.expm1(x)` précisément pour ce cas. De même, `np.log1p(x)` calcule \\(\\ln(1+x)\\) avec davantage de précision lorsque \\(x\\) est petit.
+
+```python
+import numpy as np
+
+taux_effectif = 0.05
+taux_continu = np.log1p(taux_effectif)
+taux_reconstitue = np.expm1(taux_continu)
+
+print(taux_continu)     # 0.048790164...
+print(taux_reconstitue) # 0.05, à la précision machine
+```
+
+Ce détail est utile dans les calculs de taux, de rendement, de vraisemblance et plus généralement dans les algorithmes manipulant de très petites variations.
 
 ## Quand l’exponentielle devient-elle irréaliste ?
 
@@ -281,6 +340,18 @@ ax.legend(frameon=False)
 ax.grid(alpha=0.2)
 plt.show()
 ```
+
+Le graphe illustre une règle de modélisation importante : deux modèles peuvent être presque indiscernables au début de l’observation et produire des extrapolations radicalement différentes. Le choix ne doit donc pas reposer uniquement sur l’ajustement aux premières données, mais aussi sur le mécanisme supposé et sur une validation hors échantillon.
+
+## Erreurs d’interprétation fréquentes
+
+| Affirmation | Correction |
+| --- | --- |
+| « Une courbe qui augmente vite est exponentielle. » | Il faut vérifier un facteur multiplicatif ou un taux relatif approximativement constant. |
+| « Un taux continu de 5 % équivaut à un taux effectif de 5 %. » | Le taux effectif correspondant est \\(e^{0{,}05}-1\\approx5{,}127\\%\\). |
+| « Une exponentielle atteint zéro après un certain temps. » | Une décroissance \\(y_0e^{-kt}\\) reste strictement positive pour tout temps fini. |
+| « Si le logarithme des données semble linéaire, le modèle est validé. » | C’est un diagnostic utile, pas une validation ; les résidus et la performance prédictive restent à examiner. |
+| « Une tendance exponentielle peut être extrapolée indéfiniment. » | Toute extrapolation dépend du maintien du mécanisme, du taux et de l’absence de saturation ou de rupture. |
 
 ## Une courte histoire de \\(e\\)
 
