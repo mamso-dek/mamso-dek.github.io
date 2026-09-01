@@ -174,6 +174,46 @@ class CoreTests(unittest.TestCase):
         self.assertTrue(gradients)
         self.assertTrue(all(torch.all(torch.isfinite(g)) for g in gradients))
 
+    def test_policy_without_inventory_ignores_path_history_at_same_state(self) -> None:
+        config = MarketConfig(n_steps=3)
+        policy = HedgingPolicy(hidden_size=8, include_inventory=False)
+        with torch.no_grad():
+            for parameter in policy.parameters():
+                parameter.fill_(0.1)
+        paths = torch.tensor(
+            [
+                [100.0, 90.0, 100.0, 101.0],
+                [100.0, 110.0, 100.0, 99.0],
+            ]
+        )
+        positions = policy(paths, config)
+        positions = positions.detach()
+        self.assertNotEqual(float(positions[0, 1]), float(positions[1, 1]))
+        self.assertEqual(float(positions[0, 2]), float(positions[1, 2]))
+
+    def test_policy_parameter_counts_match_ablation_design(self) -> None:
+        variants = {
+            "small": HedgingPolicy(hidden_size=16),
+            "central": HedgingPolicy(hidden_size=32),
+            "large": HedgingPolicy(hidden_size=64),
+            "without_inventory": HedgingPolicy(
+                hidden_size=32, include_inventory=False
+            ),
+        }
+        counts = {
+            name: sum(parameter.numel() for parameter in policy.parameters())
+            for name, policy in variants.items()
+        }
+        self.assertEqual(
+            counts,
+            {
+                "small": 353,
+                "central": 1_217,
+                "large": 4_481,
+                "without_inventory": 1_185,
+            },
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -7,6 +7,7 @@ import numpy as np
 from deep_hedging.statistics import (
     empirical_cvar,
     paired_cvar_improvement_bootstrap,
+    paired_mean_improvement_bootstrap,
 )
 
 
@@ -43,6 +44,19 @@ class StatisticsTests(unittest.TestCase):
         )
         self.assertAlmostEqual(float(result["point_improvement"]), 0.25)
         self.assertGreater(float(result["ci_lower"]), 0.24)
+
+    def test_paired_mean_bootstrap_detects_uniform_improvement(self) -> None:
+        reference = np.linspace(0.0, 10.0, 500)
+        candidate = reference - 2.0
+        result = paired_mean_improvement_bootstrap(
+            reference,
+            candidate,
+            n_bootstrap=100,
+            seed=9,
+        )
+        self.assertAlmostEqual(float(result["point_improvement"]), 2.0)
+        self.assertAlmostEqual(float(result["ci_lower"]), 2.0)
+        self.assertAlmostEqual(float(result["ci_upper"]), 2.0)
 
 
 if __name__ == "__main__":

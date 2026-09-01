@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+from collections.abc import Callable
 from dataclasses import dataclass
 import random
 
@@ -77,9 +78,12 @@ def train_policy(
     train_config: TrainConfig,
     *,
     device: str | torch.device = "cpu",
+    policy_factory: Callable[[], HedgingPolicy] | None = None,
 ) -> tuple[HedgingPolicy, list[dict[str, float]], float]:
     set_reproducible_seed(train_config.model_seed)
-    policy = HedgingPolicy().to(device)
+    policy = (
+        HedgingPolicy() if policy_factory is None else policy_factory()
+    ).to(device)
     premium_cpu = initial_premium(config)
     premium = premium_cpu.to(device)
     calibration_paths = simulate_gbm(

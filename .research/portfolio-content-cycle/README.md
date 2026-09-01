@@ -7,9 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** les sensibilités principales, la grille Heston et les réplications multigraines aux coûts extrêmes sont terminées sur les jeux de développement
-- **Résultat provisoire :** sur trois graines, la CVaR moyenne vaut 0,8963 sans coût et 2,1622 à 50 points de base, contre 1,0014 et 2,4443 pour Leland ; les six intervalles appariés sont strictement positifs
-- **Prochain jalon :** réaliser les ablations de l’inventaire précédent et de la capacité du réseau avant toute ouverture du test final
+- **Statut :** les sensibilités principales, les réplications multigraines et les ablations de l’état et de la capacité sont terminées sur les jeux de développement
+- **Résultat provisoire :** retirer l’inventaire précédent augmente le turnover de 13,08 et la CVaR de 0,0160 ; un réseau 3,7 fois plus grand n’améliore la CVaR que de 0,0029
+- **Prochain jalon :** tester la borne de position, puis geler l’architecture et le protocole avant toute ouverture du test final
 - **Temps restant :** quatre jours sur le cycle ; le test final préenregistré reste fermé
 
 Les fichiers de référence sont :

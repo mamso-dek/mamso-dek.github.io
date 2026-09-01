@@ -424,3 +424,53 @@ Trois graines suffisent pour détecter une dépendance grossière à l’initial
 ### Prochain jalon
 
 Entraîner au coût central une politique sans inventaire précédent, puis comparer CVaR, coûts et turnover à architecture et budget comparables. Tester ensuite une capacité plus petite et une capacité plus grande pour distinguer l’effet de l’état de celui du nombre de paramètres.
+
+## 2026-09-01 — Exécution 11
+
+### Travail réalisé
+
+- Extension contrôlée de la politique afin de pouvoir retirer l’inventaire précédent de l’état sans changer le reste de la boucle d’apprentissage.
+- Extension de la fonction d’entraînement pour accepter une fabrique de politique, tout en conservant le comportement historique par défaut.
+- Ajout de quatre tests portant sur l’indépendance à l’historique sans inventaire, les nombres de paramètres, la fabrique de politique et le bootstrap apparié d’une différence de moyenne. La suite atteint 24 tests.
+- Réutilisation du réseau central à 32 neurones cachés et entraînement complet de trois variantes pendant 2 000 époques : sans inventaire, 16 neurones cachés et 64 neurones cachés.
+- Comparaison sur les mêmes 100 000 trajectoires de développement, avec 1 000 réplications bootstrap pour la CVaR et le turnover.
+
+### Résultats des ablations
+
+| Variante | Paramètres | CVaR 95 % | Turnover | Écart de CVaR variante - central | Écart de turnover variante - central |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Centrale, inventaire, \(h=32\) | 1 217 | 1,5586 | 233,78 | 0 | 0 |
+| Sans inventaire, \(h=32\) | 1 185 | 1,5746 | 246,86 | 0,0160 | 13,08 |
+| Inventaire, \(h=16\) | 353 | 1,5782 | 230,49 | 0,0195 | -3,29 |
+| Inventaire, \(h=64\) | 4 481 | 1,5557 | 233,56 | -0,0029 | -0,22 |
+
+Toutes les variantes restent meilleures que Leland, dont la CVaR vaut 1,7185. Les positions restent aussi très proches : leur corrélation avec la politique centrale dépasse 0,9992 dans les trois cas. De petites différences répétées sur 30 dates suffisent néanmoins à modifier le turnover.
+
+### Rôle de l’inventaire
+
+La politique centrale améliore la CVaR de 0,0160 face à la variante sans inventaire, avec un intervalle bootstrap à 95 % de [0,0132 ; 0,0186]. Elle réduit simultanément le turnover de 13,08, avec un intervalle de [13,03 ; 13,13]. L’inventaire précédent apporte donc une information utile au compromis entre risque de queue et coût de transaction dans le scénario central.
+
+La variante sans inventaire contient 32 paramètres de moins, soit 2,6 % d’écart. Cette différence de capacité ne peut pas être supprimée sans changer la largeur, mais elle explique difficilement à elle seule le résultat : le réseau beaucoup plus petit à \(h=16\) réduit le turnover au lieu de l’augmenter. L’ablation soutient le mécanisme d’inertie sans constituer une preuve théorique d’identification causale parfaite.
+
+### Effet de la capacité
+
+Réduire la capacité à 353 paramètres diminue le turnover de 3,29 mais dégrade la CVaR de 0,0195, IC [0,0172 ; 0,0220]. Le petit réseau réalise un compromis plus conservateur en transactions, mais moins efficace sur la queue.
+
+Augmenter la capacité à 4 481 paramètres améliore la CVaR de 0,0029 par rapport au réseau central, avec un intervalle [0,0016 ; 0,0041], et réduit le turnover de 0,22. Malgré sa significativité Monte-Carlo, le gain pratique est faible : environ 0,19 % de CVaR pour 3,7 fois plus de paramètres. Le réseau central reste préférable par parcimonie et coût de reproduction.
+
+### Convergence et limites
+
+Les meilleurs états apparaissent aux époques 2 000, 1 971, 2 000 et 1 946 pour les modèles central, sans inventaire, petit et grand. Deux variantes touchent encore la borne. Toutes les ablations utilisent une seule graine d’apprentissage ; leurs intervalles décrivent l’incertitude des trajectoires, pas la variabilité d’optimisation.
+
+Ces expériences ont été choisies avant consultation de leurs résultats, mais elles utilisent le jeu de développement déjà inspecté. Elles ne modifient pas la politique centrale préenregistrée pour le test final.
+
+### Décisions
+
+- Conserver l’inventaire précédent dans l’état.
+- Conserver 32 neurones cachés malgré le faible gain du réseau à 64 neurones.
+- Présenter le modèle central comme un choix parcimonieux, non comme la capacité optimale.
+- Tester encore la borne de position prévue par le protocole avant de geler définitivement l’architecture.
+
+### Prochain jalon
+
+Réentraîner deux politiques centrales avec des bornes maximales de position de 1,00 et 1,50, contre 1,25 actuellement. Vérifier la fréquence à laquelle les bornes sont approchées, la CVaR, le turnover et les positions extrêmes, puis décider si le protocole peut être gelé.

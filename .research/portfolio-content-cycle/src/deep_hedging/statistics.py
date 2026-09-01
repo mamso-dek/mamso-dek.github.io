@@ -91,3 +91,56 @@ def paired_cvar_improvement_bootstrap(
         "tail_size": _tail_size(reference.size, alpha),
         "alpha": alpha,
     }
+
+
+def paired_mean_improvement_bootstrap(
+    reference_values: NDArray[np.floating],
+    candidate_values: NDArray[np.floating],
+    *,
+    n_bootstrap: int = 2_000,
+    confidence: float = 0.95,
+    seed: int = 20264000,
+) -> dict[str, float | int]:
+    """Bootstrap apparié de moyenne(référence) moins moyenne(candidate)."""
+
+    reference = np.asarray(reference_values, dtype=np.float64)
+    candidate = np.asarray(candidate_values, dtype=np.float64)
+    if (
+        reference.ndim != 1
+        or candidate.ndim != 1
+        or reference.shape != candidate.shape
+        or reference.size == 0
+    ):
+        raise ValueError("les valeurs doivent être deux vecteurs de même taille")
+    if not np.all(np.isfinite(reference)) or not np.all(np.isfinite(candidate)):
+        raise ValueError("les valeurs contiennent une valeur non finie")
+    if n_bootstrap <= 1:
+        raise ValueError("n_bootstrap doit être supérieur à un")
+    if not 0 < confidence < 1:
+        raise ValueError("confidence doit appartenir à ]0, 1[")
+
+    paired_difference = reference - candidate
+    point = float(np.mean(paired_difference))
+    rng = np.random.default_rng(seed)
+    improvements = np.empty(n_bootstrap, dtype=np.float64)
+    for replicate in range(n_bootstrap):
+        indices = rng.integers(0, reference.size, size=reference.size)
+        improvements[replicate] = float(np.mean(paired_difference[indices]))
+    lower_probability = (1.0 - confidence) / 2.0
+    lower, upper = np.quantile(
+        improvements, [lower_probability, 1.0 - lower_probability]
+    )
+    return {
+        "point_improvement": point,
+        "reference_mean": float(np.mean(reference)),
+        "candidate_mean": float(np.mean(candidate)),
+        "bootstrap_mean": float(np.mean(improvements)),
+        "bootstrap_standard_error": float(np.std(improvements, ddof=1)),
+        "confidence": confidence,
+        "ci_lower": float(lower),
+        "ci_upper": float(upper),
+        "probability_improvement_positive": float(np.mean(improvements > 0)),
+        "n_bootstrap": n_bootstrap,
+        "bootstrap_seed": seed,
+        "sample_size": int(reference.size),
+    }
