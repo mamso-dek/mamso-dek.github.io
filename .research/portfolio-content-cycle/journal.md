@@ -474,3 +474,42 @@ Ces expériences ont été choisies avant consultation de leurs résultats, mais
 ### Prochain jalon
 
 Réentraîner deux politiques centrales avec des bornes maximales de position de 1,00 et 1,50, contre 1,25 actuellement. Vérifier la fréquence à laquelle les bornes sont approchées, la CVaR, le turnover et les positions extrêmes, puis décider si le protocole peut être gelé.
+
+## 2026-09-01 — Exécution 12
+
+### Travail réalisé
+
+- Réutilisation du checkpoint central à borne 1,25 et entraînement complet, pendant 2 000 époques, de deux politiques à bornes 1,00 et 1,50.
+- Conservation de l'architecture à 32 neurones, de l'inventaire précédent, des graines et des flux d'entraînement afin d'isoler la paramétrisation de la sortie.
+- Évaluation appariée sur les mêmes 100 000 trajectoires de développement et calcul de 1 000 réplications bootstrap pour la CVaR et le turnover.
+- Mesure des quantiles de position et de la part des décisions proches des bornes.
+- Ajout d'un test vérifiant les bornes personnalisées ; la suite atteint 25 tests.
+- Rédaction de `gel-protocole.md`, qui fixe le checkpoint et les règles de l'unique test final. Le test final n'a pas été généré.
+
+### Sensibilité à la borne
+
+| Borne | CVaR 95 % | Turnover | Maximum observé | Part à au moins 99 % de la borne |
+| ---: | ---: | ---: | ---: | ---: |
+| 1,00 | 1,5558 | 234,33 | 1,0000 | 2,64 % |
+| 1,25, centrale | 1,5586 | 233,78 | 1,1052 | 0 % |
+| 1,50 | 1,5591 | 234,34 | 1,1393 | 0 % |
+
+Les trois politiques restent meilleures que Leland sur le développement, avec des améliorations de CVaR comprises entre 0,1594 et 0,1627 et des intervalles appariés strictement positifs.
+
+La borne 1,00 améliore la CVaR de 0,00285 par rapport au modèle central. Exprimé dans le sens « amélioration du central sur la variante », l'intervalle vaut [-0,00417 ; -0,00144] : le petit gain de la borne resserrée est détectable conditionnellement à ces trajectoires et à ces deux entraînements. Son turnover est toutefois supérieur de 0,55, IC [0,54 ; 0,57].
+
+La borne 1,50 n'est jamais approchée. Le modèle central obtient une CVaR inférieure de 0,00048, IC [0,00006 ; 0,00088], et un turnover inférieur de 0,56. Ces écarts minuscules illustrent que changer l'échelle de sortie modifie aussi l'optimisation, même lorsque la contrainte n'est pas active.
+
+### Décision de gel
+
+La borne 1,25 est conservée. Elle n'est pas contraignante dans le scénario central et appartient au checkpoint choisi avant cette ablation. Remplacer ce checkpoint par la variante 1,00 après inspection du développement reviendrait à sélectionner rétroactivement un gain de CVaR d'environ 0,18 %, obtenu avec une seule graine et assorti d'un turnover plus élevé.
+
+L'architecture est donc gelée : deux couches de 32 neurones, inventaire précédent, borne 1,25, 1 217 paramètres, checkpoint de l'époque 2 000. Son empreinte SHA-256 est `d47f58cf3df225148688c74349cee8988e2750c7067be4f4d7dd9f3d4b6ccd8a`.
+
+### Limites
+
+Les intervalles bootstrap rééchantillonnent les trajectoires mais ne couvrent pas l'incertitude d'optimisation entre graines. La comparaison de bornes utilise une seule graine par variante. Elle permet de vérifier l'activité de la contrainte et d'écarter un effet massif, pas de déterminer une borne universellement optimale.
+
+### Prochain jalon
+
+Écrire et auditer le script d'évaluation finale sans l'exécuter, vérifier les empreintes et l'absence de la graine réservée dans les résultats, puis lancer une seule fois les 250 000 trajectoires préenregistrées. Aucun réentraînement ne sera effectué après cette ouverture.

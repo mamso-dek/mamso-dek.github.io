@@ -214,6 +214,14 @@ class CoreTests(unittest.TestCase):
             },
         )
 
+    def test_policy_respects_custom_position_bounds(self) -> None:
+        paths = simulate_gbm(32, self.config, 91)
+        for bound in (1.0, 1.5):
+            policy = HedgingPolicy(max_position=bound)
+            positions = policy(paths, self.config)
+            self.assertTrue(torch.all(positions > 0))
+            self.assertTrue(torch.all(positions < bound))
+
 
 if __name__ == "__main__":
     unittest.main()
