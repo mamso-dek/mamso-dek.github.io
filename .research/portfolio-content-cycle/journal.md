@@ -729,3 +729,32 @@ L'empreinte SHA-256 de `final-test-results.json` reste `966e7ddaf7e546d60e95ae4f
 ### Prochain jalon
 
 Effectuer un audit final de l'ensemble du site : liens internes, ressources, recherche, accessibilité de base, responsive des pages principales et cohérence éditoriale. Corriger les défauts éventuels, reconstruire Jekyll et ne publier qu'après un contrôle final entièrement vert.
+
+## 2026-09-01 — Exécution 20
+
+### Audit global du portfolio
+
+- Reconstruction propre de Jekyll et contrôle statique des neuf routes principales du site.
+- Vérification de 95 liens internes, 41 ressources, 10 images et trois cadres intégrés : aucune cible manquante, aucun identifiant dupliqué, aucun texte alternatif ou titre de cadre absent.
+- Contrôle des neuf pages à 1 440 × 900 puis à 390 × 844 : aucun débordement horizontal, aucune image défaillante et aucune erreur ou alerte de console.
+- Parcours fonctionnels validés : filtres de la page Travaux, recherche du projet par « deep hedging », changement de thème, ouverture du rapport PDF dans la page et navigation par le sommaire de la note exponentielle.
+- Présence vérifiée du lien d'évitement, d'un titre principal unique, des descriptions, des URL canoniques et des intitulés accessibles des boutons. Le déplacement de focus au clavier n'a pas pu être simulé de manière fiable par l'outil de navigateur ; les éléments sémantiques correspondants ont été contrôlés statiquement.
+
+### Défauts corrigés
+
+- Réduction des titres très longs sur téléphone : le titre du projet de mémoire est passé de 444 à 267 pixels de hauteur à 390 pixels de largeur, sans perte de texte ni débordement.
+- Incrément de la version des styles pour éviter qu'un ancien fichier CSS reste en cache après publication.
+- Reprise de la note « La fonction exponentielle, de l'intuition au modèle » : environ 2 750 mots, sommaire de huit sections, trois figures, quatre blocs de code, estimation sur données, applications en finance, risque et deep learning, stabilité numérique et limites du modèle.
+- Compactage du bandeau des notes afin que le premier paragraphe soit visible dès le premier écran sur ordinateur et téléphone.
+
+### Contrôles scientifiques finaux
+
+- 27 tests unitaires réussis.
+- Aucune dépendance cassée selon `pip check`.
+- Marqueur du test final au statut `completed`, graine 20269000 et 250 000 trajectoires.
+- Empreinte SHA-256 inchangée pour `final-test-results.json` : `966e7ddaf7e546d60e95ae4fbf4d5adc7c1f4ad6978f1ba06d7e35fdf7cabcc3`.
+- Le test final n'a été ni relancé ni régénéré pendant l'audit.
+
+### Décision
+
+L'étude, le notebook, le rapport, la page Projet et le reste du portfolio satisfont les contrôles scientifiques, éditoriaux, structurels et responsive définis pour le cycle. La publication est autorisée. Le prochain et dernier jalon consiste à pousser les commits, attendre le déploiement GitHub Pages, contrôler les URL publiques et consigner la clôture.
