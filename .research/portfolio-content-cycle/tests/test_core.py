@@ -6,12 +6,15 @@ import unittest
 import torch
 
 from deep_hedging.core import (
+    HestonConfig,
     MarketConfig,
     black_scholes_call,
     black_scholes_delta_paths,
+    black_scholes_delta_paths_local_volatility,
     leland_volatility,
     rockafellar_uryasev_cvar,
     simulate_gbm,
+    simulate_heston,
     strategy_pnl,
     summarize_pnl,
 )
@@ -37,6 +40,39 @@ class CoreTests(unittest.TestCase):
         expected = self.config.s0 * math.exp(self.config.rate * self.config.maturity)
         self.assertLess(abs(float(paths[:, -1].mean()) - expected), 0.12)
 
+    def test_heston_simulation_is_reproducible_and_nonnegative(self) -> None:
+        config = HestonConfig(substeps_per_step=2)
+        first_spot, first_variance = simulate_heston(
+            128, config, 4321, dtype=torch.float64
+        )
+        second_spot, second_variance = simulate_heston(
+            128, config, 4321, dtype=torch.float64
+        )
+        third_spot, _ = simulate_heston(128, config, 4322, dtype=torch.float64)
+        self.assertEqual(first_spot.shape, (128, config.n_steps + 1))
+        self.assertEqual(first_variance.shape, first_spot.shape)
+        self.assertTrue(torch.equal(first_spot, second_spot))
+        self.assertTrue(torch.equal(first_variance, second_variance))
+        self.assertFalse(torch.equal(first_spot, third_spot))
+        self.assertTrue(torch.all(first_spot > 0))
+        self.assertTrue(torch.all(first_variance >= 0))
+
+    def test_heston_constant_variance_when_vol_of_vol_is_zero(self) -> None:
+        config = HestonConfig(
+            v0=0.04,
+            theta=0.04,
+            vol_of_vol=0.0,
+            substeps_per_step=2,
+        )
+        _, variance = simulate_heston(64, config, 88, dtype=torch.float64)
+        torch.testing.assert_close(
+            variance, torch.full_like(variance, config.theta), rtol=0, atol=0
+        )
+
+    def test_heston_rejects_invalid_correlation(self) -> None:
+        with self.assertRaises(ValueError):
+            simulate_heston(8, HestonConfig(rho=-1.1), 1)
+
     def test_black_scholes_price_matches_pilot(self) -> None:
         value = black_scholes_call(
             torch.tensor(self.config.s0, dtype=torch.float64),
@@ -52,6 +88,16 @@ class CoreTests(unittest.TestCase):
         delta = black_scholes_delta_paths(paths, self.config)
         self.assertEqual(delta.shape, (64, self.config.n_steps))
         self.assertTrue(torch.all((delta >= 0) & (delta <= 1)))
+
+    def test_local_volatility_delta_has_valid_shape_and_bounds(self) -> None:
+        paths = simulate_gbm(64, self.config, 43)
+        volatility = torch.full_like(paths[:, :-1], 0.20)
+        local_delta = black_scholes_delta_paths_local_volatility(
+            paths, self.config, volatility
+        )
+        fixed_delta = black_scholes_delta_paths(paths, self.config)
+        torch.testing.assert_close(local_delta, fixed_delta)
+        self.assertTrue(torch.all((local_delta >= 0) & (local_delta <= 1)))
 
     def test_leland_uses_round_trip_conversion(self) -> None:
         self.assertEqual(leland_volatility(self.config, 0.0), self.config.sigma)

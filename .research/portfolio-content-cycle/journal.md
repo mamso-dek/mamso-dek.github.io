@@ -276,3 +276,56 @@ La comparaison avec Leland figé donne une lecture complémentaire. Le réseau e
 ### Prochain jalon
 
 Implémenter un scénario Heston documenté pour tester un changement de dynamique, avec contrôle des moments simulés et mêmes trajectoires par stratégie. Ensuite, répéter les scénarios extrêmes de coût et les expériences sensibles sur plusieurs graines avant de décider si le protocole peut être gelé.
+
+## 2026-09-01 — Exécution 8
+
+### Travail réalisé
+
+- Vérification d’une source primaire supplémentaire sur la simulation Heston : Lord, Koekkoek et van Dijk (2010), DOI 10.1080/14697680802392496.
+- Implémentation d’un simulateur Heston avec schéma de full truncation pour la variance et log-Euler pour le spot. La simulation accepte des chocs imposés afin de coupler les diagnostics de discrétisation.
+- Ajout de quatre tests sur la reproductibilité, la positivité, le cas de variance constante, la validation de la corrélation et le proxy de delta à volatilité locale. La suite compte désormais 19 tests validés.
+- Définition d’un scénario stylisé non calibré : \(v_0=\theta=0{,}04\), \(\kappa=3\), \(\xi=0{,}35\), \(\rho=-0{,}70\), 30 dates de couverture et huit sous-pas par intervalle. La condition de Feller est satisfaite avec une marge de 0,1175.
+- Évaluation de la politique centrale figée sans lui transmettre la variance, face aux deltas Black–Scholes et Leland figées à 20 %, puis face à des proxys adaptatifs utilisant la variance instantanée simulée.
+- Calcul de 1 000 réplications bootstrap appariées sur 100 000 trajectoires de développement. Le test final est resté fermé.
+
+### Contrôles du simulateur
+
+Sur l’évaluation principale, la moyenne terminale du spot vaut 99,9752 contre une espérance théorique de 100, soit un écart de -1,15 erreur-type. La variance terminale moyenne vaut 0,039991 contre 0,04, soit -0,14 erreur-type. La part de variances tronquées à zéro aux dates observées est \(3{,}23\times10^{-7}\). Ces valeurs ne révèlent pas de biais Monte-Carlo matériel dans les moments contrôlés.
+
+Les log-rendements terminaux ont une asymétrie empirique de -0,578, cohérente avec le levier négatif imposé par \(\rho=-0{,}70\). Cette observation décrit uniquement la simulation et ne constitue pas une estimation sur données réelles.
+
+Le contrôle couplé à 50 000 trajectoires donne les résultats suivants :
+
+| Sous-pas par intervalle | Moyenne de \(S_T\) | Moyenne de \(v_T\) | Asymétrie du log-rendement | CVaR réseau |
+| ---: | ---: | ---: | ---: | ---: |
+| 2 | 100,00117 | 0,040018 | -0,5744 | 1,8922 |
+| 4 | 100,00062 | 0,040019 | -0,5784 | 1,8962 |
+| 8 | 100,00023 | 0,040020 | -0,5802 | 1,8989 |
+
+La CVaR neuronale varie de 0,0067 entre les grilles extrêmes, tandis que les moments se stabilisent. Huit sous-pas sont conservés pour l’évaluation principale. Ce diagnostic réduit le risque d’un résultat dicté par une discrétisation grossière sans démontrer une convergence exacte du schéma.
+
+### Résultats hors modèle
+
+| Stratégie | CVaR 95 % | Écart-type du P&L | Turnover | Quantile de perte 99 % |
+| --- | ---: | ---: | ---: | ---: |
+| Réseau figé, sans variance dans l’état | 1,8809 | 0,6642 | 234,17 | 2,0715 |
+| Delta figée à 20 % | 2,2379 | 0,6070 | 273,96 | 2,5498 |
+| Leland figé à 20 % | 2,0246 | 0,5891 | 262,82 | 2,2938 |
+| Proxy delta à variance instantanée | 2,0763 | 0,5817 | 276,23 | 2,3216 |
+| Proxy Leland à variance instantanée | 1,9253 | 0,5690 | 264,89 | 2,1250 |
+
+L’amélioration de CVaR du réseau face à Leland figé vaut 0,1437, avec un intervalle bootstrap à 95 % de [0,1339 ; 0,1536]. Face au proxy Leland alimenté par la variance instantanée, elle vaut 0,0444, avec un intervalle de [0,0372 ; 0,0518]. Les 1 000 réplications sont positives dans les deux comparaisons.
+
+Le réseau améliore aussi les quantiles de perte à 95 %, 99 % et 99,5 % face aux deux références de Leland, et son turnover est inférieur d’environ 11 %. Il ne domine cependant pas toute la distribution : son écart-type du P&L est plus élevé et son quantile 90 % vaut 1,3425 contre 1,3104 pour Leland figé. Le résultat reste donc spécifique à l’objectif de queue retenu.
+
+### Limites et décisions
+
+- Le scénario Heston est stylisé et n’est calibré sur aucun marché. Il isole un mécanisme de volatilité stochastique avec levier, pas une performance financière réelle.
+- Le prix initial reste celui du modèle Black–Scholes d’entraînement. Comme il est commun aux stratégies, il translate les pertes sans modifier leurs écarts de CVaR dans un même scénario ; les niveaux absolus ne doivent pas servir à comparer les modèles générateurs.
+- Les références adaptatives sont des proxys Black–Scholes à variance instantanée. Elles ne sont ni la delta analytique de Heston ni des stratégies optimisées pour la CVaR.
+- Une seule politique entraînée est évaluée. L’intervalle bootstrap mesure l’incertitude des trajectoires conditionnellement à cette politique, pas l’incertitude d’apprentissage.
+- Le résultat positif sera conservé comme observation de développement, sans affirmation de robustesse générale.
+
+### Prochain jalon
+
+Évaluer au moins une corrélation nulle et un stress de volatilité de la variance afin de vérifier si l’avantage survit à d’autres paramétrages Heston. Ensuite, répéter les coûts extrêmes et les fréquences sensibles sur plusieurs graines d’apprentissage avant le gel du protocole.

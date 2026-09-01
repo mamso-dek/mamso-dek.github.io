@@ -1,0 +1,422 @@
+{
+  "status": "robustesse Heston sur jeu de d\u00e9veloppement \u2014 non finale",
+  "device": "cpu",
+  "torch_version": "2.13.0",
+  "final_test_used": false,
+  "scenario_nature": "param\u00e9trage stylis\u00e9 non calibr\u00e9 ; variance moyenne \u00e9gale au mod\u00e8le GBM d\u2019entra\u00eenement",
+  "simulation_scheme": {
+    "variance": "Euler full truncation",
+    "spot": "log-Euler",
+    "reference": "Lord, Koekkoek et van Dijk (2010)",
+    "doi": "10.1080/14697680802392496"
+  },
+  "heston_parameters": {
+    "s0": 100.0,
+    "maturity": 0.11904761904761904,
+    "rate": 0.0,
+    "v0": 0.04,
+    "kappa": 3.0,
+    "theta": 0.04,
+    "vol_of_vol": 0.35,
+    "rho": -0.7,
+    "n_steps": 30,
+    "substeps_per_step": 8
+  },
+  "feller_margin": 0.11750000000000001,
+  "feller_condition_satisfied": true,
+  "training_market": {
+    "s0": 100.0,
+    "strike": 100.0,
+    "maturity": 0.11904761904761904,
+    "rate": 0.0,
+    "sigma": 0.2,
+    "n_steps": 30
+  },
+  "policy_receives_variance_state": false,
+  "one_way_cost": 0.0025,
+  "premium_convention": {
+    "value": 2.752429962158203,
+    "definition": "prix Black\u2013Scholes du mod\u00e8le d\u2019entra\u00eenement \u00e0 20 %",
+    "comparison_effect": "translation commune des pertes ; les \u00e9carts de CVaR entre strat\u00e9gies d\u2019un m\u00eame sc\u00e9nario sont invariants"
+  },
+  "discretization_diagnostic": {
+    "coupled_brownian_increments": true,
+    "seed": 20263350,
+    "size": 50000,
+    "scenarios": [
+      {
+        "substeps_per_hedging_step": 2,
+        "fine_time_steps": 60,
+        "moments": {
+          "expected_terminal_spot": 100.0,
+          "sample_terminal_spot_mean": 100.0011713092041,
+          "terminal_spot_standard_error": 0.03057998139903336,
+          "terminal_spot_z_score": 0.03830313657853911,
+          "expected_terminal_variance": 0.04,
+          "sample_terminal_variance_mean": 0.040018382341539836,
+          "terminal_variance_standard_error": 9.167214492280994e-05,
+          "terminal_variance_z_score": 0.2005226511860694,
+          "terminal_log_return_skewness": -0.5744389715582089,
+          "zero_variance_share_at_decision_dates": 2.5806451612903224e-06
+        },
+        "development_metrics": {
+          "unhedged": {
+            "mean_pnl": 0.030411522835493088,
+            "std_pnl": 3.7109689712524414,
+            "loss_probability": 0.3639799952507019,
+            "var_loss_95": 7.716399192810059,
+            "cvar_loss_95": 10.009676933288574,
+            "mean_transaction_cost": 0.0,
+            "mean_turnover_notional": 0.0
+          },
+          "neural_frozen_without_variance_state": {
+            "mean_pnl": -0.5470479130744934,
+            "std_pnl": 0.6632277965545654,
+            "loss_probability": 0.8001199960708618,
+            "var_loss_95": 1.5616120100021362,
+            "cvar_loss_95": 1.892192006111145,
+            "mean_transaction_cost": 0.5858719348907471,
+            "mean_turnover_notional": 234.3488006591797
+          },
+          "delta_frozen_sigma_20": {
+            "mean_pnl": -0.6459475755691528,
+            "std_pnl": 0.6113243699073792,
+            "loss_probability": 0.8953199982643127,
+            "var_loss_95": 1.7531321048736572,
+            "cvar_loss_95": 2.261852741241455,
+            "mean_transaction_cost": 0.685407817363739,
+            "mean_turnover_notional": 274.16314697265625
+          },
+          "leland_frozen_sigma_20": {
+            "mean_pnl": -0.6180669665336609,
+            "std_pnl": 0.5924724340438843,
+            "loss_probability": 0.8710200190544128,
+            "var_loss_95": 1.6051968336105347,
+            "cvar_loss_95": 2.0479822158813477,
+            "mean_transaction_cost": 0.657561182975769,
+            "mean_turnover_notional": 263.02447509765625
+          },
+          "delta_instantaneous_variance_proxy": {
+            "mean_pnl": -0.6519529819488525,
+            "std_pnl": 0.5835905075073242,
+            "loss_probability": 0.8890600204467773,
+            "var_loss_95": 1.6835252046585083,
+            "cvar_loss_95": 2.094604253768921,
+            "mean_transaction_cost": 0.6910956501960754,
+            "mean_turnover_notional": 276.43829345703125
+          },
+          "leland_instantaneous_variance_proxy": {
+            "mean_pnl": -0.6237616539001465,
+            "std_pnl": 0.5704416632652283,
+            "loss_probability": 0.875819981098175,
+            "var_loss_95": 1.5862438678741455,
+            "cvar_loss_95": 1.9385851621627808,
+            "mean_transaction_cost": 0.6627708673477173,
+            "mean_turnover_notional": 265.1083679199219
+          }
+        }
+      },
+      {
+        "substeps_per_hedging_step": 4,
+        "fine_time_steps": 120,
+        "moments": {
+          "expected_terminal_spot": 100.0,
+          "sample_terminal_spot_mean": 100.00062236801148,
+          "terminal_spot_standard_error": 0.030576573499960145,
+          "terminal_spot_z_score": 0.020354406666201613,
+          "expected_terminal_variance": 0.04,
+          "sample_terminal_variance_mean": 0.040019078101402414,
+          "terminal_variance_standard_error": 9.155220936220357e-05,
+          "terminal_variance_z_score": 0.20838493724313345,
+          "terminal_log_return_skewness": -0.5783685668751379,
+          "zero_variance_share_at_decision_dates": 0.0
+        },
+        "development_metrics": {
+          "unhedged": {
+            "mean_pnl": 0.03158510848879814,
+            "std_pnl": 3.7079858779907227,
+            "loss_probability": 0.3638400137424469,
+            "var_loss_95": 7.719664573669434,
+            "cvar_loss_95": 9.996203422546387,
+            "mean_transaction_cost": 0.0,
+            "mean_turnover_notional": 0.0
+          },
+          "neural_frozen_without_variance_state": {
+            "mean_pnl": -0.546484649181366,
+            "std_pnl": 0.6645729541778564,
+            "loss_probability": 0.8001199960708618,
+            "var_loss_95": 1.5661866664886475,
+            "cvar_loss_95": 1.896175742149353,
+            "mean_transaction_cost": 0.5859654545783997,
+            "mean_turnover_notional": 234.38619995117188
+          },
+          "delta_frozen_sigma_20": {
+            "mean_pnl": -0.6454746723175049,
+            "std_pnl": 0.6113430857658386,
+            "loss_probability": 0.8946599960327148,
+            "var_loss_95": 1.756248950958252,
+            "cvar_loss_95": 2.2602956295013428,
+            "mean_transaction_cost": 0.6855106353759766,
+            "mean_turnover_notional": 274.20428466796875
+          },
+          "leland_frozen_sigma_20": {
+            "mean_pnl": -0.6175554394721985,
+            "std_pnl": 0.592673659324646,
+            "loss_probability": 0.8709200024604797,
+            "var_loss_95": 1.6076029539108276,
+            "cvar_loss_95": 2.0470001697540283,
+            "mean_transaction_cost": 0.6576550006866455,
+            "mean_turnover_notional": 263.06201171875
+          },
+          "delta_instantaneous_variance_proxy": {
+            "mean_pnl": -0.6515039205551147,
+            "std_pnl": 0.5846973657608032,
+            "loss_probability": 0.888159990310669,
+            "var_loss_95": 1.6883465051651,
+            "cvar_loss_95": 2.0964062213897705,
+            "mean_transaction_cost": 0.6912029981613159,
+            "mean_turnover_notional": 276.481201171875
+          },
+          "leland_instantaneous_variance_proxy": {
+            "mean_pnl": -0.6232649087905884,
+            "std_pnl": 0.5715784430503845,
+            "loss_probability": 0.8748000264167786,
+            "var_loss_95": 1.5891294479370117,
+            "cvar_loss_95": 1.9421257972717285,
+            "mean_transaction_cost": 0.6628601551055908,
+            "mean_turnover_notional": 265.1440734863281
+          }
+        }
+      },
+      {
+        "substeps_per_hedging_step": 8,
+        "fine_time_steps": 240,
+        "moments": {
+          "expected_terminal_spot": 100.0,
+          "sample_terminal_spot_mean": 100.0002257347107,
+          "terminal_spot_standard_error": 0.030572706633130508,
+          "terminal_spot_z_score": 0.0073835370026277365,
+          "expected_terminal_variance": 0.04,
+          "sample_terminal_variance_mean": 0.04001973648474726,
+          "terminal_variance_standard_error": 9.148588142058959e-05,
+          "terminal_variance_z_score": 0.21573257469671908,
+          "terminal_log_return_skewness": -0.5802178706440697,
+          "zero_variance_share_at_decision_dates": 0.0
+        },
+        "development_metrics": {
+          "unhedged": {
+            "mean_pnl": 0.03237741440534592,
+            "std_pnl": 3.7064285278320312,
+            "loss_probability": 0.3632200062274933,
+            "var_loss_95": 7.716875076293945,
+            "cvar_loss_95": 9.992133140563965,
+            "mean_transaction_cost": 0.0,
+            "mean_turnover_notional": 0.0
+          },
+          "neural_frozen_without_variance_state": {
+            "mean_pnl": -0.5462084412574768,
+            "std_pnl": 0.6652604937553406,
+            "loss_probability": 0.7997999787330627,
+            "var_loss_95": 1.5691155195236206,
+            "cvar_loss_95": 1.8988741636276245,
+            "mean_transaction_cost": 0.5859854221343994,
+            "mean_turnover_notional": 234.39418029785156
+          },
+          "delta_frozen_sigma_20": {
+            "mean_pnl": -0.6452565789222717,
+            "std_pnl": 0.611504077911377,
+            "loss_probability": 0.8944600224494934,
+            "var_loss_95": 1.7572778463363647,
+            "cvar_loss_95": 2.26058292388916,
+            "mean_transaction_cost": 0.6855268478393555,
+            "mean_turnover_notional": 274.2107238769531
+          },
+          "leland_frozen_sigma_20": {
+            "mean_pnl": -0.6173182129859924,
+            "std_pnl": 0.5928822755813599,
+            "loss_probability": 0.8708800077438354,
+            "var_loss_95": 1.606127142906189,
+            "cvar_loss_95": 2.0474510192871094,
+            "mean_transaction_cost": 0.6576729416847229,
+            "mean_turnover_notional": 263.0691833496094
+          },
+          "delta_instantaneous_variance_proxy": {
+            "mean_pnl": -0.6513314247131348,
+            "std_pnl": 0.5854076147079468,
+            "loss_probability": 0.8877599835395813,
+            "var_loss_95": 1.68973708152771,
+            "cvar_loss_95": 2.098374605178833,
+            "mean_transaction_cost": 0.6912215352058411,
+            "mean_turnover_notional": 276.4886474609375
+          },
+          "leland_instantaneous_variance_proxy": {
+            "mean_pnl": -0.6230649352073669,
+            "std_pnl": 0.572249710559845,
+            "loss_probability": 0.874459981918335,
+            "var_loss_95": 1.5911927223205566,
+            "cvar_loss_95": 1.9444273710250854,
+            "mean_transaction_cost": 0.6628769040107727,
+            "mean_turnover_notional": 265.1507568359375
+          }
+        }
+      }
+    ]
+  },
+  "development_evaluation": {
+    "seed": 20263300,
+    "size": 100000,
+    "substeps_per_hedging_step": 8,
+    "moments": {
+      "expected_terminal_spot": 100.0,
+      "sample_terminal_spot_mean": 99.97524125740051,
+      "terminal_spot_standard_error": 0.021573205330577196,
+      "terminal_spot_z_score": -1.1476617507735711,
+      "expected_terminal_variance": 0.04,
+      "sample_terminal_variance_mean": 0.03999090177114965,
+      "terminal_variance_standard_error": 6.467730459312318e-05,
+      "terminal_variance_z_score": -0.1406711196080799,
+      "terminal_log_return_skewness": -0.5779160977391775,
+      "zero_variance_share_at_decision_dates": 3.225806451612903e-07
+    },
+    "metrics": {
+      "unhedged": {
+        "mean_pnl": 0.05231534317135811,
+        "std_pnl": 3.692716121673584,
+        "loss_probability": 0.3609200119972229,
+        "var_loss_95": 7.647346496582031,
+        "cvar_loss_95": 9.932303428649902,
+        "mean_transaction_cost": 0.0,
+        "mean_turnover_notional": 0.0
+      },
+      "neural_frozen_without_variance_state": {
+        "mean_pnl": -0.5445901155471802,
+        "std_pnl": 0.6642121076583862,
+        "loss_probability": 0.7994400262832642,
+        "var_loss_95": 1.5606520175933838,
+        "cvar_loss_95": 1.8809319734573364,
+        "mean_transaction_cost": 0.5854178667068481,
+        "mean_turnover_notional": 234.1671600341797
+      },
+      "delta_frozen_sigma_20": {
+        "mean_pnl": -0.6430593729019165,
+        "std_pnl": 0.6069674491882324,
+        "loss_probability": 0.8956400156021118,
+        "var_loss_95": 1.7482690811157227,
+        "cvar_loss_95": 2.237887382507324,
+        "mean_transaction_cost": 0.6848939061164856,
+        "mean_turnover_notional": 273.9575500488281
+      },
+      "leland_frozen_sigma_20": {
+        "mean_pnl": -0.6152845025062561,
+        "std_pnl": 0.5891368985176086,
+        "loss_probability": 0.871999979019165,
+        "var_loss_95": 1.597088098526001,
+        "cvar_loss_95": 2.0246055126190186,
+        "mean_transaction_cost": 0.6570443511009216,
+        "mean_turnover_notional": 262.8177795410156
+      },
+      "delta_instantaneous_variance_proxy": {
+        "mean_pnl": -0.6491960287094116,
+        "std_pnl": 0.5817354917526245,
+        "loss_probability": 0.8877500295639038,
+        "var_loss_95": 1.6839603185653687,
+        "cvar_loss_95": 2.0762581825256348,
+        "mean_transaction_cost": 0.6905779838562012,
+        "mean_turnover_notional": 276.2311706542969
+      },
+      "leland_instantaneous_variance_proxy": {
+        "mean_pnl": -0.6209379434585571,
+        "std_pnl": 0.5690202116966248,
+        "loss_probability": 0.8748599886894226,
+        "var_loss_95": 1.586725115776062,
+        "cvar_loss_95": 1.9252963066101074,
+        "mean_transaction_cost": 0.6622236967086792,
+        "mean_turnover_notional": 264.88946533203125
+      }
+    },
+    "loss_quantiles": {
+      "unhedged": {
+        "q50": -2.3486366271972656,
+        "q90": 5.613960266113281,
+        "q95": 7.647346496582031,
+        "q99": 11.333930969238281,
+        "q99_5": 12.761560440063477
+      },
+      "neural_frozen_without_variance_state": {
+        "q50": 0.5833580493927002,
+        "q90": 1.3425111770629883,
+        "q95": 1.5606520175933838,
+        "q99": 2.071537971496582,
+        "q99_5": 2.3099873065948486
+      },
+      "delta_frozen_sigma_20": {
+        "q50": 0.5687877535820007,
+        "q90": 1.3993974924087524,
+        "q95": 1.7482690811157227,
+        "q99": 2.5498385429382324,
+        "q99_5": 2.863114356994629
+      },
+      "leland_frozen_sigma_20": {
+        "q50": 0.6061904430389404,
+        "q90": 1.3103595972061157,
+        "q95": 1.597088098526001,
+        "q99": 2.293757677078247,
+        "q99_5": 2.563222646713257
+      },
+      "delta_instantaneous_variance_proxy": {
+        "q50": 0.5929677486419678,
+        "q90": 1.3998615741729736,
+        "q95": 1.6839603185653687,
+        "q99": 2.3215694427490234,
+        "q99_5": 2.5780999660491943
+      },
+      "leland_instantaneous_variance_proxy": {
+        "q50": 0.5912803411483765,
+        "q90": 1.3467977046966553,
+        "q95": 1.586725115776062,
+        "q99": 2.124953508377075,
+        "q99_5": 2.361767053604126
+      }
+    },
+    "paired_bootstrap": {
+      "neural_versus_leland_frozen_sigma_20": {
+        "point_improvement": 0.14375905103683473,
+        "reference_cvar": 2.0246910049915314,
+        "candidate_cvar": 1.8809319539546967,
+        "bootstrap_mean": 0.1438067113317728,
+        "bootstrap_standard_error": 0.005067579269070213,
+        "confidence": 0.95,
+        "ci_lower": 0.13385377439916138,
+        "ci_upper": 0.15355145278692225,
+        "probability_improvement_positive": 1.0,
+        "n_bootstrap": 1000,
+        "bootstrap_seed": 20263400,
+        "sample_size": 100000,
+        "tail_size": 5000,
+        "alpha": 0.95
+      },
+      "neural_versus_leland_instantaneous_variance_proxy": {
+        "point_improvement": 0.04436442072391511,
+        "reference_cvar": 1.9252963746786118,
+        "candidate_cvar": 1.8809319539546967,
+        "bootstrap_mean": 0.04449003741724492,
+        "bootstrap_standard_error": 0.0037653343620959847,
+        "confidence": 0.95,
+        "ci_lower": 0.03716323995769038,
+        "ci_upper": 0.05179209241747852,
+        "probability_improvement_positive": 1.0,
+        "n_bootstrap": 1000,
+        "bootstrap_seed": 20263401,
+        "sample_size": 100000,
+        "tail_size": 5000,
+        "alpha": 0.95
+      }
+    }
+  },
+  "baseline_warning": "les proxys \u00e0 variance instantan\u00e9e utilisent une delta Black\u2013Scholes locale ; ce ne sont pas des deltas analytiques optimales du mod\u00e8le Heston",
+  "reserved_final_test": {
+    "seed": 20269000,
+    "size": 250000,
+    "status": "pr\u00e9enregistr\u00e9 et non ex\u00e9cut\u00e9"
+  }
+}
