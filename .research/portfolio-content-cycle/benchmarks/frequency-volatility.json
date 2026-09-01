@@ -1,0 +1,621 @@
+{
+  "status": "sensibilit\u00e9s sur jeux de d\u00e9veloppement \u2014 non finales",
+  "device": "cpu",
+  "torch_version": "2.13.0",
+  "final_test_used": false,
+  "frequency_experiment": {
+    "one_way_cost": 0.0025,
+    "n_steps": [
+      10,
+      20,
+      30
+    ],
+    "fine_grid_steps": 60,
+    "coupled_development_paths": true,
+    "development_seed": 20263100,
+    "development_size": 100000,
+    "training_budget_epochs": 2000,
+    "scenarios": [
+      {
+        "n_steps": 10,
+        "training_provenance": "r\u00e9entra\u00eenement complet de 2 000 \u00e9poques lors de la premi\u00e8re ex\u00e9cution de ce benchmark",
+        "evaluation_policy_source": "checkpoint local \u00e0 10 pas",
+        "elapsed_seconds_this_run": 0.0,
+        "best_epoch": 1963,
+        "best_eta": 1.7058360576629639,
+        "best_validation": {
+          "epoch": 1963.0,
+          "train_objective": 2.0993998050689697,
+          "eta": 1.7058360576629639,
+          "mean_pnl": -0.44873929023742676,
+          "std_pnl": 0.8370938301086426,
+          "loss_probability": 0.71315997838974,
+          "var_loss_95": 1.7101068496704102,
+          "cvar_loss_95": 2.070549964904785,
+          "mean_transaction_cost": 0.4455755352973938,
+          "mean_turnover_notional": 178.23019409179688
+        },
+        "leland_adjusted_volatility": 0.2175149024582717,
+        "development_metrics": {
+          "neural": {
+            "mean_pnl": -0.4450860023498535,
+            "std_pnl": 0.836581826210022,
+            "loss_probability": 0.7114999890327454,
+            "var_loss_95": 1.7073512077331543,
+            "cvar_loss_95": 2.060204029083252,
+            "mean_transaction_cost": 0.44560468196868896,
+            "mean_turnover_notional": 178.2418670654297
+          },
+          "delta_black_scholes": {
+            "mean_pnl": -0.49175921082496643,
+            "std_pnl": 0.7690037488937378,
+            "loss_probability": 0.7545999884605408,
+            "var_loss_95": 1.8104134798049927,
+            "cvar_loss_95": 2.347219705581665,
+            "mean_transaction_cost": 0.4912027418613434,
+            "mean_turnover_notional": 196.48109436035156
+          },
+          "delta_leland": {
+            "mean_pnl": -0.4821891486644745,
+            "std_pnl": 0.7669758200645447,
+            "loss_probability": 0.7504600286483765,
+            "var_loss_95": 1.7507214546203613,
+            "cvar_loss_95": 2.2441210746765137,
+            "mean_transaction_cost": 0.48184120655059814,
+            "mean_turnover_notional": 192.73648071289062
+          }
+        },
+        "paired_bootstrap_neural_versus_leland": {
+          "point_improvement": 0.1839168981790542,
+          "reference_cvar": 2.244121080374718,
+          "candidate_cvar": 2.0602041821956636,
+          "bootstrap_mean": 0.18375566061081883,
+          "bootstrap_standard_error": 0.005694365196502238,
+          "confidence": 0.95,
+          "ci_lower": 0.17281661293089365,
+          "ci_upper": 0.19502141356289404,
+          "probability_improvement_positive": 1.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20266010,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        },
+        "history_file": "benchmarks/frequency-histories/frequency-10.json"
+      },
+      {
+        "n_steps": 20,
+        "training_provenance": "r\u00e9entra\u00eenement complet de 2 000 \u00e9poques lors de la premi\u00e8re ex\u00e9cution de ce benchmark",
+        "evaluation_policy_source": "checkpoint local \u00e0 20 pas",
+        "elapsed_seconds_this_run": 0.0,
+        "best_epoch": 1983,
+        "best_eta": 1.4512410163879395,
+        "best_validation": {
+          "epoch": 1983.0,
+          "train_objective": 1.7043033838272095,
+          "eta": 1.4512410163879395,
+          "mean_pnl": -0.5335055589675903,
+          "std_pnl": 0.6312415599822998,
+          "loss_probability": 0.803820013999939,
+          "var_loss_95": 1.4500806331634521,
+          "cvar_loss_95": 1.703721523284912,
+          "mean_transaction_cost": 0.5300979018211365,
+          "mean_turnover_notional": 212.0391845703125
+        },
+        "leland_adjusted_volatility": 0.22436970805269776,
+        "development_metrics": {
+          "neural": {
+            "mean_pnl": -0.529934287071228,
+            "std_pnl": 0.6316578984260559,
+            "loss_probability": 0.8025599718093872,
+            "var_loss_95": 1.4487168788909912,
+            "cvar_loss_95": 1.697296142578125,
+            "mean_transaction_cost": 0.5299167037010193,
+            "mean_turnover_notional": 211.96670532226562
+          },
+          "delta_black_scholes": {
+            "mean_pnl": -0.6031121611595154,
+            "std_pnl": 0.5786608457565308,
+            "loss_probability": 0.8778899908065796,
+            "var_loss_95": 1.619934320449829,
+            "cvar_loss_95": 2.0245025157928467,
+            "mean_transaction_cost": 0.6020776629447937,
+            "mean_turnover_notional": 240.83108520507812
+          },
+          "delta_leland": {
+            "mean_pnl": -0.5839464068412781,
+            "std_pnl": 0.5678906440734863,
+            "loss_probability": 0.8621000051498413,
+            "var_loss_95": 1.515162706375122,
+            "cvar_loss_95": 1.8667441606521606,
+            "mean_transaction_cost": 0.5831932425498962,
+            "mean_turnover_notional": 233.2772979736328
+          }
+        },
+        "paired_bootstrap_neural_versus_leland": {
+          "point_improvement": 0.16944791371822365,
+          "reference_cvar": 1.8667440335988998,
+          "candidate_cvar": 1.6972961198806762,
+          "bootstrap_mean": 0.1695844555127859,
+          "bootstrap_standard_error": 0.00448577623305921,
+          "confidence": 0.95,
+          "ci_lower": 0.16108896536350248,
+          "ci_upper": 0.1780823262029886,
+          "probability_improvement_positive": 1.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20266020,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        },
+        "history_file": "benchmarks/frequency-histories/frequency-20.json"
+      },
+      {
+        "n_steps": 30,
+        "training_provenance": "r\u00e9entra\u00eenement central complet de 2 000 \u00e9poques (ex\u00e9cution 5)",
+        "evaluation_policy_source": "checkpoint central \u00e0 30 pas",
+        "elapsed_seconds_this_run": 0.0,
+        "best_epoch": 2000,
+        "best_eta": 1.3566741943359375,
+        "best_validation": {
+          "epoch": 2000.0,
+          "train_objective": 1.5585850477218628,
+          "eta": 1.3566741943359375,
+          "mean_pnl": -0.5886971354484558,
+          "std_pnl": 0.5437294244766235,
+          "loss_probability": 0.8506799936294556,
+          "var_loss_95": 1.3614832162857056,
+          "cvar_loss_95": 1.5640325546264648,
+          "mean_transaction_cost": 0.5842925906181335,
+          "mean_turnover_notional": 233.717041015625
+        },
+        "leland_adjusted_volatility": 0.22949079444922027,
+        "development_metrics": {
+          "neural": {
+            "mean_pnl": -0.5853562355041504,
+            "std_pnl": 0.5423174500465393,
+            "loss_probability": 0.8529599905014038,
+            "var_loss_95": 1.3551188707351685,
+            "cvar_loss_95": 1.5597361326217651,
+            "mean_transaction_cost": 0.584561288356781,
+            "mean_turnover_notional": 233.82452392578125
+          },
+          "delta_black_scholes": {
+            "mean_pnl": -0.6861531138420105,
+            "std_pnl": 0.49616193771362305,
+            "loss_probability": 0.9430400133132935,
+            "var_loss_95": 1.5786024332046509,
+            "cvar_loss_95": 1.9194388389587402,
+            "mean_transaction_cost": 0.6845959424972534,
+            "mean_turnover_notional": 273.8383483886719
+          },
+          "delta_leland": {
+            "mean_pnl": -0.6577093005180359,
+            "std_pnl": 0.47480201721191406,
+            "loss_probability": 0.9222599864006042,
+            "var_loss_95": 1.4316802024841309,
+            "cvar_loss_95": 1.7175840139389038,
+            "mean_transaction_cost": 0.6564701795578003,
+            "mean_turnover_notional": 262.58807373046875
+          }
+        },
+        "paired_bootstrap_neural_versus_leland": {
+          "point_improvement": 0.15784787960052493,
+          "reference_cvar": 1.717583983707428,
+          "candidate_cvar": 1.559736104106903,
+          "bootstrap_mean": 0.15790516231453416,
+          "bootstrap_standard_error": 0.0038020550682549724,
+          "confidence": 0.95,
+          "ci_lower": 0.1503588313883544,
+          "ci_upper": 0.16484535030603403,
+          "probability_improvement_positive": 1.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20266030,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        },
+        "history_file": "benchmarks/frequency-histories/frequency-30.json"
+      }
+    ],
+    "paired_frequency_comparisons": {
+      "20_versus_10": {
+        "point_improvement": 0.3629080623149874,
+        "reference_cvar": 2.0602041821956636,
+        "candidate_cvar": 1.6972961198806762,
+        "bootstrap_mean": 0.36295767549371716,
+        "bootstrap_standard_error": 0.005706613527394904,
+        "confidence": 0.95,
+        "ci_lower": 0.3526894843602179,
+        "ci_upper": 0.3740953663116693,
+        "probability_improvement_positive": 1.0,
+        "n_bootstrap": 1000,
+        "bootstrap_seed": 20266120,
+        "sample_size": 100000,
+        "tail_size": 5000,
+        "alpha": 0.95
+      },
+      "30_versus_20": {
+        "point_improvement": 0.13756001577377308,
+        "reference_cvar": 1.6972961198806762,
+        "candidate_cvar": 1.559736104106903,
+        "bootstrap_mean": 0.13776403779211047,
+        "bootstrap_standard_error": 0.004060957975386703,
+        "confidence": 0.95,
+        "ci_lower": 0.1296417152237893,
+        "ci_upper": 0.1453985097318889,
+        "probability_improvement_positive": 1.0,
+        "n_bootstrap": 1000,
+        "bootstrap_seed": 20266230,
+        "sample_size": 100000,
+        "tail_size": 5000,
+        "alpha": 0.95
+      }
+    }
+  },
+  "volatility_experiment": {
+    "one_way_cost": 0.0025,
+    "training_sigma": 0.2,
+    "scenario_sigmas": [
+      0.15,
+      0.2,
+      0.25,
+      0.3
+    ],
+    "development_seed": 20263200,
+    "development_size": 100000,
+    "common_standard_normal_shocks": true,
+    "premium_fixed_at_training_model": true,
+    "scenarios": [
+      {
+        "scenario_sigma": 0.15,
+        "policy_training_sigma": 0.2,
+        "policy_receives_scenario_sigma": false,
+        "common_training_premium": 2.752429962158203,
+        "informed_leland_adjusted_volatility": 0.17888409250881054,
+        "development_metrics": {
+          "neural_frozen": {
+            "mean_pnl": 0.15913455188274384,
+            "std_pnl": 0.5580142140388489,
+            "loss_probability": 0.427949994802475,
+            "var_loss_95": 0.6771234273910522,
+            "cvar_loss_95": 0.8183935284614563,
+            "mean_transaction_cost": 0.5288744568824768,
+            "mean_turnover_notional": 211.54977416992188
+          },
+          "delta_informed_by_scenario_sigma": {
+            "mean_pnl": 0.004637532867491245,
+            "std_pnl": 0.40043312311172485,
+            "loss_probability": 0.44804999232292175,
+            "var_loss_95": 0.7216917872428894,
+            "cvar_loss_95": 0.9952782988548279,
+            "mean_transaction_cost": 0.6829279065132141,
+            "mean_turnover_notional": 273.1711730957031
+          },
+          "leland_informed_by_scenario_sigma": {
+            "mean_pnl": 0.04064586013555527,
+            "std_pnl": 0.37372639775276184,
+            "loss_probability": 0.4515700042247772,
+            "var_loss_95": 0.5655094981193542,
+            "cvar_loss_95": 0.7833191156387329,
+            "mean_transaction_cost": 0.6469267010688782,
+            "mean_turnover_notional": 258.77069091796875
+          },
+          "delta_frozen_sigma_20": {
+            "mean_pnl": 0.06314925849437714,
+            "std_pnl": 0.39139148592948914,
+            "loss_probability": 0.4560000002384186,
+            "var_loss_95": 0.5377270579338074,
+            "cvar_loss_95": 0.7095173001289368,
+            "mean_transaction_cost": 0.6244800090789795,
+            "mean_turnover_notional": 249.79200744628906
+          },
+          "leland_frozen_sigma_20": {
+            "mean_pnl": 0.09030566364526749,
+            "std_pnl": 0.44213539361953735,
+            "loss_probability": 0.44964998960494995,
+            "var_loss_95": 0.5768610835075378,
+            "cvar_loss_95": 0.7187585830688477,
+            "mean_transaction_cost": 0.5974437594413757,
+            "mean_turnover_notional": 238.97752380371094
+          }
+        },
+        "paired_bootstrap_neural_versus_informed_leland": {
+          "point_improvement": -0.035074328362941776,
+          "reference_cvar": 0.7833191862225533,
+          "candidate_cvar": 0.818393514585495,
+          "bootstrap_mean": -0.03529329375395775,
+          "bootstrap_standard_error": 0.004433331992810533,
+          "confidence": 0.95,
+          "ci_lower": -0.0436497083261608,
+          "ci_upper": -0.026836485070288102,
+          "probability_improvement_positive": 0.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20267015,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        },
+        "paired_bootstrap_neural_versus_frozen_leland": {
+          "point_improvement": -0.09963492748737335,
+          "reference_cvar": 0.7187585870981217,
+          "candidate_cvar": 0.818393514585495,
+          "bootstrap_mean": -0.09967964385290147,
+          "bootstrap_standard_error": 0.002312542289398928,
+          "confidence": 0.95,
+          "ci_lower": -0.10426598072767261,
+          "ci_upper": -0.09477016337037089,
+          "probability_improvement_positive": 0.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20268015,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        }
+      },
+      {
+        "scenario_sigma": 0.2,
+        "policy_training_sigma": 0.2,
+        "policy_receives_scenario_sigma": false,
+        "common_training_premium": 2.752429962158203,
+        "informed_leland_adjusted_volatility": 0.22949079444922027,
+        "development_metrics": {
+          "neural_frozen": {
+            "mean_pnl": -0.5848540663719177,
+            "std_pnl": 0.54505854845047,
+            "loss_probability": 0.8515300154685974,
+            "var_loss_95": 1.3592243194580078,
+            "cvar_loss_95": 1.5649892091751099,
+            "mean_transaction_cost": 0.5846443176269531,
+            "mean_turnover_notional": 233.85772705078125
+          },
+          "delta_informed_by_scenario_sigma": {
+            "mean_pnl": -0.6850566267967224,
+            "std_pnl": 0.4987965226173401,
+            "loss_probability": 0.9417999982833862,
+            "var_loss_95": 1.5813896656036377,
+            "cvar_loss_95": 1.928747296333313,
+            "mean_transaction_cost": 0.6845383644104004,
+            "mean_turnover_notional": 273.81536865234375
+          },
+          "leland_informed_by_scenario_sigma": {
+            "mean_pnl": -0.6570203304290771,
+            "std_pnl": 0.4777950942516327,
+            "loss_probability": 0.9208899736404419,
+            "var_loss_95": 1.4345273971557617,
+            "cvar_loss_95": 1.7253791093826294,
+            "mean_transaction_cost": 0.6564953327178955,
+            "mean_turnover_notional": 262.5981140136719
+          },
+          "delta_frozen_sigma_20": {
+            "mean_pnl": -0.6850566267967224,
+            "std_pnl": 0.4987965226173401,
+            "loss_probability": 0.9417999982833862,
+            "var_loss_95": 1.5813896656036377,
+            "cvar_loss_95": 1.928747296333313,
+            "mean_transaction_cost": 0.6845383644104004,
+            "mean_turnover_notional": 273.81536865234375
+          },
+          "leland_frozen_sigma_20": {
+            "mean_pnl": -0.6570203304290771,
+            "std_pnl": 0.4777950942516327,
+            "loss_probability": 0.9208899736404419,
+            "var_loss_95": 1.4345273971557617,
+            "cvar_loss_95": 1.7253791093826294,
+            "mean_transaction_cost": 0.6564953327178955,
+            "mean_turnover_notional": 262.5981140136719
+          }
+        },
+        "paired_bootstrap_neural_versus_informed_leland": {
+          "point_improvement": 0.160389772582054,
+          "reference_cvar": 1.7253790509939193,
+          "candidate_cvar": 1.5649892784118653,
+          "bootstrap_mean": 0.1604079971083641,
+          "bootstrap_standard_error": 0.00412749867822036,
+          "confidence": 0.95,
+          "ci_lower": 0.15282037084400668,
+          "ci_upper": 0.16849353739678863,
+          "probability_improvement_positive": 1.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20267020,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        },
+        "paired_bootstrap_neural_versus_frozen_leland": {
+          "point_improvement": 0.160389772582054,
+          "reference_cvar": 1.7253790509939193,
+          "candidate_cvar": 1.5649892784118653,
+          "bootstrap_mean": 0.16034387018291948,
+          "bootstrap_standard_error": 0.004183773108930644,
+          "confidence": 0.95,
+          "ci_lower": 0.15220883891642087,
+          "ci_upper": 0.16874318746447572,
+          "probability_improvement_positive": 1.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20268020,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        }
+      },
+      {
+        "scenario_sigma": 0.25,
+        "policy_training_sigma": 0.2,
+        "policy_receives_scenario_sigma": false,
+        "common_training_premium": 2.752429962158203,
+        "informed_leland_adjusted_volatility": 0.2798794935703004,
+        "development_metrics": {
+          "neural_frozen": {
+            "mean_pnl": -1.3182885646820068,
+            "std_pnl": 0.5894778370857239,
+            "loss_probability": 0.9818900227546692,
+            "var_loss_95": 2.2906270027160645,
+            "cvar_loss_95": 2.6607565879821777,
+            "mean_transaction_cost": 0.6303284168243408,
+            "mean_turnover_notional": 252.13137817382812
+          },
+          "delta_informed_by_scenario_sigma": {
+            "mean_pnl": -1.3745499849319458,
+            "std_pnl": 0.6005461812019348,
+            "loss_probability": 0.9926999807357788,
+            "var_loss_95": 2.444847345352173,
+            "cvar_loss_95": 2.865044116973877,
+            "mean_transaction_cost": 0.6861165761947632,
+            "mean_turnover_notional": 274.4466247558594
+          },
+          "leland_informed_by_scenario_sigma": {
+            "mean_pnl": -1.3516231775283813,
+            "std_pnl": 0.583251953125,
+            "loss_probability": 0.9866300225257874,
+            "var_loss_95": 2.306122064590454,
+            "cvar_loss_95": 2.667263984680176,
+            "mean_transaction_cost": 0.6631728410720825,
+            "mean_turnover_notional": 265.2691345214844
+          },
+          "delta_frozen_sigma_20": {
+            "mean_pnl": -1.419825792312622,
+            "std_pnl": 0.7485437393188477,
+            "loss_probability": 0.9976099729537964,
+            "var_loss_95": 2.832143545150757,
+            "cvar_loss_95": 3.3656890392303467,
+            "mean_transaction_cost": 0.7315898537635803,
+            "mean_turnover_notional": 292.63592529296875
+          },
+          "leland_frozen_sigma_20": {
+            "mean_pnl": -1.391964316368103,
+            "std_pnl": 0.6419377326965332,
+            "loss_probability": 0.9955400228500366,
+            "var_loss_95": 2.5808792114257812,
+            "cvar_loss_95": 3.043574333190918,
+            "mean_transaction_cost": 0.7035847902297974,
+            "mean_turnover_notional": 281.4339294433594
+          }
+        },
+        "paired_bootstrap_neural_versus_informed_leland": {
+          "point_improvement": 0.00650732488632233,
+          "reference_cvar": 2.667263828802109,
+          "candidate_cvar": 2.6607565039157866,
+          "bootstrap_mean": 0.006679732593345645,
+          "bootstrap_standard_error": 0.003548097306338621,
+          "confidence": 0.95,
+          "ci_lower": -0.0003387955319881333,
+          "ci_upper": 0.013885736584663121,
+          "probability_improvement_positive": 0.971,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20267025,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        },
+        "paired_bootstrap_neural_versus_frozen_leland": {
+          "point_improvement": 0.3828178025722506,
+          "reference_cvar": 3.043574306488037,
+          "candidate_cvar": 2.6607565039157866,
+          "bootstrap_mean": 0.3830206313373566,
+          "bootstrap_standard_error": 0.005412976680986857,
+          "confidence": 0.95,
+          "ci_lower": 0.37294584781885165,
+          "ci_upper": 0.3936584571897983,
+          "probability_improvement_positive": 1.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20268025,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        }
+      },
+      {
+        "scenario_sigma": 0.3,
+        "policy_training_sigma": 0.2,
+        "policy_receives_scenario_sigma": false,
+        "common_training_premium": 2.752429962158203,
+        "informed_leland_adjusted_volatility": 0.330150022119341,
+        "development_metrics": {
+          "neural_frozen": {
+            "mean_pnl": -2.0439913272857666,
+            "std_pnl": 0.7485406398773193,
+            "loss_probability": 0.9986299872398376,
+            "var_loss_95": 3.431047201156616,
+            "cvar_loss_95": 3.9584338665008545,
+            "mean_transaction_cost": 0.6687251329421997,
+            "mean_turnover_notional": 267.4900817871094
+          },
+          "delta_informed_by_scenario_sigma": {
+            "mean_pnl": -2.063821792602539,
+            "std_pnl": 0.7041256427764893,
+            "loss_probability": 0.998520016670227,
+            "var_loss_95": 3.309391498565674,
+            "cvar_loss_95": 3.802589178085327,
+            "mean_transaction_cost": 0.687662661075592,
+            "mean_turnover_notional": 275.0650939941406
+          },
+          "leland_informed_by_scenario_sigma": {
+            "mean_pnl": -2.0444512367248535,
+            "std_pnl": 0.6893823146820068,
+            "loss_probability": 0.9973999857902527,
+            "var_loss_95": 3.1770193576812744,
+            "cvar_loss_95": 3.6089937686920166,
+            "mean_transaction_cost": 0.6682674884796143,
+            "mean_turnover_notional": 267.3070373535156
+          },
+          "delta_frozen_sigma_20": {
+            "mean_pnl": -2.1450884342193604,
+            "std_pnl": 1.0849543809890747,
+            "loss_probability": 0.9999099969863892,
+            "var_loss_95": 4.189820289611816,
+            "cvar_loss_95": 4.923907279968262,
+            "mean_transaction_cost": 0.7694348692893982,
+            "mean_turnover_notional": 307.7738952636719
+          },
+          "leland_frozen_sigma_20": {
+            "mean_pnl": -2.1178691387176514,
+            "std_pnl": 0.9164135456085205,
+            "loss_probability": 0.9998199939727783,
+            "var_loss_95": 3.854003429412842,
+            "cvar_loss_95": 4.5064568519592285,
+            "mean_transaction_cost": 0.7420098185539246,
+            "mean_turnover_notional": 296.803955078125
+          }
+        },
+        "paired_bootstrap_neural_versus_informed_leland": {
+          "point_improvement": -0.3494402697563168,
+          "reference_cvar": 3.6089936804771425,
+          "candidate_cvar": 3.9584339502334593,
+          "bootstrap_mean": -0.3494677995064735,
+          "bootstrap_standard_error": 0.0048749975000350245,
+          "confidence": 0.95,
+          "ci_lower": -0.35909754644989955,
+          "ci_upper": -0.3402922123217585,
+          "probability_improvement_positive": 0.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20267030,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        },
+        "paired_bootstrap_neural_versus_frozen_leland": {
+          "point_improvement": 0.5480229814529416,
+          "reference_cvar": 4.506456931686401,
+          "candidate_cvar": 3.9584339502334593,
+          "bootstrap_mean": 0.5479260790770054,
+          "bootstrap_standard_error": 0.006853200948789986,
+          "confidence": 0.95,
+          "ci_lower": 0.5345153588700292,
+          "ci_upper": 0.5610990037834643,
+          "probability_improvement_positive": 1.0,
+          "n_bootstrap": 1000,
+          "bootstrap_seed": 20268030,
+          "sample_size": 100000,
+          "tail_size": 5000,
+          "alpha": 0.95
+        }
+      }
+    ]
+  },
+  "reserved_final_test": {
+    "seed": 20269000,
+    "size": 250000,
+    "status": "pr\u00e9enregistr\u00e9 et non ex\u00e9cut\u00e9"
+  }
+}

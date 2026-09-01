@@ -7,9 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** la sensibilité aux coûts de 0, 10, 25 et 50 points de base est terminée avec réentraînement de chaque politique
-- **Résultat provisoire :** le réseau réduit la CVaR face à Leland aux quatre coûts ; l’avantage absolu passe de 0,1068 sans coût à 0,2815 à 50 points de base, tandis que le turnover appris diminue
-- **Prochain jalon :** tester la fréquence de rééquilibrage et la volatilité hors entraînement, puis répéter les scénarios extrêmes sur plusieurs graines
+- **Statut :** les sensibilités au coût, à la fréquence et à la volatilité hors entraînement sont terminées sur les jeux de développement
+- **Résultat provisoire :** 20 puis 30 rééquilibrages réduisent la CVaR par rapport à 10 pas au coût central, mais la robustesse à la volatilité est asymétrique : le réseau domine Leland à 20 %, lui est comparable à 25 %, et lui est inférieur à 15 % et 30 % lorsque Leland connaît la volatilité du scénario
+- **Prochain jalon :** tester un changement de modèle générateur, puis répéter les scénarios extrêmes sur plusieurs graines avant toute ouverture du test final
 - **Temps restant :** quatre jours sur le cycle ; le test final préenregistré reste fermé
 
 Les fichiers de référence sont :

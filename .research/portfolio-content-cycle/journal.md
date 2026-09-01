@@ -229,3 +229,50 @@ La courbe de coût repose sur une seule graine d’apprentissage par scénario, 
 ### Prochain jalon
 
 Tester 10, 20 et 30 dates de rééquilibrage avec réentraînement au coût central, puis évaluer la politique centrale sous des volatilités de 15 %, 25 % et 30 %. Conserver la graine finale 20269000 fermée. Répliquer ensuite les coûts 0 et 50 points de base sur des graines supplémentaires si la structure se maintient.
+
+## 2026-09-01 — Exécution 7
+
+### Travail réalisé
+
+- Réentraînement complet de politiques à 10 et 20 dates de rééquilibrage sous un coût aller simple de 25 points de base, avec le budget commun de 2 000 époques ; réutilisation du checkpoint central à 30 pas.
+- Construction de 100 000 trajectoires de développement couplées sur une grille fine commune de 60 pas, puis sous-échantillonnage exact aux fréquences 10, 20 et 30. Les écarts de CVaR entre fréquences sont ainsi appariés trajectoire par trajectoire.
+- Évaluation de la politique centrale figée, entraînée à 20 % de volatilité, dans quatre scénarios à 15 %, 20 %, 25 % et 30 %, sans lui transmettre la volatilité réelle du scénario.
+- Comparaison avec deux familles de références classiques : des deltas figées à 20 % et des deltas informées de la volatilité du scénario. Le terme « oracle » a été écarté, car connaître la volatilité ne rend pas la règle de Leland optimale pour la CVaR.
+- Conservation d’une prime commune calculée à 20 % dans chaque comparaison hors distribution. Ce décalage commun modifie le niveau absolu des pertes entre scénarios, mais pas l’écart de CVaR entre stratégies au sein d’un scénario.
+- Calcul de 1 000 réplications bootstrap appariées par comparaison. Le test final préenregistré n’a pas été généré.
+
+### Fréquence de rééquilibrage
+
+| Nombre de pas | CVaR réseau | CVaR Leland | Amélioration face à Leland | IC bootstrap 95 % | Turnover réseau | Turnover Leland |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 10 | 2,0602 | 2,2441 | 0,1839 | [0,1728 ; 0,1950] | 178,24 | 192,74 |
+| 20 | 1,6973 | 1,8667 | 0,1694 | [0,1611 ; 0,1781] | 211,97 | 233,28 |
+| 30 | 1,5597 | 1,7176 | 0,1578 | [0,1504 ; 0,1648] | 233,82 | 262,59 |
+
+Passer de 10 à 20 pas réduit la CVaR neuronale de 0,3629, avec un intervalle à 95 % de [0,3527 ; 0,3741]. Passer de 20 à 30 pas apporte encore 0,1376, avec un intervalle de [0,1296 ; 0,1454]. Au coût central, la fréquence accrue reste donc avantageuse sur la plage étudiée, contrairement à l’hypothèse d’un retournement précoce. Le gain marginal diminue cependant, tandis que le turnover augmente. Une fréquence supérieure à 30 pas pourrait encore révéler un optimum intérieur et n’a pas été testée.
+
+Chaque politique neuronale fait mieux que Leland à sa propre fréquence. L’amélioration absolue face à Leland diminue néanmoins avec la fréquence, de 0,1839 à 10 pas à 0,1578 à 30 pas. Cette expérience repose sur une seule graine d’apprentissage par fréquence ; les intervalles mesurent l’incertitude des trajectoires conditionnellement aux réseaux entraînés, pas l’instabilité d’optimisation.
+
+### Volatilité hors entraînement
+
+| Volatilité réelle | CVaR réseau figé | Leland informé | Leland figé à 20 % | Écart informé - réseau | IC 95 % |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 15 % | 0,8184 | 0,7833 | 0,7188 | -0,0351 | [-0,0436 ; -0,0268] |
+| 20 % | 1,5650 | 1,7254 | 1,7254 | 0,1604 | [0,1528 ; 0,1685] |
+| 25 % | 2,6608 | 2,6673 | 3,0436 | 0,0065 | [-0,0003 ; 0,0139] |
+| 30 % | 3,9584 | 3,6090 | 4,5065 | -0,3494 | [-0,3591 ; -0,3403] |
+
+Une valeur positive de la cinquième colonne favorise le réseau. À 20 %, il conserve l’avantage central. À 25 %, l’écart avec Leland informé est petit et l’intervalle contient zéro : aucune domination n’est établie. À 15 % et 30 %, Leland informé fait significativement mieux.
+
+La comparaison avec Leland figé donne une lecture complémentaire. Le réseau est inférieur à 15 %, mais il réduit la CVaR de 0,3828 à 25 % et de 0,5480 à 30 %, avec des intervalles entièrement positifs. Il transfère donc mieux qu’une règle classique mal calibrée lorsque la volatilité augmente, sans égaler une règle qui reçoit la volatilité réelle à 30 %. Ce résultat ne justifie pas une affirmation générale de robustesse ; il montre précisément où le transfert fonctionne et où il échoue.
+
+### Décisions
+
+- Rapporter séparément les références informées et figées dans le futur manuscrit.
+- Ne pas présenter le scénario à 25 % comme une victoire face à Leland informé, puisque l’intervalle inclut zéro.
+- Conserver les résultats négatifs à 15 % et 30 % : ils sont nécessaires pour éviter une présentation sélective.
+- Maintenir le test final fermé jusqu’au gel des expériences de changement de modèle et des réplications multigraines.
+
+### Prochain jalon
+
+Implémenter un scénario Heston documenté pour tester un changement de dynamique, avec contrôle des moments simulés et mêmes trajectoires par stratégie. Ensuite, répéter les scénarios extrêmes de coût et les expériences sensibles sur plusieurs graines avant de décider si le protocole peut être gelé.
