@@ -1,0 +1,137 @@
+{
+  "status": "r\u00e9f\u00e9rences Monte-Carlo internes \u2014 non publi\u00e9es",
+  "n_paths": 100000,
+  "seed": 20263000,
+  "market": {
+    "s0": 100.0,
+    "strike": 100.0,
+    "maturity": 0.11904761904761904,
+    "rate": 0.0,
+    "sigma": 0.2,
+    "n_steps": 30
+  },
+  "premium": 2.752429962158203,
+  "cost_convention": "co\u00fbt aller simple, liquidation terminale incluse",
+  "strategies": {
+    "sans_couverture__0.0000": {
+      "mean_pnl": 0.0046769254840910435,
+      "std_pnl": 4.192316055297852,
+      "loss_probability": 0.3329100012779236,
+      "var_loss_95": 9.032028198242188,
+      "cvar_loss_95": 12.30809497833252,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 0.0,
+      "leland_sigma": null
+    },
+    "delta_black_scholes__0.0000": {
+      "mean_pnl": -0.0005507282330654562,
+      "std_pnl": 0.43018093705177307,
+      "loss_probability": 0.49334999918937683,
+      "var_loss_95": 0.7112008333206177,
+      "cvar_loss_95": 1.001405119895935,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 273.7846374511719,
+      "leland_sigma": null
+    },
+    "delta_leland__0.0000": {
+      "mean_pnl": -0.0005507282330654562,
+      "std_pnl": 0.43018093705177307,
+      "loss_probability": 0.49334999918937683,
+      "var_loss_95": 0.7112008333206177,
+      "cvar_loss_95": 1.001405119895935,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 273.7846374511719,
+      "leland_sigma": 0.2
+    },
+    "sans_couverture__0.0010": {
+      "mean_pnl": 0.0046769254840910435,
+      "std_pnl": 4.192316055297852,
+      "loss_probability": 0.3329100012779236,
+      "var_loss_95": 9.032028198242188,
+      "cvar_loss_95": 12.30809497833252,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 0.0,
+      "leland_sigma": null
+    },
+    "delta_black_scholes__0.0010": {
+      "mean_pnl": -0.2743353843688965,
+      "std_pnl": 0.4474559724330902,
+      "loss_probability": 0.7513999938964844,
+      "var_loss_95": 1.046436071395874,
+      "cvar_loss_95": 1.3590127229690552,
+      "mean_transaction_cost": 0.27378466725349426,
+      "mean_turnover_notional": 273.7846374511719,
+      "leland_sigma": null
+    },
+    "delta_leland__0.0010": {
+      "mean_pnl": -0.26941895484924316,
+      "std_pnl": 0.4437829256057739,
+      "loss_probability": 0.7531700134277344,
+      "var_loss_95": 0.9979910850524902,
+      "cvar_loss_95": 1.2867199182510376,
+      "mean_transaction_cost": 0.2688973546028137,
+      "mean_turnover_notional": 268.8973083496094,
+      "leland_sigma": 0.21228850627100307
+    },
+    "sans_couverture__0.0025": {
+      "mean_pnl": 0.0046769254840910435,
+      "std_pnl": 4.192316055297852,
+      "loss_probability": 0.3329100012779236,
+      "var_loss_95": 9.032028198242188,
+      "cvar_loss_95": 12.30809497833252,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 0.0,
+      "leland_sigma": null
+    },
+    "delta_black_scholes__0.0025": {
+      "mean_pnl": -0.6850123405456543,
+      "std_pnl": 0.49606528878211975,
+      "loss_probability": 0.942870020866394,
+      "var_loss_95": 1.5750387907028198,
+      "cvar_loss_95": 1.9174202680587769,
+      "mean_transaction_cost": 0.6844616532325745,
+      "mean_turnover_notional": 273.7846374511719,
+      "leland_sigma": null
+    },
+    "delta_leland__0.0025": {
+      "mean_pnl": -0.6568604707717896,
+      "std_pnl": 0.47457388043403625,
+      "loss_probability": 0.9223999977111816,
+      "var_loss_95": 1.4325923919677734,
+      "cvar_loss_95": 1.7184832096099854,
+      "mean_transaction_cost": 0.6563563346862793,
+      "mean_turnover_notional": 262.54254150390625,
+      "leland_sigma": 0.22949079444922027
+    },
+    "sans_couverture__0.0050": {
+      "mean_pnl": 0.0046769254840910435,
+      "std_pnl": 4.192316055297852,
+      "loss_probability": 0.3329100012779236,
+      "var_loss_95": 9.032028198242188,
+      "cvar_loss_95": 12.30809497833252,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 0.0,
+      "leland_sigma": null
+    },
+    "delta_black_scholes__0.0050": {
+      "mean_pnl": -1.3694740533828735,
+      "std_pnl": 0.6198222041130066,
+      "loss_probability": 0.9977899789810181,
+      "var_loss_95": 2.4935250282287598,
+      "cvar_loss_95": 2.8835315704345703,
+      "mean_transaction_cost": 1.368923306465149,
+      "mean_turnover_notional": 273.7846374511719,
+      "leland_sigma": null
+    },
+    "delta_leland__0.0050": {
+      "mean_pnl": -1.2697627544403076,
+      "std_pnl": 0.5460173487663269,
+      "loss_probability": 0.9893100261688232,
+      "var_loss_95": 2.1608474254608154,
+      "cvar_loss_95": 2.444305419921875,
+      "mean_transaction_cost": 1.2692437171936035,
+      "mean_turnover_notional": 253.84878540039062,
+      "leland_sigma": 0.2556013487324911
+    }
+  }
+}

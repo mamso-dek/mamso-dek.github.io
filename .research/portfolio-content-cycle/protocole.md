@@ -35,7 +35,7 @@ La prime initiale sera fixée au prix Black–Scholes du scénario d’entraîne
 
 1. **Sans couverture** : référence minimale.
 2. **Delta Black–Scholes discrète** : référence théorique classique.
-3. **Delta ajustée aux coûts** : stratégie de type Leland, ajoutée seulement après vérification exacte de la convention de coût et de la formule.
+3. **Delta ajustée aux coûts** : stratégie de Leland avec coût aller-retour \(C=2c\), donc \(\sigma_L=\sigma\sqrt{1+\sqrt{8/\pi}\,c/(\sigma\sqrt{\Delta t})}\) pour le call convexe. La prime reste commune aux stratégies dans la comparaison principale.
 4. **Politique neuronale** : petit réseau partagé dans le temps recevant au minimum le log-moneyness, le temps restant et la position précédente. La sortie sera bornée pour éviter des positions irréalistes.
 
 ## Séparation des données simulées
@@ -101,5 +101,6 @@ Retirer la position précédente de l’état, modifier la borne de position et 
 - Commencer par un pilote vectorisé de couverture delta.
 - Fixer une convention de P&L unique avant l’apprentissage.
 - Employer des lots assez grands pour la CVaR et répéter les entraînements.
+- Initialiser le seuil auxiliaire \(\eta\) sur le quantile d’un lot d’entraînement indépendant de la validation, puis l’optimiser avec son propre taux d’apprentissage.
 - Conserver un modèle neuronal compact.
 - Prioriser les expériences E1 à E4 ; l’ablation complète est secondaire.

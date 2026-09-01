@@ -7,8 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** sujet et protocole initial fixés ; pilote delta exécuté et contrôles de cohérence réussis
-- **Prochain jalon :** préparer l’environnement PyTorch, vérifier la stratégie de Leland et implémenter le cœur différentiable
+- **Statut :** environnement reproductible, convention de Leland, cœur différentiable et références classiques validés ; premier apprentissage de faisabilité terminé
+- **Résultat provisoire :** à 300 époques, le réseau réduit le coût et le turnover, mais reste derrière Leland sur la CVaR à 95 % ; aucune supériorité neuronale n’est donc établie
+- **Prochain jalon :** prolonger l’apprentissage sur plusieurs graines, contrôler la convergence et analyser la forme de la politique avant les expériences de robustesse
 
 Les fichiers de référence sont :
 
@@ -16,6 +17,11 @@ Les fichiers de référence sont :
 - `protocole.md` : question, hypothèses, expériences et critères d’arrêt ;
 - `matrice-litterature.md` : sources vérifiées et rôle dans l’étude ;
 - `bibliographie.bib` : métadonnées bibliographiques réutilisables ;
+- `environment.md` : plateforme, dépendances et règles de reproductibilité ;
+- `conventions.md` : définition du coût et traduction de la formule de Leland ;
 - `affirmations-sources.md` : traçabilité des affirmations importantes ;
 - `journal.md` : progression exécution par exécution ;
-- `pilot/` : code et résultats exploratoires non publiables.
+- `pilot/` : code et résultats exploratoires non publiables ;
+- `src/deep_hedging/` : simulateur, P&L différentiable, mesure de risque et politique neuronale ;
+- `tests/` : tests unitaires du noyau scientifique ;
+- `benchmarks/` : comparaisons CPU/MPS et références Monte-Carlo internes.

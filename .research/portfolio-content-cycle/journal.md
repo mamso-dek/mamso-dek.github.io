@@ -46,3 +46,41 @@ Les contrôles automatisés vérifient la cohérence de la prime, la neutralité
 ### Prochain jalon révisé
 
 Préparer un environnement PyTorch reproductible, confirmer la formule de Leland dans la convention adoptée et écrire les tests unitaires du simulateur avant tout apprentissage.
+
+## 2026-09-01 — Exécution 2
+
+### Travail réalisé
+
+- Création d’un environnement PyTorch reproductible sur Python 3.12.13 et génération d’un verrou complet dans un environnement propre, sans dépendance locale héritée.
+- Vérification de PyTorch 2.13.0 sur CPU et MPS, du fonctionnement des tenseurs MPS et de la cohérence des dépendances.
+- Fixation de la convention de coût : le projet utilise un coût aller simple \(cS|\Delta h|\), liquidation finale incluse ; le coût aller-retour de Leland est donc \(C=2c\).
+- Implémentation du simulateur Black–Scholes, du prix et de la delta analytiques, de la volatilité de Leland, du P&L différentiable et de l’objectif CVaR de Rockafellar–Uryasev.
+- Implémentation d’une politique neuronale compacte partagée dans le temps, conditionnée par le log-moneyness, le temps restant et la position précédente.
+- Initialisation du seuil auxiliaire de CVaR sur un lot d’entraînement indépendant, afin de ne pas utiliser la validation pour calibrer l’optimisation.
+- Ajout et validation de 11 tests couvrant la simulation, les identités de coût, les références analytiques, la CVaR, la différentiabilité et une boucle courte d’apprentissage.
+- Comparaison d’exécution CPU/MPS et construction des références classiques sur 100 000 trajectoires de test communes.
+
+### Résultats intermédiaires
+
+Sur 20 époques, le CPU est légèrement plus rapide que MPS (0,764 s contre 0,869 s) et l’écart maximal entre métriques neuronales est de \(7,63\times10^{-6}\). Le CPU devient donc le périphérique de référence.
+
+À 25 points de base de coût aller simple, sur 100 000 trajectoires indépendantes :
+
+- delta Black–Scholes : CVaR 95 % de 1,9174, coût moyen de 0,6845 et turnover notionnel de 273,78 ;
+- delta de Leland : CVaR 95 % de 1,7185, coût moyen de 0,6564 et turnover de 262,54 ;
+- réseau après 300 époques : CVaR 95 % de 2,0938, coût moyen de 0,5621 et turnover de 224,85.
+
+Le résultat neuronal est donc mitigé et non publiable en l’état. Le réseau apprend une politique moins coûteuse, mais il ne compense pas encore cette économie par une réduction suffisante du risque de queue. La validation continue de s’améliorer à l’époque 300 et le seuil appris η reste supérieur à la VaR empirique, ce qui indique que l’optimisation n’a pas convergé.
+
+Les références classiques montrent aussi que Leland améliore la CVaR de la delta non ajustée aux coûts testés : 10, 25 et 50 points de base. Cette observation reste interne tant que les incertitudes et sensibilités ne sont pas calculées.
+
+### Décisions
+
+- Conserver le CPU comme plateforme de référence et MPS comme contrôle secondaire.
+- Ne formuler aucune affirmation de supériorité du deep hedging.
+- Prolonger l’apprentissage plutôt que modifier le jeu de test ou sélectionner une comparaison avantageuse.
+- Garder l’intégralité de ce travail hors du site public jusqu’aux contrôles finaux.
+
+### Prochain jalon
+
+Lancer des apprentissages de 600 à 1 000 époques sur plusieurs graines, vérifier la convergence de η, comparer systématiquement au benchmark de Leland et examiner la forme de la politique ainsi que le turnover. Les expériences de robustesse ne commenceront qu’après stabilisation de l’apprentissage principal.

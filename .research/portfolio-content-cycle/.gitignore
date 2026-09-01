@@ -1,0 +1,7 @@
+.venv/
+.lock-venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+checkpoints/*.pt
+checkpoints/*.pth
