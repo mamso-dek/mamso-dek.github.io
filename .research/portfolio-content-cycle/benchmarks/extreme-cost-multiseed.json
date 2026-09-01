@@ -1,0 +1,455 @@
+{
+  "status": "co\u00fbts extr\u00eames multigraines \u2014 d\u00e9veloppement non final",
+  "device": "cpu",
+  "torch_version": "2.13.0",
+  "market": {
+    "s0": 100.0,
+    "strike": 100.0,
+    "maturity": 0.11904761904761904,
+    "rate": 0.0,
+    "sigma": 0.2,
+    "n_steps": 30
+  },
+  "experiment": {
+    "costs_one_way": [
+      0.0,
+      0.005
+    ],
+    "runs_per_cost": 3,
+    "epochs": 2000,
+    "batch_size": 8192,
+    "validation_size": 50000,
+    "validation_seed": 20262000,
+    "development_seed": 20263000,
+    "development_size": 100000,
+    "matched_training_seeds_across_costs": true,
+    "bootstrap_replicates_per_run": 1000,
+    "final_test_used": false
+  },
+  "scenarios": [
+    {
+      "one_way_cost": 0.0,
+      "basis_points": 0,
+      "leland_adjusted_volatility": 0.2,
+      "leland_development_metrics": {
+        "mean_pnl": -0.0005507282330654562,
+        "std_pnl": 0.43018093705177307,
+        "loss_probability": 0.49334999918937683,
+        "var_loss_95": 0.7112008333206177,
+        "cvar_loss_95": 1.001405119895935,
+        "mean_transaction_cost": 0.0,
+        "mean_turnover_notional": 273.7846374511719
+      },
+      "runs": [
+        {
+          "run": 1,
+          "model_seed": 20260911,
+          "train_seed": 20261000,
+          "training_provenance": "checkpoint existant de la sensibilit\u00e9 aux co\u00fbts",
+          "elapsed_seconds_this_run": 0.0,
+          "best_epoch": 1994,
+          "best_eta": 0.7014983296394348,
+          "best_validation": {
+            "epoch": 1994.0,
+            "train_objective": 0.8910857439041138,
+            "eta": 0.7014983296394348,
+            "mean_pnl": -0.0035425799433141947,
+            "std_pnl": 0.4936962425708771,
+            "loss_probability": 0.552079975605011,
+            "var_loss_95": 0.7081453800201416,
+            "cvar_loss_95": 0.9029771685600281,
+            "mean_transaction_cost": 0.0,
+            "mean_turnover_notional": 258.16778564453125
+          },
+          "development_metrics": {
+            "neural": {
+              "mean_pnl": -0.0003038046997971833,
+              "std_pnl": 0.4921300411224365,
+              "loss_probability": 0.5505399703979492,
+              "var_loss_95": 0.7032017111778259,
+              "cvar_loss_95": 0.8946150541305542,
+              "mean_transaction_cost": 0.0,
+              "mean_turnover_notional": 258.1993103027344
+            }
+          },
+          "paired_bootstrap_versus_leland": {
+            "point_improvement": 0.1067901551485062,
+            "reference_cvar": 1.0014051795959473,
+            "candidate_cvar": 0.8946150244474411,
+            "bootstrap_mean": 0.10690433566119671,
+            "bootstrap_standard_error": 0.003694680273716918,
+            "confidence": 0.95,
+            "ci_lower": 0.09959142881929874,
+            "ci_upper": 0.11392180600583561,
+            "probability_improvement_positive": 1.0,
+            "n_bootstrap": 1000,
+            "bootstrap_seed": 20263701,
+            "sample_size": 100000,
+            "tail_size": 5000,
+            "alpha": 0.95
+          },
+          "history_file": "benchmarks/cost-sensitivity-histories/cost-0000bp.json"
+        },
+        {
+          "run": 2,
+          "model_seed": 20260912,
+          "train_seed": 20271000,
+          "training_provenance": "r\u00e9entra\u00eenement complet de 2 000 \u00e9poques",
+          "elapsed_seconds_this_run": 150.50269558299624,
+          "best_epoch": 1971,
+          "best_eta": 0.6960380673408508,
+          "best_validation": {
+            "epoch": 1971.0,
+            "train_objective": 0.8938175439834595,
+            "eta": 0.6960380673408508,
+            "mean_pnl": -0.0035509972367435694,
+            "std_pnl": 0.49141213297843933,
+            "loss_probability": 0.5539199709892273,
+            "var_loss_95": 0.7034872770309448,
+            "cvar_loss_95": 0.9005336761474609,
+            "mean_transaction_cost": 0.0,
+            "mean_turnover_notional": 258.1021423339844
+          },
+          "development_metrics": {
+            "neural": {
+              "mean_pnl": -0.000353382172761485,
+              "std_pnl": 0.4899541735649109,
+              "loss_probability": 0.5517600178718567,
+              "var_loss_95": 0.6995911598205566,
+              "cvar_loss_95": 0.8928507566452026,
+              "mean_transaction_cost": 0.0,
+              "mean_turnover_notional": 258.14056396484375
+            }
+          },
+          "paired_bootstrap_versus_leland": {
+            "point_improvement": 0.10855434958934795,
+            "reference_cvar": 1.0014051795959473,
+            "candidate_cvar": 0.8928508300065994,
+            "bootstrap_mean": 0.10875741322951317,
+            "bootstrap_standard_error": 0.0036308848566775007,
+            "confidence": 0.95,
+            "ci_lower": 0.10167005929648876,
+            "ci_upper": 0.11568418725311759,
+            "probability_improvement_positive": 1.0,
+            "n_bootstrap": 1000,
+            "bootstrap_seed": 20263702,
+            "sample_size": 100000,
+            "tail_size": 5000,
+            "alpha": 0.95
+          },
+          "history_file": "benchmarks/extreme-cost-multiseed-histories/cost-0000bp-run-2.json"
+        },
+        {
+          "run": 3,
+          "model_seed": 20260913,
+          "train_seed": 20281000,
+          "training_provenance": "r\u00e9entra\u00eenement complet de 2 000 \u00e9poques",
+          "elapsed_seconds_this_run": 149.7703270829952,
+          "best_epoch": 1991,
+          "best_eta": 0.7089743614196777,
+          "best_validation": {
+            "epoch": 1991.0,
+            "train_objective": 0.9120901823043823,
+            "eta": 0.7089743614196777,
+            "mean_pnl": -0.003574399510398507,
+            "std_pnl": 0.4974047839641571,
+            "loss_probability": 0.5552800297737122,
+            "var_loss_95": 0.7103570103645325,
+            "cvar_loss_95": 0.9089254140853882,
+            "mean_transaction_cost": 0.0,
+            "mean_turnover_notional": 257.0516357421875
+          },
+          "development_metrics": {
+            "neural": {
+              "mean_pnl": -0.00018902160809375346,
+              "std_pnl": 0.49607232213020325,
+              "loss_probability": 0.5529599785804749,
+              "var_loss_95": 0.7057715058326721,
+              "cvar_loss_95": 0.901350200176239,
+              "mean_transaction_cost": 0.0,
+              "mean_turnover_notional": 257.0714111328125
+            }
+          },
+          "paired_bootstrap_versus_leland": {
+            "point_improvement": 0.10005495100021367,
+            "reference_cvar": 1.0014051795959473,
+            "candidate_cvar": 0.9013502285957337,
+            "bootstrap_mean": 0.0999762359536171,
+            "bootstrap_standard_error": 0.0037191578058770754,
+            "confidence": 0.95,
+            "ci_lower": 0.09310099572360511,
+            "ci_upper": 0.10702981683254238,
+            "probability_improvement_positive": 1.0,
+            "n_bootstrap": 1000,
+            "bootstrap_seed": 20263703,
+            "sample_size": 100000,
+            "tail_size": 5000,
+            "alpha": 0.95
+          },
+          "history_file": "benchmarks/extreme-cost-multiseed-histories/cost-0000bp-run-3.json"
+        }
+      ],
+      "aggregate": {
+        "n_runs": 3,
+        "cvar_loss_95": {
+          "mean": 0.8962720036506653,
+          "sample_std": 0.004485448290691388,
+          "min": 0.8928507566452026,
+          "max": 0.901350200176239
+        },
+        "std_pnl": {
+          "mean": 0.4927188456058502,
+          "sample_std": 0.0031012825583157187,
+          "min": 0.4899541735649109,
+          "max": 0.49607232213020325
+        },
+        "mean_transaction_cost": {
+          "mean": 0.0,
+          "sample_std": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "mean_turnover_notional": {
+          "mean": 257.8037618001302,
+          "sample_std": 0.6349140949722327,
+          "min": 257.0714111328125,
+          "max": 258.1993103027344
+        },
+        "cvar_improvement_versus_leland": {
+          "mean": 0.10513315191268928,
+          "sample_std": 0.004485441883123146,
+          "min": 0.10005495100021367,
+          "max": 0.10855434958934795,
+          "runs_with_positive_point_improvement": 3,
+          "runs_with_strictly_positive_ci": 3
+        }
+      }
+    },
+    {
+      "one_way_cost": 0.005,
+      "basis_points": 50,
+      "leland_adjusted_volatility": 0.2556013487324911,
+      "leland_development_metrics": {
+        "mean_pnl": -1.2697627544403076,
+        "std_pnl": 0.5460173487663269,
+        "loss_probability": 0.9893100261688232,
+        "var_loss_95": 2.1608474254608154,
+        "cvar_loss_95": 2.444305419921875,
+        "mean_transaction_cost": 1.2692437171936035,
+        "mean_turnover_notional": 253.84878540039062
+      },
+      "runs": [
+        {
+          "run": 1,
+          "model_seed": 20260911,
+          "train_seed": 20261000,
+          "training_provenance": "checkpoint existant de la sensibilit\u00e9 aux co\u00fbts",
+          "elapsed_seconds_this_run": 0.0,
+          "best_epoch": 1972,
+          "best_eta": 1.951994776725769,
+          "best_validation": {
+            "epoch": 1972.0,
+            "train_objective": 2.137730836868286,
+            "eta": 1.951994776725769,
+            "mean_pnl": -1.0896645784378052,
+            "std_pnl": 0.6014556884765625,
+            "loss_probability": 0.9472200274467468,
+            "var_loss_95": 1.9540293216705322,
+            "cvar_loss_95": 2.168304443359375,
+            "mean_transaction_cost": 1.0843318700790405,
+            "mean_turnover_notional": 216.8663787841797
+          },
+          "development_metrics": {
+            "neural": {
+              "mean_pnl": -1.0853748321533203,
+              "std_pnl": 0.5989352464675903,
+              "loss_probability": 0.9477900266647339,
+              "var_loss_95": 1.947842001914978,
+              "cvar_loss_95": 2.162806987762451,
+              "mean_transaction_cost": 1.0846670866012573,
+              "mean_turnover_notional": 216.93344116210938
+            }
+          },
+          "paired_bootstrap_versus_leland": {
+            "point_improvement": 0.2814982196569442,
+            "reference_cvar": 2.444305286979675,
+            "candidate_cvar": 2.162807067322731,
+            "bootstrap_mean": 0.2815810958692789,
+            "bootstrap_standard_error": 0.004374111561006459,
+            "confidence": 0.95,
+            "ci_lower": 0.27303423782348624,
+            "ci_upper": 0.29004542644679515,
+            "probability_improvement_positive": 1.0,
+            "n_bootstrap": 1000,
+            "bootstrap_seed": 20263751,
+            "sample_size": 100000,
+            "tail_size": 5000,
+            "alpha": 0.95
+          },
+          "history_file": "benchmarks/cost-sensitivity-histories/cost-0050bp.json"
+        },
+        {
+          "run": 2,
+          "model_seed": 20260912,
+          "train_seed": 20271000,
+          "training_provenance": "r\u00e9entra\u00eenement complet de 2 000 \u00e9poques",
+          "elapsed_seconds_this_run": 150.57032620899554,
+          "best_epoch": 1970,
+          "best_eta": 1.9436317682266235,
+          "best_validation": {
+            "epoch": 1970.0,
+            "train_objective": 2.1875429153442383,
+            "eta": 1.9436317682266235,
+            "mean_pnl": -1.094162940979004,
+            "std_pnl": 0.5964722037315369,
+            "loss_probability": 0.949400007724762,
+            "var_loss_95": 1.9490175247192383,
+            "cvar_loss_95": 2.1638734340667725,
+            "mean_transaction_cost": 1.0889357328414917,
+            "mean_turnover_notional": 217.7871551513672
+          },
+          "development_metrics": {
+            "neural": {
+              "mean_pnl": -1.09006667137146,
+              "std_pnl": 0.5943295359611511,
+              "loss_probability": 0.949970006942749,
+              "var_loss_95": 1.9448621273040771,
+              "cvar_loss_95": 2.1608023643493652,
+              "mean_transaction_cost": 1.089223027229309,
+              "mean_turnover_notional": 217.8446044921875
+            }
+          },
+          "paired_bootstrap_versus_leland": {
+            "point_improvement": 0.2835027652502058,
+            "reference_cvar": 2.444305286979675,
+            "candidate_cvar": 2.1608025217294693,
+            "bootstrap_mean": 0.28335296682600974,
+            "bootstrap_standard_error": 0.0044558565690612575,
+            "confidence": 0.95,
+            "ci_lower": 0.2748235812014341,
+            "ci_upper": 0.29206595835983773,
+            "probability_improvement_positive": 1.0,
+            "n_bootstrap": 1000,
+            "bootstrap_seed": 20263752,
+            "sample_size": 100000,
+            "tail_size": 5000,
+            "alpha": 0.95
+          },
+          "history_file": "benchmarks/extreme-cost-multiseed-histories/cost-0050bp-run-2.json"
+        },
+        {
+          "run": 3,
+          "model_seed": 20260913,
+          "train_seed": 20281000,
+          "training_provenance": "r\u00e9entra\u00eenement complet de 2 000 \u00e9poques",
+          "elapsed_seconds_this_run": 149.755885999999,
+          "best_epoch": 1985,
+          "best_eta": 1.9472194910049438,
+          "best_validation": {
+            "epoch": 1985.0,
+            "train_objective": 2.179588794708252,
+            "eta": 1.9472194910049438,
+            "mean_pnl": -1.087430477142334,
+            "std_pnl": 0.603631317615509,
+            "loss_probability": 0.9460800290107727,
+            "var_loss_95": 1.9508470296859741,
+            "cvar_loss_95": 2.166902780532837,
+            "mean_transaction_cost": 1.0820866823196411,
+            "mean_turnover_notional": 216.4173126220703
+          },
+          "development_metrics": {
+            "neural": {
+              "mean_pnl": -1.0831937789916992,
+              "std_pnl": 0.6013533473014832,
+              "loss_probability": 0.946690022945404,
+              "var_loss_95": 1.94835364818573,
+              "cvar_loss_95": 2.162846803665161,
+              "mean_transaction_cost": 1.0823804140090942,
+              "mean_turnover_notional": 216.47610473632812
+            }
+          },
+          "paired_bootstrap_versus_leland": {
+            "point_improvement": 0.28145829885005913,
+            "reference_cvar": 2.444305286979675,
+            "candidate_cvar": 2.162846988129616,
+            "bootstrap_mean": 0.28142825289883616,
+            "bootstrap_standard_error": 0.004686340330971102,
+            "confidence": 0.95,
+            "ci_lower": 0.2721640038734676,
+            "ci_upper": 0.2907460958367587,
+            "probability_improvement_positive": 1.0,
+            "n_bootstrap": 1000,
+            "bootstrap_seed": 20263753,
+            "sample_size": 100000,
+            "tail_size": 5000,
+            "alpha": 0.95
+          },
+          "history_file": "benchmarks/extreme-cost-multiseed-histories/cost-0050bp-run-3.json"
+        }
+      ],
+      "aggregate": {
+        "n_runs": 3,
+        "cvar_loss_95": {
+          "mean": 2.162152051925659,
+          "sample_std": 0.0011690332509081255,
+          "min": 2.1608023643493652,
+          "max": 2.162846803665161
+        },
+        "std_pnl": {
+          "mean": 0.5982060432434082,
+          "sample_std": 0.003568232677777953,
+          "min": 0.5943295359611511,
+          "max": 0.6013533473014832
+        },
+        "mean_transaction_cost": {
+          "mean": 1.085423509279887,
+          "sample_std": 0.0034834566700224037,
+          "min": 1.0823804140090942,
+          "max": 1.089223027229309
+        },
+        "mean_turnover_notional": {
+          "mean": 217.084716796875,
+          "sample_std": 0.6966786444998148,
+          "min": 216.47610473632812,
+          "max": 217.8446044921875
+        },
+        "cvar_improvement_versus_leland": {
+          "mean": 0.2821530945857364,
+          "sample_std": 0.0011690195013782136,
+          "min": 0.28145829885005913,
+          "max": 0.2835027652502058,
+          "runs_with_positive_point_improvement": 3,
+          "runs_with_strictly_positive_ci": 3
+        }
+      }
+    }
+  ],
+  "matched_cost_contrasts": [
+    {
+      "run": 1,
+      "cvar_increase_50bp_minus_0bp": 1.268191933631897,
+      "turnover_change_50bp_minus_0bp": -41.265869140625
+    },
+    {
+      "run": 2,
+      "cvar_increase_50bp_minus_0bp": 1.2679516077041626,
+      "turnover_change_50bp_minus_0bp": -40.29595947265625
+    },
+    {
+      "run": 3,
+      "cvar_increase_50bp_minus_0bp": 1.2614966034889221,
+      "turnover_change_50bp_minus_0bp": -40.595306396484375
+    }
+  ],
+  "reserved_final_test": {
+    "seed": 20269000,
+    "size": 250000,
+    "status": "pr\u00e9enregistr\u00e9 et non ex\u00e9cut\u00e9"
+  },
+  "matched_cost_contrast_aggregate": {
+    "cvar_increase_mean": 1.265880048274994,
+    "cvar_increase_sample_std": 0.0037980758657891805,
+    "turnover_change_mean": -40.71904500325521,
+    "turnover_change_sample_std": 0.4966534235349666
+  }
+}

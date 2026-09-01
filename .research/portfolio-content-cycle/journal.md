@@ -376,3 +376,51 @@ Une ablation ajoutant la variance à l’état d’une politique entraînée sou
 ### Prochain jalon
 
 Réentraîner plusieurs graines supplémentaires à 0 et 50 points de base sous le budget figé de 2 000 époques, puis comparer la dispersion inter-graines, les intervalles appariés et le turnover. Garder le test final fermé.
+
+## 2026-09-01 — Exécution 10
+
+### Travail réalisé
+
+- Réutilisation des checkpoints déjà validés pour la première graine à 0 et 50 points de base.
+- Entraînement complet de quatre nouvelles politiques pendant 2 000 époques : deux graines supplémentaires à chacun des deux coûts.
+- Appariement des graines entre coûts : les mêmes initialisations 20260911, 20260912 et 20260913 et les mêmes flux d’entraînement correspondants sont utilisés à 0 et 50 points de base.
+- Validation commune sur 50 000 trajectoires et évaluation commune sur 100 000 trajectoires de développement.
+- Calcul de 1 000 réplications bootstrap appariées par politique face à Leland.
+- Ajout d’un test de régression pour l’enregistrement incrémental des agrégats ; la suite comporte désormais 20 tests.
+
+### Stabilité entre graines
+
+| Coût | CVaR des trois réseaux | Moyenne | Écart-type inter-graines | CVaR Leland | Amélioration moyenne |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 0 pb | 0,8946 ; 0,8929 ; 0,9014 | 0,8963 | 0,0045 | 1,0014 | 0,1051 |
+| 50 pb | 2,1628 ; 2,1608 ; 2,1628 | 2,1622 | 0,0012 | 2,4443 | 0,2822 |
+
+Les trois améliorations ponctuelles face à Leland sont positives à chaque coût. Les six intervalles bootstrap à 95 % sont aussi strictement positifs :
+
+- à 0 pb : [0,0996 ; 0,1139], [0,1017 ; 0,1157] et [0,0931 ; 0,1070] ;
+- à 50 pb : [0,2730 ; 0,2900], [0,2748 ; 0,2921] et [0,2722 ; 0,2907].
+
+Le faible écart-type inter-graines confirme que les conclusions aux coûts extrêmes ne reposent pas sur l’initialisation 20260911. Les intervalles bootstrap et l’écart-type inter-graines ne mesurent pas la même incertitude : les premiers rééchantillonnent les trajectoires conditionnellement à une politique, tandis que le second décrit la variation entre trois apprentissages.
+
+### Effet apparié du coût
+
+Le turnover moyen passe de 257,80 sans coût à 217,08 à 50 points de base. Pour les trois paires de graines, les changements valent -41,27, -40,30 et -40,60, soit -40,72 en moyenne avec un écart-type de 0,50. La réduction des échanges lorsque le coût augmente est donc reproduite entre initialisations.
+
+La CVaR augmente simultanément de 1,2682, 1,2680 et 1,2615, soit 1,2659 en moyenne. Le réseau négocie moins mais ne peut naturellement pas annuler la hausse du risque net provoquée par le passage du cas sans friction à 50 points de base.
+
+### Convergence et limites
+
+Les meilleurs états de validation apparaissent entre les époques 1 970 et 1 994. Le budget de 2 000 époques reste donc une limite de calcul, pas une preuve de plateau. Les écarts absolus entre \(\eta\) et la VaR de validation restent toutefois faibles, entre 0,0014 et 0,0074.
+
+Trois graines suffisent pour détecter une dépendance grossière à l’initialisation, mais pas pour estimer précisément une distribution d’apprentissage. Toutes les politiques partagent le même ensemble de validation et le même jeu de développement. Le test final demeure intact.
+
+### Décisions
+
+- Considérer la structure de coût comme stable aux deux extrêmes dans le cadre simulé.
+- Conserver les six politiques et leurs historiques privés pour les contrôles de reproduction.
+- Ne pas augmenter encore le nombre de graines avant les ablations, car l’incertitude inter-graines observée est déjà faible par rapport aux gains face à Leland.
+- Examiner maintenant si l’inventaire précédent est réellement responsable de la réduction du turnover.
+
+### Prochain jalon
+
+Entraîner au coût central une politique sans inventaire précédent, puis comparer CVaR, coûts et turnover à architecture et budget comparables. Tester ensuite une capacité plus petite et une capacité plus grande pour distinguer l’effet de l’état de celui du nombre de paramètres.
