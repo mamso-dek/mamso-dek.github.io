@@ -7,9 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** environnement reproductible, convention de Leland, cœur différentiable et références classiques validés ; premier apprentissage de faisabilité terminé
-- **Résultat provisoire :** à 300 époques, le réseau réduit le coût et le turnover, mais reste derrière Leland sur la CVaR à 95 % ; aucune supériorité neuronale n’est donc établie
-- **Prochain jalon :** prolonger l’apprentissage sur plusieurs graines, contrôler la convergence et analyser la forme de la politique avant les expériences de robustesse
+- **Statut :** environnement reproductible, convention de Leland, cœur différentiable et références classiques validés ; cinq apprentissages longs terminés
+- **Résultat provisoire :** à 1 000 époques, les cinq graines battent Leland sur la CVaR à 95 % et réduisent les transactions ; il s’agit encore d’un résultat interne à un scénario
+- **Prochain jalon :** quantifier l’incertitude Monte-Carlo par comparaison appariée, vérifier la convergence au-delà de 1 000 époques et analyser la politique avant les scénarios de robustesse
 
 Les fichiers de référence sont :
 

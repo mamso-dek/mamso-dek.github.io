@@ -1,0 +1,228 @@
+{
+  "status": "exp\u00e9rience multigraine interm\u00e9diaire \u2014 non publiable seule",
+  "torch_version": "2.13.0",
+  "device": "cpu",
+  "market": {
+    "s0": 100.0,
+    "strike": 100.0,
+    "maturity": 0.11904761904761904,
+    "rate": 0.0,
+    "sigma": 0.2,
+    "n_steps": 30
+  },
+  "experiment": {
+    "epochs": 1000,
+    "requested_runs": 5,
+    "batch_size": 8192,
+    "validation_size": 50000,
+    "test_size": 100000,
+    "validation_seed": 20262000,
+    "test_seed": 20263000,
+    "one_way_cost": 0.0025,
+    "alpha": 0.95
+  },
+  "baselines": {
+    "sans_couverture": {
+      "mean_pnl": 0.0046769254840910435,
+      "std_pnl": 4.192316055297852,
+      "loss_probability": 0.3329100012779236,
+      "var_loss_95": 9.032028198242188,
+      "cvar_loss_95": 12.30809497833252,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 0.0
+    },
+    "delta_black_scholes": {
+      "mean_pnl": -0.6850123405456543,
+      "std_pnl": 0.49606528878211975,
+      "loss_probability": 0.942870020866394,
+      "var_loss_95": 1.5750387907028198,
+      "cvar_loss_95": 1.9174202680587769,
+      "mean_transaction_cost": 0.6844616532325745,
+      "mean_turnover_notional": 273.7846374511719
+    },
+    "delta_leland": {
+      "mean_pnl": -0.6568604707717896,
+      "std_pnl": 0.47457388043403625,
+      "loss_probability": 0.9223999977111816,
+      "var_loss_95": 1.4325923919677734,
+      "cvar_loss_95": 1.7184832096099854,
+      "mean_transaction_cost": 0.6563563346862793,
+      "mean_turnover_notional": 262.54254150390625,
+      "adjusted_volatility": 0.22949079444922027
+    }
+  },
+  "runs": [
+    {
+      "run": 1,
+      "model_seed": 20260911,
+      "train_seed": 20261000,
+      "elapsed_seconds": 75.93670204099908,
+      "best_epoch": 994,
+      "best_eta": 1.3851263523101807,
+      "best_validation": {
+        "epoch": 994.0,
+        "train_objective": 1.5770118236541748,
+        "eta": 1.3851263523101807,
+        "mean_pnl": -0.5844807028770447,
+        "std_pnl": 0.5628869533538818,
+        "loss_probability": 0.8406999707221985,
+        "var_loss_95": 1.389575719833374,
+        "cvar_loss_95": 1.5997257232666016,
+        "mean_transaction_cost": 0.579829752445221,
+        "mean_turnover_notional": 231.93190002441406
+      },
+      "test_neural": {
+        "mean_pnl": -0.5802510380744934,
+        "std_pnl": 0.5593262910842896,
+        "loss_probability": 0.8422399759292603,
+        "var_loss_95": 1.3825920820236206,
+        "cvar_loss_95": 1.5909992456436157,
+        "mean_transaction_cost": 0.5799399018287659,
+        "mean_turnover_notional": 231.97596740722656
+      },
+      "history_file": "benchmarks/multiseed-histories/run-1.json"
+    },
+    {
+      "run": 2,
+      "model_seed": 20260912,
+      "train_seed": 20271000,
+      "elapsed_seconds": 76.50786599999992,
+      "best_epoch": 998,
+      "best_eta": 1.390112042427063,
+      "best_validation": {
+        "epoch": 998.0,
+        "train_objective": 1.5890358686447144,
+        "eta": 1.390112042427063,
+        "mean_pnl": -0.5863522887229919,
+        "std_pnl": 0.5637595653533936,
+        "loss_probability": 0.8407400250434875,
+        "var_loss_95": 1.3925646543502808,
+        "cvar_loss_95": 1.6022697687149048,
+        "mean_transaction_cost": 0.5815326571464539,
+        "mean_turnover_notional": 232.6130828857422
+      },
+      "test_neural": {
+        "mean_pnl": -0.5819756388664246,
+        "std_pnl": 0.5602505803108215,
+        "loss_probability": 0.8422300219535828,
+        "var_loss_95": 1.3847357034683228,
+        "cvar_loss_95": 1.592972755432129,
+        "mean_transaction_cost": 0.581635057926178,
+        "mean_turnover_notional": 232.65403747558594
+      },
+      "history_file": "benchmarks/multiseed-histories/run-2.json"
+    },
+    {
+      "run": 3,
+      "model_seed": 20260913,
+      "train_seed": 20281000,
+      "elapsed_seconds": 75.27515525001218,
+      "best_epoch": 992,
+      "best_eta": 1.3907829523086548,
+      "best_validation": {
+        "epoch": 992.0,
+        "train_objective": 1.593186616897583,
+        "eta": 1.3907829523086548,
+        "mean_pnl": -0.5863232612609863,
+        "std_pnl": 0.561787486076355,
+        "loss_probability": 0.8423600196838379,
+        "var_loss_95": 1.3934235572814941,
+        "cvar_loss_95": 1.60585355758667,
+        "mean_transaction_cost": 0.5816062688827515,
+        "mean_turnover_notional": 232.6425018310547
+      },
+      "test_neural": {
+        "mean_pnl": -0.5820501446723938,
+        "std_pnl": 0.5583767890930176,
+        "loss_probability": 0.8434600234031677,
+        "var_loss_95": 1.3871403932571411,
+        "cvar_loss_95": 1.5976945161819458,
+        "mean_transaction_cost": 0.5817123055458069,
+        "mean_turnover_notional": 232.68492126464844
+      },
+      "history_file": "benchmarks/multiseed-histories/run-3.json"
+    },
+    {
+      "run": 4,
+      "model_seed": 20260914,
+      "train_seed": 20291000,
+      "elapsed_seconds": 75.05453404199216,
+      "best_epoch": 999,
+      "best_eta": 1.3776391744613647,
+      "best_validation": {
+        "epoch": 999.0,
+        "train_objective": 1.5741467475891113,
+        "eta": 1.3776391744613647,
+        "mean_pnl": -0.5859971046447754,
+        "std_pnl": 0.55506432056427,
+        "loss_probability": 0.8447399735450745,
+        "var_loss_95": 1.379960298538208,
+        "cvar_loss_95": 1.5854843854904175,
+        "mean_transaction_cost": 0.581399142742157,
+        "mean_turnover_notional": 232.5596466064453
+      },
+      "test_neural": {
+        "mean_pnl": -0.5819527506828308,
+        "std_pnl": 0.5528506636619568,
+        "loss_probability": 0.846340000629425,
+        "var_loss_95": 1.3762726783752441,
+        "cvar_loss_95": 1.5792343616485596,
+        "mean_transaction_cost": 0.5814850926399231,
+        "mean_turnover_notional": 232.59402465820312
+      },
+      "history_file": "benchmarks/multiseed-histories/run-4.json"
+    },
+    {
+      "run": 5,
+      "model_seed": 20260915,
+      "train_seed": 20301000,
+      "elapsed_seconds": 75.4974018339999,
+      "best_epoch": 995,
+      "best_eta": 1.3925144672393799,
+      "best_validation": {
+        "epoch": 995.0,
+        "train_objective": 1.6015957593917847,
+        "eta": 1.3925144672393799,
+        "mean_pnl": -0.5836759805679321,
+        "std_pnl": 0.5656571984291077,
+        "loss_probability": 0.8392000198364258,
+        "var_loss_95": 1.3964024782180786,
+        "cvar_loss_95": 1.6079938411712646,
+        "mean_transaction_cost": 0.5789555311203003,
+        "mean_turnover_notional": 231.58224487304688
+      },
+      "test_neural": {
+        "mean_pnl": -0.5794098973274231,
+        "std_pnl": 0.5620120763778687,
+        "loss_probability": 0.8408899903297424,
+        "var_loss_95": 1.3892468214035034,
+        "cvar_loss_95": 1.5995022058486938,
+        "mean_transaction_cost": 0.5790441632270813,
+        "mean_turnover_notional": 231.61767578125
+      },
+      "history_file": "benchmarks/multiseed-histories/run-5.json"
+    }
+  ],
+  "aggregate": {
+    "n_runs": 5,
+    "cvar_loss_95": {
+      "mean": 1.5920806169509887,
+      "sample_std": 0.007962213834904999,
+      "min": 1.5792343616485596,
+      "max": 1.5995022058486938
+    },
+    "mean_transaction_cost": {
+      "mean": 0.580763304233551,
+      "sample_std": 0.0012057128405197615,
+      "min": 0.5790441632270813,
+      "max": 0.5817123055458069
+    },
+    "mean_turnover_notional": {
+      "mean": 232.30532531738282,
+      "sample_std": 0.48228079978769006,
+      "min": 231.61767578125,
+      "max": 232.68492126464844
+    },
+    "runs_better_than_leland_cvar": 5
+  }
+}

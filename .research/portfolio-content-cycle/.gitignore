@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 checkpoints/*.pt
 checkpoints/*.pth
+benchmarks/smoke-results-*-1000e.json

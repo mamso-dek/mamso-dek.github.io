@@ -84,3 +84,35 @@ Les références classiques montrent aussi que Leland améliore la CVaR de la de
 ### Prochain jalon
 
 Lancer des apprentissages de 600 à 1 000 époques sur plusieurs graines, vérifier la convergence de η, comparer systématiquement au benchmark de Leland et examiner la forme de la politique ainsi que le turnover. Les expériences de robustesse ne commenceront qu’après stabilisation de l’apprentissage principal.
+
+## 2026-09-01 — Exécution 3
+
+### Travail réalisé
+
+- Réexécution complète du premier apprentissage sur 1 000 époques, au lieu du pilote de 300 époques, dans la configuration centrale à 25 points de base.
+- Création d’un protocole multigraine reproductible : cinq initialisations du réseau et cinq flux d’entraînement distincts, avec validation commune de 50 000 trajectoires et test commun indépendant de 100 000 trajectoires.
+- Conservation séparée des graines, du meilleur état de validation, de η, des métriques de test et d’un historique échantillonné de convergence.
+- Comparaison systématique au même prix initial et sur les mêmes trajectoires avec la delta Black–Scholes et la delta ajustée de Leland.
+
+### Résultats intermédiaires
+
+Les CVaR à 95 % hors échantillon des cinq réseaux sont 1,5910, 1,5930, 1,5977, 1,5792 et 1,5995. Leur moyenne est de 1,5921 et leur écart-type entre graines de 0,0080. Les cinq réplications font mieux que Leland, dont la CVaR vaut 1,7185 sur ce test, ainsi que la delta classique à 1,9174.
+
+L’amélioration moyenne de CVaR par rapport à Leland est de 0,1264, soit 7,36 % dans ce scénario. Le coût de transaction moyen des réseaux est de 0,5808 contre 0,6564 pour Leland, et leur turnover notionnel moyen de 232,31 contre 262,54. Le gain ne provient donc pas d’une multiplication des échanges.
+
+Les meilleurs états apparaissent entre les époques 992 et 999. Le seuil η est désormais proche de la VaR de validation : l’écart absolu moyen est de 0,0032. Cela corrige le diagnostic de l’exécution précédente, où η n’avait pas convergé. La proximité du meilleur état avec la limite de 1 000 époques impose toutefois un contrôle plus long avant de considérer la convergence comme acquise.
+
+### Interprétation prudente
+
+La stabilité entre graines montre que le résultat n’est pas lié à une initialisation heureuse. Elle ne mesure toutefois pas l’incertitude Monte-Carlo, car toutes les stratégies sont comparées sur le même jeu de test. Elle ne démontre pas non plus une robustesse à d’autres coûts, maturités, volatilités ou dynamiques de marché.
+
+### Décisions
+
+- Remplacer le constat négatif à 300 époques par un résultat positif mais explicitement provisoire à 1 000 époques.
+- Ne rien intégrer au portfolio public à ce stade.
+- Conserver les comparaisons appariées sur des trajectoires communes.
+- Échantillonner les historiques enregistrés afin de garder les points de convergence utiles sans stocker 5 000 lignes redondantes.
+
+### Prochain jalon
+
+Produire les P&L trajectoire par trajectoire pour une analyse bootstrap appariée, prolonger au moins une réplication au-delà de 1 000 époques et construire des diagnostics de politique. Ensuite seulement, lancer les sensibilités au coût et aux paramètres de marché.
