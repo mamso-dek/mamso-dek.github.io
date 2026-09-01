@@ -7,9 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** le test final préenregistré a été ouvert une fois et ses résultats intègres sont conservés
+- **Statut :** le notebook narratif a été exécuté intégralement et son rendu HTML accessible a été produit sans recalculer le test final
 - **Résultat final :** la politique neuronale réduit la CVaR de 0,1615 face à Leland, IC 95 % [0,1565 ; 0,1664], tout en réduisant le turnover de 28,79 ; son écart-type de P&L reste supérieur
-- **Prochain jalon :** rédiger et exécuter le notebook narratif, puis préparer le rapport technique sans recalculer le test final
+- **Prochain jalon :** rédiger le rapport technique à partir du notebook validé et préparer l'intégration Jekyll sans recalculer le test final
 - **Temps restant :** quatre jours sur le cycle ; le test final est définitivement fermé
 
 Les fichiers de référence sont :
@@ -19,6 +19,7 @@ Les fichiers de référence sont :
 - `gel-protocole.md` : spécification immuable du modèle et de l'analyse avant test final ;
 - `resultats-finaux.md` : interprétation du test final et limites de portée ;
 - `figures/` : générateur, carte, exports PNG/SVG et manifeste d'empreintes ;
+- `notebooks/` : constructeur, notebook narratif exécuté et rendu HTML ;
 - `matrice-litterature.md` : sources vérifiées et rôle dans l’étude ;
 - `bibliographie.bib` : métadonnées bibliographiques réutilisables ;
 - `environment.md` : plateforme, dépendances et règles de reproductibilité ;

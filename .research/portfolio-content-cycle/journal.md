@@ -608,3 +608,56 @@ Les empreintes de `final-test-results.json` et des quatre artefacts de développ
 ### Prochain jalon
 
 Construire le notebook narratif à partir des résultats et figures validés. Il devra expliquer la question, les conventions de P&L, l'objectif CVaR, le protocole, les résultats finaux, les sensibilités et les limites, tout en restant exécutable sans régénérer le test final.
+
+## 2026-09-01 — Exécution 16
+
+### Travail réalisé
+
+- Conception d'un notebook d'analyse destiné à un lecteur technique, et non d'un journal de calcul brut.
+- Séparation en sections courtes : résumé, portée, théorie, protocole, données, résultats finaux, sensibilités, cohérence, conclusions, limites, références et reproductibilité.
+- Ajout d'un contrôle d'empreinte des cinq sources, du résultat final et du marqueur avant tout affichage.
+- Intégration des cinq figures validées sans relancer leur générateur.
+- Préparation de tableaux calculés directement depuis les JSON : stratégies, intervalles appariés, coûts, robustesse, ablations et comparaison développement–test.
+- Inclusion explicite des résultats négatifs, de la variance plus élevée du réseau et des limites du proxy Heston.
+- Ajout d'un constructeur versionné afin que la structure du notebook reste relisible malgré le format JSON de `.ipynb`.
+
+### Règle d'exécution
+
+Le notebook ne contient aucun import du simulateur, du modèle ou du script de test final. Il recherche la racine scientifique, vérifie les SHA-256, puis relit les artefacts suivis par Git. Toute divergence d'empreinte arrête l'exécution avant les tableaux de résultats.
+
+### Prochain jalon
+
+Construire le fichier `.ipynb`, l'exécuter de bout en bout dans l'environnement verrouillé, inspecter les sorties et produire un rendu HTML autonome. Vérifier ensuite que résumé, tableaux et conclusions concordent exactement avec les cellules exécutées.
+
+## 2026-09-01 — Exécution 17
+
+### Travail réalisé
+
+- Construction du notebook narratif depuis `notebooks/build_notebook.py`.
+- Exécution intégrale des 43 cellules dans l'environnement verrouillé : 27 cellules Markdown, 16 cellules de code et 16 compteurs d'exécution consécutifs.
+- Contrôle du fichier avec `nbformat` et inspection de toutes les sorties : aucune erreur d'exécution.
+- Vérification des cinq empreintes sources, du marqueur d'ouverture et du résultat final avant affichage des tableaux.
+- Correction de cinq expressions inline qui utilisaient des parenthèses ordinaires au lieu de délimiteurs mathématiques.
+- Intégration des cinq textes alternatifs depuis le manifeste des figures.
+- Production du rendu `notebooks/rendered/deep-hedging-couts-transaction.html` avec les cinq PNG embarqués.
+- Mise à jour des instructions de reconstruction, d'exécution et d'export HTML.
+
+### Contrôles du notebook
+
+- 43 cellules valides, dont 16 cellules de code toutes exécutées.
+- Zéro sortie de type `error`.
+- 27 tests scientifiques réussis et aucune dépendance cassée selon `pip check`.
+- Cinq figures PNG embarquées dans le notebook et dans le HTML.
+- Zéro figure sans texte alternatif dans le rendu `classic`.
+- Présence vérifiée du résumé, des paramètres, des tableaux finaux, des sensibilités, des résultats défavorables, des limites et de l'environnement de reproduction.
+- Concordance numérique vérifiée entre développement et test final pour la CVaR du réseau, la CVaR de Leland et leur écart.
+
+Le rendu HTML dépend encore de MathJax chargé en ligne pour composer les équations, mais les tableaux, le texte et les figures sont contenus dans le fichier. L'inspection structurelle du HTML est complète ; l'ouverture par le navigateur intégré sur l'adresse locale a échoué, sans erreur du document lui-même.
+
+### Intégrité du test final
+
+Le notebook a uniquement relu les artefacts. L'empreinte SHA-256 de `final-test-results.json` reste `966e7ddaf7e546d60e95ae4fbf4d5adc7c1f4ad6978f1ba06d7e35fdf7cabcc3`. Le test final n'a pas été simulé ni régénéré.
+
+### Prochain jalon
+
+Rédiger le rapport technique en s'appuyant sur les cellules exécutées, sans recopier mécaniquement le notebook. Structurer la contribution, les résultats confirmatoires, les diagnostics de robustesse et les limites, puis préparer la page Projet et ses ressources avant le contrôle Jekyll final.
