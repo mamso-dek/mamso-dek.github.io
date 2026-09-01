@@ -7,9 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** le modèle et le protocole sont gelés ; le script final protégé est préparé mais n'a pas encore été exécuté
+- **Statut :** le modèle et le protocole sont gelés ; le script final protégé est préparé et son audit seul est entièrement vert
 - **Résultat provisoire :** la borne 1,00 améliore très légèrement la CVaR de développement mais accroît le turnover ; la borne centrale 1,25 est conservée pour éviter une sélection rétrospective
-- **Prochain jalon :** terminer l'audit statique, enregistrer le script, puis ouvrir une seule fois le test préenregistré de 250 000 trajectoires
+- **Prochain jalon :** ouvrir une seule fois le test préenregistré de 250 000 trajectoires, puis conserver et interpréter tous les résultats
 - **Temps restant :** quatre jours sur le cycle ; le test final préenregistré reste fermé
 
 Les fichiers de référence sont :

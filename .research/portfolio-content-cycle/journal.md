@@ -534,4 +534,6 @@ La comparaison confirmatoire reste CVaR(Leland) moins CVaR(réseau), avec un int
 
 ### Prochain jalon
 
-Valider la suite complète, enregistrer le script dans Git, exécuter son mode audit sur le dépôt propre, puis seulement lors de la prochaine exécution ouvrir le test final si tous les contrôles sont verts.
+La suite complète atteint 27 tests réussis et `pip check` ne signale aucune dépendance cassée. Après enregistrement du script, son mode audit sur dépôt propre a confirmé l'empreinte du checkpoint, ses métadonnées, l'absence d'artefact final et les paramètres réservés, sans créer de trajectoire ni de fichier.
+
+Lors de la prochaine exécution, refaire cet audit puis ouvrir une seule fois le test final de 250 000 trajectoires si tous les contrôles restent verts. Conserver et interpréter tous les résultats sans modifier le modèle.
