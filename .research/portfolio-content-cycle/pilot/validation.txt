@@ -1,0 +1,12 @@
+OK — prime Black–Scholes du scénario
+OK — P&L moyen sans couverture compatible avec zéro à 3 erreurs-types
+OK — P&L moyen delta compatible avec zéro à 3 erreurs-types
+OK — écart-type delta inférieur à 20 % du non-couvert
+OK — CVaR delta inférieure à 20 % du non-couvert
+OK — CVaR delta strictement croissante avec le coût
+OK — identité coût-turnover à 10 pb
+OK — non-couvert invariant à 10 pb
+OK — identité coût-turnover à 25 pb
+OK — non-couvert invariant à 25 pb
+OK — identité coût-turnover à 50 pb
+OK — non-couvert invariant à 50 pb

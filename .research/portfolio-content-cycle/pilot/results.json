@@ -1,0 +1,112 @@
+{
+  "configuration": {
+    "seed": 20260901,
+    "n_paths": 50000,
+    "n_steps": 30,
+    "s0": 100.0,
+    "strike": 100.0,
+    "maturity_years": 0.11904761904761904,
+    "sigma": 0.2,
+    "risk_free_rate": 0.0,
+    "premium": 2.7524171533585005,
+    "cvar_alpha": 0.95
+  },
+  "results": {
+    "sans_couverture__0.0000": {
+      "mean_pnl": -0.023633112589284237,
+      "std_pnl": 4.226712707244723,
+      "loss_probability": 0.3351,
+      "var_loss_95": 9.043261039657164,
+      "cvar_loss_95": 12.374202005520074,
+      "pnl_q01": -14.442211592489386,
+      "pnl_q05": -9.043261039657175,
+      "pnl_median": 2.7524171533585005,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 0.0
+    },
+    "delta__0.0000": {
+      "mean_pnl": -0.0005399825198570379,
+      "std_pnl": 0.4293599303185518,
+      "loss_probability": 0.49424,
+      "var_loss_95": 0.7067742454188515,
+      "cvar_loss_95": 0.9926014049533707,
+      "pnl_q01": -1.1690687192795288,
+      "pnl_q05": -0.706774245418853,
+      "pnl_median": 0.00520753355580017,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 273.786154695211
+    },
+    "sans_couverture__0.0010": {
+      "mean_pnl": -0.023633112589284237,
+      "std_pnl": 4.226712707244723,
+      "loss_probability": 0.3351,
+      "var_loss_95": 9.043261039657164,
+      "cvar_loss_95": 12.374202005520074,
+      "pnl_q01": -14.442211592489386,
+      "pnl_q05": -9.043261039657175,
+      "pnl_median": 2.7524171533585005,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 0.0
+    },
+    "delta__0.0010": {
+      "mean_pnl": -0.27432613721506804,
+      "std_pnl": 0.4470450007138775,
+      "loss_probability": 0.7518,
+      "var_loss_95": 1.045065967041776,
+      "cvar_loss_95": 1.350400651716784,
+      "pnl_q01": -1.54831056050413,
+      "pnl_q05": -1.0450659670417766,
+      "pnl_median": -0.2482916925855396,
+      "mean_transaction_cost": 0.273786154695211,
+      "mean_turnover_notional": 273.786154695211
+    },
+    "sans_couverture__0.0025": {
+      "mean_pnl": -0.023633112589284237,
+      "std_pnl": 4.226712707244723,
+      "loss_probability": 0.3351,
+      "var_loss_95": 9.043261039657164,
+      "cvar_loss_95": 12.374202005520074,
+      "pnl_q01": -14.442211592489386,
+      "pnl_q05": -9.043261039657175,
+      "pnl_median": 2.7524171533585005,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 0.0
+    },
+    "delta__0.0025": {
+      "mean_pnl": -0.6850053692578846,
+      "std_pnl": 0.496034910521242,
+      "loss_probability": 0.9418,
+      "var_loss_95": 1.5726981885624984,
+      "cvar_loss_95": 1.909190603609628,
+      "pnl_q01": -2.110745519544111,
+      "pnl_q05": -1.572698188562499,
+      "pnl_median": -0.6368908926069037,
+      "mean_transaction_cost": 0.6844653867380276,
+      "mean_turnover_notional": 273.786154695211
+    },
+    "sans_couverture__0.0050": {
+      "mean_pnl": -0.023633112589284237,
+      "std_pnl": 4.226712707244723,
+      "loss_probability": 0.3351,
+      "var_loss_95": 9.043261039657164,
+      "cvar_loss_95": 12.374202005520074,
+      "pnl_q01": -14.442211592489386,
+      "pnl_q05": -9.043261039657175,
+      "pnl_median": 2.7524171533585005,
+      "mean_transaction_cost": 0.0,
+      "mean_turnover_notional": 0.0
+    },
+    "delta__0.0050": {
+      "mean_pnl": -1.3694707559959123,
+      "std_pnl": 0.6198867369310613,
+      "loss_probability": 0.99738,
+      "var_loss_95": 2.4972878798051323,
+      "cvar_loss_95": 2.8755269454701167,
+      "pnl_q01": -3.1164028728150526,
+      "pnl_q05": -2.4972878798051337,
+      "pnl_median": -1.3126345898895502,
+      "mean_transaction_cost": 1.3689307734760552,
+      "mean_turnover_notional": 273.786154695211
+    }
+  }
+}
