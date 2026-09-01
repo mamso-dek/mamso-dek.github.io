@@ -758,3 +758,20 @@ Effectuer un audit final de l'ensemble du site : liens internes, ressources, rec
 ### Décision
 
 L'étude, le notebook, le rapport, la page Projet et le reste du portfolio satisfont les contrôles scientifiques, éditoriaux, structurels et responsive définis pour le cycle. La publication est autorisée. Le prochain et dernier jalon consiste à pousser les commits, attendre le déploiement GitHub Pages, contrôler les URL publiques et consigner la clôture.
+
+## 2026-09-01 — Exécution 21
+
+### Publication et contrôle public
+
+- Publication de la branche `main` jusqu'au commit `c8b10c8`.
+- Déploiement GitHub Pages numéro 33 terminé avec la conclusion `success`.
+- Réponses HTTP 200 confirmées pour l'accueil, la page Projet, la note exponentielle, le rapport PDF, le notebook HTML et le notebook IPYNB.
+- Présence publique confirmée de la feuille de styles `20260901-3`, du projet « Couverture neuronale sous coûts de transaction » et de la note enrichie.
+- Empreintes publiques strictement identiques aux fichiers validés pour le PDF, le notebook HTML et le notebook source.
+- Contrôle public du projet à 1 440 × 900 puis 390 × 844 : aucune erreur de console, aucune image manquante, aucun débordement, menu mobile présent et lecteur PDF fonctionnel.
+- Contrôle public de la note à 390 × 844 : huit liens de sommaire, quatre blocs de code, trois images, 120 expressions MathJax, navigation vers `#estimation` fonctionnelle et aucun débordement.
+- Le dossier de reproduction est accessible sur GitHub ; il reste exclu du site Jekyll.
+
+### Clôture
+
+Tous les jalons du cycle sont terminés. Le résultat scientifique demeure limité au protocole simulé et gelé décrit dans le rapport. Le test final reste fermé avec l'empreinte `966e7ddaf7e546d60e95ae4fbf4d5adc7c1f4ad6978f1ba06d7e35fdf7cabcc3`. Aucun second sujet ne doit être lancé par cette automatisation.

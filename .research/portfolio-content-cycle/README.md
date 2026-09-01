@@ -7,10 +7,10 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 5 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** étude, livrables et intégration terminés ; audit final local entièrement vert, publication GitHub Pages prête
+- **Statut :** cycle achevé ; étude, livrables, intégration et vérification publique terminés
 - **Résultat final :** la politique neuronale réduit la CVaR de 0,1615 face à Leland, IC 95 % [0,1565 ; 0,1664], tout en réduisant le turnover de 28,79 ; son écart-type de P&L reste supérieur
-- **Prochain jalon :** publier les commits validés, contrôler les pages et ressources publiques, puis clore le cycle
-- **Temps restant :** contrôles scientifiques et éditoriaux terminés ; le test final est définitivement fermé
+- **Prochain jalon :** aucun ; ne pas démarrer un second sujet dans ce cycle
+- **Temps restant :** cycle clos ; le test final est définitivement fermé
 
 Les fichiers de référence sont :
 
