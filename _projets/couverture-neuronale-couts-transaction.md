@@ -25,32 +25,17 @@ steps:
     description: Geler le protocole, ouvrir une seule fois le test final et conserver les sensibilités comme les résultats défavorables.
 resources:
   - label: Rapport technique
-    type: Rapport de projet
     format: PDF
-    description: Méthode, résultats confirmatoires, diagnostics de robustesse et limites de l’étude.
-    action: Lire
     file_size: 601 Ko
+    new_tab: true
     url: /assets/projets/couverture-neuronale-couts-transaction/rapport-technique.pdf
-  - label: Notebook exécuté
-    type: Analyse reproductible
+  - label: Notebook de l’étude
     format: HTML
-    description: Code, tableaux, figures et interprétations dans un document consultable en ligne.
-    action: Parcourir
     file_size: 1,2 Mo
+    new_tab: true
     url: /assets/projets/couverture-neuronale-couts-transaction/notebook.html
-  - label: Notebook source
-    type: Code source
-    format: IPYNB
-    description: Version exécutable du notebook pour reproduire les tableaux à partir des artefacts conservés.
-    action: Télécharger
-    download: true
-    file_size: 894 Ko
-    url: /assets/projets/couverture-neuronale-couts-transaction/notebook.ipynb
-  - label: Sources de reproduction
-    type: Code et environnement
+  - label: Code et reproductibilité
     format: GitHub
-    description: Simulateurs, tests, configurations, résultats JSON, bibliographie et journal méthodologique.
-    action: Voir les sources
     external: true
     url: https://github.com/manusalako/manusalako.github.io/tree/main/.research/portfolio-content-cycle
 pdf_url: /assets/projets/couverture-neuronale-couts-transaction/rapport-technique.pdf
@@ -59,8 +44,6 @@ pdf_pages: 10
 pdf_file_size: 601 Ko
 pdf_language: Français
 pdf_download: false
-notebook_source: /assets/projets/couverture-neuronale-couts-transaction/notebook.ipynb
-notebook_html: /assets/projets/couverture-neuronale-couts-transaction/notebook.html
 ---
 ## Question étudiée
 

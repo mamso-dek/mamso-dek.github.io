@@ -123,36 +123,33 @@ Les champs principaux sont :
 - `comment_term` : identifiant unique de sa discussion ;
 - `resources` : fichiers ou liens liés au projet.
 
-Les ressources apparaissent sous forme de liste de fichiers. Chaque ligne peut préciser le type, le format, une courte description et l’action proposée au visiteur.
+Les ressources apparaissent sous forme de lignes compactes. Le nom de chaque ressource est le lien principal. Conserver idéalement deux ou trois liens réellement utiles et éviter de présenter séparément des fichiers déjà disponibles dans le dépôt de reproduction.
 
 ```yaml
 resources:
   - label: Rapport du projet
-    type: Rapport
     format: PDF
-    description: Méthode, résultats et limites de l’étude.
-    action: Lire
+    file_size: 2,4 Mo
+    new_tab: true
     url: /assets/projets/prevision-inflation/rapport.pdf
 
-  - label: Notebook reproductible
-    type: Notebook
-    format: IPYNB
-    action: Télécharger
-    download: true
-    url: /assets/notebooks/prevision-inflation.ipynb
+  - label: Notebook de l’étude
+    format: HTML
+    file_size: 1,2 Mo
+    new_tab: true
+    url: /assets/notebooks/prevision-inflation.html
 
-  - label: Code source
-    type: Code
-    format: Python
-    action: Voir le code
+  - label: Code et reproductibilité
+    format: GitHub
     url: https://github.com/manusalako/nom-du-depot
     external: true
 ```
 
-- `action: Lire` ou `action: Voir` ouvre le fichier dans le navigateur lorsque son format le permet.
-- `download: true` demande directement le téléchargement du fichier.
-- `external: true` ouvre une ressource hébergée sur un autre site dans un nouvel onglet.
-- `description` et `file_size` sont facultatifs.
+- `new_tab: true` ouvre une ressource du site dans un nouvel onglet.
+- `external: true` indique un lien externe et l’ouvre dans un nouvel onglet.
+- `download: true` doit rester exceptionnel : le titre ouvre normalement la ressource pour la consulter.
+- `format` et `file_size` sont facultatifs, mais utiles pour annoncer la nature et le poids du fichier.
+- Ne pas ajouter à la fois un notebook HTML, son fichier IPYNB et le dépôt GitHub si le dépôt contient déjà la source.
 
 ## 6. Ajouter une publication
 
@@ -219,21 +216,26 @@ Les images et vidéos intégrées dans le Markdown restent dans la page concern�
 
 ## 10. Gérer un notebook
 
-### Option simple recommandée depuis GitHub
+### Option simple recommandée
 
-1. Téléverser le fichier `.ipynb` dans `assets/notebooks/`.
-2. Ajouter un lien nbviewer dans les ressources du projet ou de la note.
+1. Conserver le fichier `.ipynb` dans le dépôt de reproduction.
+2. Produire une version HTML consultable et la placer dans `assets/notebooks/`.
+3. Ajouter uniquement la version HTML et le dépôt parmi les ressources visibles.
 
 ```yaml
 resources:
-  - label: Parcourir le notebook
-    url: https://nbviewer.org/github/manusalako/manusalako.github.io/blob/main/assets/notebooks/mon-notebook.ipynb
+  - label: Notebook de l’étude
+    format: HTML
+    new_tab: true
+    url: /assets/notebooks/mon-notebook.html
+
+  - label: Code et reproductibilité
+    format: GitHub
     external: true
-  - label: Télécharger le notebook
-    url: /assets/notebooks/mon-notebook.ipynb
+    url: https://github.com/manusalako/nom-du-depot
 ```
 
-Le visiteur peut ainsi lire le notebook sans ouvrir le dépôt GitHub.
+Le visiteur lit le notebook sur une page dédiée sans alourdir la page du projet. Le fichier source reste accessible aux lecteurs techniques depuis le dépôt.
 
 ### Option intégrée dans la page
 
@@ -246,11 +248,11 @@ Sur votre ordinateur, convertir le notebook en HTML :
 Puis ajouter dans le fichier Markdown :
 
 ```yaml
-notebook_source: /assets/notebooks/mon-notebook.ipynb
+embed_notebook: true
 notebook_html: /assets/notebooks/rendered/mon-notebook.html
 ```
 
-Le notebook sera visible directement dans la page du projet ou de la note.
+Le notebook sera visible directement dans la page du projet. Réserver cette option aux cas où cette intégration apporte une vraie valeur, car elle allonge fortement la page et augmente son poids.
 
 ## 11. Modifier ou supprimer
 

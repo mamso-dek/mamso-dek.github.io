@@ -20,21 +20,20 @@ steps:
 # Décommentez ce bloc lorsqu’un fichier est prêt à être publié.
 # resources:
 #   - label: Rapport du projet
-#     type: Rapport
 #     format: PDF
-#     description: Présentation de la méthode et des résultats.
-#     action: Télécharger
-#     download: true
 #     file_size: 2,4 Mo
+#     new_tab: true
 #     url: /assets/projets/nom-du-projet/rapport.pdf
-#   - label: Notebook d’analyse
-#     type: Notebook
-#     format: IPYNB
-#     action: Télécharger
-#     download: true
-#     url: /assets/notebooks/nom-du-notebook.ipynb
-# Pour intégrer un notebook HTML, retirez le symbole # des deux lignes suivantes.
-# notebook_source: /assets/notebooks/nom-du-notebook.ipynb
+#   - label: Notebook de l’étude
+#     format: HTML
+#     new_tab: true
+#     url: /assets/notebooks/rendered/nom-du-notebook.html
+#   - label: Code et reproductibilité
+#     format: GitHub
+#     external: true
+#     url: https://github.com/manusalako/nom-du-depot
+# N’intégrez le notebook dans la page que si sa lecture immédiate est indispensable.
+# embed_notebook: true
 # notebook_html: /assets/notebooks/rendered/nom-du-notebook.html
 ---
 ## Question étudiée

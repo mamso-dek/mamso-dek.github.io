@@ -25,12 +25,9 @@ steps:
     description: Décomposer les prédictions avec GradientSHAP et confronter les contributions aux méthodes OAT, SU et ASU.
 resources:
   - label: Mémoire de fin d’études
-    type: Rapport de recherche
     format: PDF
-    description: Version finale du mémoire soutenu à l’UNSTIM d’Abomey le 30 octobre 2025.
-    action: Télécharger
-    download: true
     file_size: 1,1 Mo
+    new_tab: true
     url: /assets/projets/memoire-pnl-ia-explicable/memoire_salako_pnl_ia_explicable.pdf
 pdf_url: /assets/projets/memoire-pnl-ia-explicable/memoire_salako_pnl_ia_explicable.pdf
 pdf_title: Mémoire de fin d’études

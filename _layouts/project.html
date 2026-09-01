@@ -59,26 +59,14 @@ main_class: project-page
   {% if page.resources %}
     <ul class="project-resource-list">
       {% for resource in page.resources %}
-        {% assign resource_action = resource.action %}
-        {% unless resource_action %}
-          {% if resource.download %}
-            {% assign resource_action = "Télécharger" %}
-          {% else %}
-            {% assign resource_action = "Consulter" %}
-          {% endif %}
-        {% endunless %}
         <li>
-          <a href="{% if resource.external %}{{ resource.url }}{% else %}{{ resource.url | relative_url }}{% endif %}"{% if resource.external %} target="_blank" rel="noopener"{% endif %}{% if resource.download %} download{% endif %}>
-            <span class="resource-details">
-              <span class="resource-type">
-                {{ resource.type | default: "Fichier" }}
-                {% if resource.format %}<span aria-hidden="true">·</span> {{ resource.format }}{% endif %}
-                {% if resource.file_size %}<span aria-hidden="true">·</span> {{ resource.file_size }}{% endif %}
-              </span>
-              <strong>{{ resource.label }}</strong>
-              {% if resource.description %}<span class="resource-description">{{ resource.description }}</span>{% endif %}
+          <a href="{% if resource.external %}{{ resource.url }}{% else %}{{ resource.url | relative_url }}{% endif %}"{% if resource.external or resource.new_tab %} target="_blank" rel="noopener"{% endif %}{% if resource.download %} download{% endif %}>
+            <strong class="resource-name">{{ resource.label }}</strong>
+            <span class="resource-meta">
+              {% if resource.format %}{{ resource.format }}{% else %}Ressource{% endif %}
+              {% if resource.file_size %}<span aria-hidden="true">·</span> {{ resource.file_size }}{% endif %}
             </span>
-            <span class="resource-action">{{ resource_action }} <span aria-hidden="true">↗</span></span>
+            <span class="resource-arrow" aria-hidden="true">{% if resource.external or resource.new_tab %}↗{% else %}→{% endif %}</span>
           </a>
         </li>
       {% endfor %}
@@ -99,7 +87,7 @@ main_class: project-page
   %}
 {% endif %}
 
-{% if page.notebook_html %}
+{% if page.embed_notebook and page.notebook_html %}
 <section class="section-shell embedded-resource reveal" aria-labelledby="titre-notebook">
   <div class="section-title-row">
     <div>
