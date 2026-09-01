@@ -1,0 +1,62 @@
+{
+  "status": "figures generated from preserved JSON artifacts",
+  "source_hashes": {
+    "final": "966e7ddaf7e546d60e95ae4fbf4d5adc7c1f4ad6978f1ba06d7e35fdf7cabcc3",
+    "cost": "d1a19aa1855659125fcf4004d1144ffa844be6a80389616904a2cc34f41ba1f7",
+    "volatility": "6153d42de4446b6626d0e9f4845ad9fd2043f71961e6b55419ff7cd7eb96e231",
+    "heston": "eed87d8269172e974fedfe5c1e216dec3d96884c6b1ca3d99c342e12e98e41cb",
+    "ablations": "1e31a893f8c3058d768e0bc6a84eb9d667381291c7e206100b9c65aa7c87f178"
+  },
+  "figures": [
+    {
+      "file": "figures/generated/final-strategy-comparison.png",
+      "sha256": "f677258cd9e033eb7c710635ebfed3d1578a03f51800b8b32c053f02a0457ae9",
+      "alt_text": "Deux barres comparatives montrent que la politique neuronale a la CVaR et le turnover les plus faibles parmi les trois couvertures."
+    },
+    {
+      "file": "figures/generated/final-strategy-comparison.svg",
+      "sha256": "4e535ebcb79a38278e79025e1e34bf2199c65d2710af4f7b7fc873c194b0b584",
+      "alt_text": "Deux barres comparatives montrent que la politique neuronale a la CVaR et le turnover les plus faibles parmi les trois couvertures."
+    },
+    {
+      "file": "figures/generated/final-tail-quantiles.png",
+      "sha256": "95fed68e6b6c1e8fe4937586699cd95faca1f643be6640a0167b4d392dcb8f98",
+      "alt_text": "Graphique à points des quantiles 95, 99 et 99,5 pour cent : les pertes de queue de la politique neuronale restent sous celles des deltas Black-Scholes et Leland."
+    },
+    {
+      "file": "figures/generated/final-tail-quantiles.svg",
+      "sha256": "9412d87ea7ee927409185adabadb629dd7f5c54c7046aae6fd2b1cbc81ea3b9e",
+      "alt_text": "Graphique à points des quantiles 95, 99 et 99,5 pour cent : les pertes de queue de la politique neuronale restent sous celles des deltas Black-Scholes et Leland."
+    },
+    {
+      "file": "figures/generated/development-cost-sensitivity.png",
+      "sha256": "6d8445a7a137bc07a8cd4d834edc9c14ef9dcd10adf605a949faf66a1fd60a34",
+      "alt_text": "Deux courbes de développement selon le coût de transaction montrent une CVaR croissante mais un turnover décroissant, avec des valeurs neuronales inférieures à Leland aux quatre coûts."
+    },
+    {
+      "file": "figures/generated/development-cost-sensitivity.svg",
+      "sha256": "0bad28631644936db53e4dbc9e5a0fe6434b3904d16a9217f06ad311661145e2",
+      "alt_text": "Deux courbes de développement selon le coût de transaction montrent une CVaR croissante mais un turnover décroissant, avec des valeurs neuronales inférieures à Leland aux quatre coûts."
+    },
+    {
+      "file": "figures/generated/development-robustness.png",
+      "sha256": "97703e7863bf37953506db5bbfe3afae2bf3f9a85f8d389639839532fb1b146b",
+      "alt_text": "Intervalles de confiance des améliorations de CVaR : l'avantage neuronal change de signe selon la volatilité GBM et devient négatif dans un scénario Heston à forte volatilité de variance sans levier."
+    },
+    {
+      "file": "figures/generated/development-robustness.svg",
+      "sha256": "133a7d887cf17262c777165777d0ea5f76918cce3b3e00f1abdc4d162c47390a",
+      "alt_text": "Intervalles de confiance des améliorations de CVaR : l'avantage neuronal change de signe selon la volatilité GBM et devient négatif dans un scénario Heston à forte volatilité de variance sans levier."
+    },
+    {
+      "file": "figures/generated/development-ablations.png",
+      "sha256": "dfdc70e9c829a13bce6c34a1c158bae4e6eb7022f426c69b78845487b0df3853",
+      "alt_text": "Intervalles de confiance des effets d'ablation : retirer l'inventaire dégrade CVaR et turnover, tandis qu'un réseau plus grand apporte un petit gain de CVaR au modèle alternatif."
+    },
+    {
+      "file": "figures/generated/development-ablations.svg",
+      "sha256": "876e744d5c69c34748b2bc838a9ba40f050aaf59838f21b2756b36ae16f1066a",
+      "alt_text": "Intervalles de confiance des effets d'ablation : retirer l'inventaire dégrade CVaR et turnover, tandis qu'un réseau plus grand apporte un petit gain de CVaR au modèle alternatif."
+    }
+  ]
+}

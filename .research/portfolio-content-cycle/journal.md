@@ -577,3 +577,34 @@ Ces résultats sont confirmatoires uniquement dans le GBM gelé. Ils restent con
 ### Prochain jalon
 
 Construire les figures et tableaux définitifs uniquement à partir des artefacts conservés et des résultats de développement, puis commencer le notebook narratif et le rapport technique. Aucun nouveau réglage du modèle n'est autorisé.
+
+## 2026-09-01 — Exécution 15
+
+### Travail réalisé
+
+- Définition d'une carte de cinq figures, chacune associée à une question, une conclusion autorisée et une source précise.
+- Création d'un générateur qui lit uniquement les artefacts JSON conservés et ne peut ni simuler de nouvelles trajectoires ni charger un checkpoint.
+- Préparation de deux exports par figure : PNG pour le site et le notebook, SVG pour l'impression et le contrôle détaillé.
+- Harmonisation avec le portfolio : bordeaux principal, bleu ardoise pour les références, fond blanc, typographie sobre et grilles légères.
+- Ajout de titres descriptifs, tailles d'échantillon, statut final ou développement, unités, notes de source et textes alternatifs.
+- Préparation d'un manifeste associant les empreintes des sources, les empreintes des exports et leurs textes alternatifs.
+
+### Figures prévues
+
+1. comparaison finale de la CVaR et du turnover ;
+2. quantiles 95 %, 99 % et 99,5 % de la perte finale ;
+3. sensibilité de la CVaR et du turnover aux coûts ;
+4. robustesse sous volatilités GBM et scénarios Heston ;
+5. effets de l'inventaire et de la capacité dans les ablations.
+
+La figure de robustesse conserve explicitement les résultats défavorables et les intervalles contenant zéro. Elle empêchera le rapport de suggérer une robustesse générale que les expériences ne démontrent pas.
+
+### Validation des exports
+
+Les cinq PNG ont été inspectés visuellement à leur résolution réelle. Un premier contrôle de régénération a détecté des identifiants SVG variables malgré un dessin identique. Le générateur fixe désormais `svg.hashsalt` ; deux exécutions successives produisent exactement les mêmes empreintes pour les dix exports. Les PNG mesurent entre 2 113 et 2 523 pixels de large et restent lisibles après réduction.
+
+Les empreintes de `final-test-results.json` et des quatre artefacts de développement sont intégrées au manifeste. Le test final n'a pas été recalculé pendant la génération ou le contrôle des figures.
+
+### Prochain jalon
+
+Construire le notebook narratif à partir des résultats et figures validés. Il devra expliquer la question, les conventions de P&L, l'objectif CVaR, le protocole, les résultats finaux, les sensibilités et les limites, tout en restant exécutable sans régénérer le test final.

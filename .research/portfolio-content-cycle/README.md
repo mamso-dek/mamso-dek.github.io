@@ -9,7 +9,7 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
 - **Statut :** le test final préenregistré a été ouvert une fois et ses résultats intègres sont conservés
 - **Résultat final :** la politique neuronale réduit la CVaR de 0,1615 face à Leland, IC 95 % [0,1565 ; 0,1664], tout en réduisant le turnover de 28,79 ; son écart-type de P&L reste supérieur
-- **Prochain jalon :** construire les figures et tableaux définitifs, puis rédiger le notebook et le rapport technique sans recalculer le test final
+- **Prochain jalon :** rédiger et exécuter le notebook narratif, puis préparer le rapport technique sans recalculer le test final
 - **Temps restant :** quatre jours sur le cycle ; le test final est définitivement fermé
 
 Les fichiers de référence sont :
@@ -18,6 +18,7 @@ Les fichiers de référence sont :
 - `protocole.md` : question, hypothèses, expériences et critères d'arrêt ;
 - `gel-protocole.md` : spécification immuable du modèle et de l'analyse avant test final ;
 - `resultats-finaux.md` : interprétation du test final et limites de portée ;
+- `figures/` : générateur, carte, exports PNG/SVG et manifeste d'empreintes ;
 - `matrice-litterature.md` : sources vérifiées et rôle dans l’étude ;
 - `bibliographie.bib` : métadonnées bibliographiques réutilisables ;
 - `environment.md` : plateforme, dépendances et règles de reproductibilité ;
