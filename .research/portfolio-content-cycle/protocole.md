@@ -42,8 +42,10 @@ La prime initiale sera fixée au prix Black–Scholes du scénario d’entraîne
 
 - Génération d’entraînement avec graines documentées et renouvellement des trajectoires pendant l’optimisation.
 - Ensemble de validation indépendant pour l’arrêt et le choix des hyperparamètres.
-- Ensemble de test final indépendant, utilisé une seule fois après gel du modèle.
+- Ensemble de développement indépendant de l’entraînement et de la validation, graine 20263000, utilisé pour les diagnostics de méthode.
+- Ensemble de test final préenregistré, graine 20269000 et 250 000 trajectoires, qui ne sera généré qu’après gel de la durée, de l’architecture et des expériences principales.
 - Les graines, paramètres et versions de dépendances seront enregistrés.
+- La durée de référence est fixée à 2 000 époques comme budget expérimental commun. Le meilleur état est choisi uniquement sur la validation ; cette limite ne sera pas présentée comme une preuve de convergence vers l’optimum.
 
 ## Expériences principales
 

@@ -7,9 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** cinq apprentissages longs, une réplication prolongée à 1 500 époques, un bootstrap apparié et les premiers diagnostics de politique sont terminés
-- **Résultat provisoire :** la réplication prolongée réduit la CVaR de 0,1503 face à Leland ; l’intervalle bootstrap à 95 % est [0,1425 ; 0,1578], conditionnellement au scénario et au modèle entraîné
-- **Prochain jalon :** confirmer le plateau au-delà de 1 500 époques, puis lancer les sensibilités au coût et aux paramètres de marché
+- **Statut :** le contrôle à 2 000 époques est terminé ; la durée de référence est figée comme budget expérimental et un test final séparé est préenregistré
+- **Résultat provisoire :** sur le test de développement, l’amélioration de CVaR face à Leland vaut 0,1599, IC bootstrap 95 % [0,1521 ; 0,1677] ; la convergence théorique n’est pas revendiquée
+- **Prochain jalon :** réentraîner les politiques à plusieurs niveaux de coût, puis réaliser les sensibilités aux paramètres de marché avant d’ouvrir le test final
 
 Les fichiers de référence sont :
 

@@ -8,6 +8,14 @@ import numpy as np
 from numpy.typing import NDArray
 
 
+def _tail_size(sample_size: int, alpha: float) -> int:
+    raw_size = (1.0 - alpha) * sample_size
+    nearest_integer = round(raw_size)
+    if math.isclose(raw_size, nearest_integer, rel_tol=0.0, abs_tol=1e-9):
+        return max(1, int(nearest_integer))
+    return max(1, math.ceil(raw_size))
+
+
 def empirical_cvar(losses: NDArray[np.floating], alpha: float = 0.95) -> float:
     """Moyenne des plus grandes pertes dans la masse de queue 1 - alpha."""
 
@@ -18,7 +26,7 @@ def empirical_cvar(losses: NDArray[np.floating], alpha: float = 0.95) -> float:
         raise ValueError("losses contient une valeur non finie")
     if not 0 < alpha < 1:
         raise ValueError("alpha doit appartenir à ]0, 1[")
-    tail_size = max(1, math.ceil((1.0 - alpha) * values.size - 1e-12))
+    tail_size = _tail_size(values.size, alpha)
     tail = np.partition(values, values.size - tail_size)[-tail_size:]
     return float(np.mean(tail))
 
@@ -80,8 +88,6 @@ def paired_cvar_improvement_bootstrap(
         "n_bootstrap": n_bootstrap,
         "bootstrap_seed": seed,
         "sample_size": int(reference.size),
-        "tail_size": max(
-            1, math.ceil((1.0 - alpha) * reference.size - 1e-12)
-        ),
+        "tail_size": _tail_size(reference.size, alpha),
         "alpha": alpha,
     }

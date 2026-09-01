@@ -156,3 +156,40 @@ Le meilleur état se trouvant exactement à l’époque 1 500, le plateau n’es
 ### Prochain jalon
 
 Prolonger une réplication jusqu’à 2 000 époques pour confirmer le plateau, puis figer la durée d’apprentissage. Lancer ensuite l’expérience de sensibilité aux coûts, en réentraînant les politiques plutôt qu’en appliquant le même réseau à des coûts qu’il n’a pas appris.
+
+## 2026-09-01 — Exécution 5
+
+### Travail réalisé
+
+- Réentraînement déterministe de la première graine pendant 2 000 époques, sans modifier l’architecture, les graines, la validation ni le scénario central.
+- Comparaison des minima de validation sur les blocs 1 501–1 750 et 1 751–2 000, et estimation de la pente sur les 250 dernières époques.
+- Nouveau bootstrap apparié de 2 000 réplications sur le jeu de développement.
+- Correction d’un effet d’arrondi flottant qui sélectionnait 5 001 pertes au lieu des 5 000 constituant exactement 5 % de 100 000 trajectoires. Les diagnostics à 1 500 et 2 000 époques ont été recalculés ; les conclusions et les valeurs arrondies à quatre décimales ne changent pas.
+- Ajout d’un test de régression sur 100 000 observations ; les 15 tests passent après correction.
+- Séparation explicite entre le jeu de développement déjà consulté et un test final préenregistré mais non exécuté.
+
+### Convergence observée
+
+Le meilleur état apparaît de nouveau à la borne, à l’époque 2 000. La CVaR de validation passe de 1,5765 à la limite de 1 500 époques à 1,5640 à 2 000 époques, soit une amélioration absolue de 0,0125 et relative de 0,79 %. La pente estimée sur les 250 dernières époques reste négative à \(-1,83\times10^{-5}\) par époque.
+
+L’apprentissage continue donc à progresser faiblement ; un plateau mathématique n’est pas démontré. En revanche, le gain marginal a nettement ralenti par rapport aux premières phases. Pour éviter de consacrer le cycle à une prolongation indéfinie d’un seul réseau, 2 000 époques devient le budget commun des expériences suivantes. Ce choix est un compromis expérimental, pas une affirmation d’optimalité.
+
+### Résultat sur le jeu de développement
+
+À 2 000 époques :
+
+- réseau : CVaR 1,5586, coût moyen 0,5844 et turnover 233,78 ;
+- Leland : CVaR 1,7185, coût moyen 0,6564 et turnover 262,54 ;
+- delta Black–Scholes : CVaR 1,9174.
+
+L’amélioration appariée face à Leland vaut 0,1599. Son intervalle bootstrap à 95 % est [0,1521 ; 0,1677], avec une erreur-type de 0,0039. Toutes les réplications bootstrap sont positives. Ce résultat reste un diagnostic de développement, non l’évaluation finale.
+
+### Protection du test final
+
+La graine 20263000 a été consultée à plusieurs étapes pour diagnostiquer la méthode. Elle reste indépendante de l’entraînement et de la validation, mais ne doit plus être qualifiée de test final. Elle est désormais explicitement désignée comme jeu de développement.
+
+Le test final est préenregistré avec la graine 20269000 et 250 000 trajectoires. Il ne sera généré qu’après gel de la durée, de l’architecture et du plan de sensibilité. Cette séparation limite le risque de sélectionner implicitement la méthode en fonction de son résultat final.
+
+### Prochain jalon
+
+Exécuter la sensibilité aux coûts aller simple de 0, 10, 25 et 50 points de base. Chaque politique doit être réentraînée avec son propre coût sous le budget commun de 2 000 époques. Les comparaisons utiliseront le jeu de développement ; le test final restera fermé.

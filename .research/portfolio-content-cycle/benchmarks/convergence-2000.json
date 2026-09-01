@@ -1,8 +1,8 @@
 {
-  "status": "diagnostic interne \u2014 non publiable seul",
+  "status": "contr\u00f4le de convergence sur test de d\u00e9veloppement \u2014 non final",
   "device": "cpu",
   "torch_version": "2.13.0",
-  "elapsed_seconds": 114.22052270900167,
+  "elapsed_seconds": 151.63229374999355,
   "market": {
     "s0": 100.0,
     "strike": 100.0,
@@ -12,7 +12,7 @@
     "n_steps": 30
   },
   "training": {
-    "epochs": 1500,
+    "epochs": 2000,
     "batch_size": 8192,
     "validation_size": 50000,
     "learning_rate": 0.001,
@@ -24,516 +24,108 @@
     "validation_seed": 20262000,
     "gradient_clip": 5.0
   },
-  "test_seed": 20263000,
-  "test_size": 100000,
-  "best_epoch": 1500,
-  "best_eta": 1.3649190664291382,
+  "best_epoch": 2000,
+  "best_eta": 1.3566741943359375,
   "best_validation": {
-    "epoch": 1500.0,
-    "train_objective": 1.5960850715637207,
-    "eta": 1.3649190664291382,
-    "mean_pnl": -0.5881488919258118,
-    "std_pnl": 0.5486803650856018,
-    "loss_probability": 0.8484399914741516,
-    "var_loss_95": 1.3685295581817627,
-    "cvar_loss_95": 1.5765072107315063,
-    "mean_transaction_cost": 0.5836558938026428,
-    "mean_turnover_notional": 233.4623565673828
+    "epoch": 2000.0,
+    "train_objective": 1.5585850477218628,
+    "eta": 1.3566741943359375,
+    "mean_pnl": -0.5886971354484558,
+    "std_pnl": 0.5437294244766235,
+    "loss_probability": 0.8506799936294556,
+    "var_loss_95": 1.3614832162857056,
+    "cvar_loss_95": 1.5640325546264648,
+    "mean_transaction_cost": 0.5842925906181335,
+    "mean_turnover_notional": 233.717041015625
   },
-  "test_metrics": {
-    "neural": {
-      "mean_pnl": -0.5841975212097168,
-      "std_pnl": 0.5459533333778381,
-      "loss_probability": 0.8507999777793884,
-      "var_loss_95": 1.3631815910339355,
-      "cvar_loss_95": 1.5681959390640259,
-      "mean_transaction_cost": 0.5837969779968262,
-      "mean_turnover_notional": 233.51878356933594
+  "convergence": {
+    "previous_limit": 1500,
+    "previous_best_epoch": 1500,
+    "previous_best_validation_cvar": 1.5765072107315063,
+    "current_limit": 2000,
+    "current_best_validation_cvar": 1.5640325546264648,
+    "absolute_improvement": 0.012474656105041504,
+    "relative_improvement": 0.007912844305515868,
+    "best_1501_1750": {
+      "epoch": 1750.0,
+      "train_objective": 1.5495352745056152,
+      "eta": 1.3593822717666626,
+      "mean_pnl": -0.5874669551849365,
+      "std_pnl": 0.5482043027877808,
+      "loss_probability": 0.8482199907302856,
+      "var_loss_95": 1.3651658296585083,
+      "cvar_loss_95": 1.5684919357299805,
+      "mean_transaction_cost": 0.5830247402191162,
+      "mean_turnover_notional": 233.20989990234375
     },
-    "delta_black_scholes": {
-      "mean_pnl": -0.6850123405456543,
-      "std_pnl": 0.49606528878211975,
-      "loss_probability": 0.942870020866394,
-      "var_loss_95": 1.5750387907028198,
-      "cvar_loss_95": 1.9174202680587769,
-      "mean_transaction_cost": 0.6844616532325745,
-      "mean_turnover_notional": 273.7846374511719
+    "best_1751_2000": {
+      "epoch": 2000.0,
+      "train_objective": 1.5585850477218628,
+      "eta": 1.3566741943359375,
+      "mean_pnl": -0.5886971354484558,
+      "std_pnl": 0.5437294244766235,
+      "loss_probability": 0.8506799936294556,
+      "var_loss_95": 1.3614832162857056,
+      "cvar_loss_95": 1.5640325546264648,
+      "mean_transaction_cost": 0.5842925906181335,
+      "mean_turnover_notional": 233.717041015625
     },
-    "delta_leland": {
-      "mean_pnl": -0.6568604707717896,
-      "std_pnl": 0.47457388043403625,
-      "loss_probability": 0.9223999977111816,
-      "var_loss_95": 1.4325923919677734,
-      "cvar_loss_95": 1.7184832096099854,
-      "mean_transaction_cost": 0.6563563346862793,
-      "mean_turnover_notional": 262.54254150390625
-    }
+    "last_250_epoch_ols_slope_per_epoch": -1.8337399858979258e-05
   },
-  "paired_bootstrap": {
-    "versus_leland": {
-      "point_improvement": 0.1502871474266052,
-      "reference_cvar": 1.718483099079132,
-      "candidate_cvar": 1.5681959516525268,
-      "bootstrap_mean": 0.15019591278660296,
-      "bootstrap_standard_error": 0.003930230582056676,
-      "confidence": 0.95,
-      "ci_lower": 0.14247927994370446,
-      "ci_upper": 0.15784276318192475,
-      "probability_improvement_positive": 1.0,
-      "n_bootstrap": 2000,
-      "bootstrap_seed": 20264000,
-      "sample_size": 100000,
-      "tail_size": 5000,
-      "alpha": 0.95
-    },
-    "versus_delta": {
-      "point_improvement": 0.3492245253562929,
-      "reference_cvar": 1.9174204770088197,
-      "candidate_cvar": 1.5681959516525268,
-      "bootstrap_mean": 0.3493862084841132,
-      "bootstrap_standard_error": 0.00553930262019087,
-      "confidence": 0.95,
-      "ci_lower": 0.33878455848634237,
-      "ci_upper": 0.36069647375106806,
-      "probability_improvement_positive": 1.0,
-      "n_bootstrap": 2000,
-      "bootstrap_seed": 20264001,
-      "sample_size": 100000,
-      "tail_size": 5000,
-      "alpha": 0.95
-    }
-  },
-  "policy_grid": [
-    {
-      "spot": 80.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.25,
-      "neural_position": 0.006188094150274992,
-      "black_scholes_delta": 0.0006891576265534161,
-      "leland_delta": 0.002730323171852067
-    },
-    {
-      "spot": 80.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.5,
-      "neural_position": 0.007259645964950323,
-      "black_scholes_delta": 0.0006891576265534161,
-      "leland_delta": 0.002730323171852067
-    },
-    {
-      "spot": 80.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.75,
-      "neural_position": 0.008274895139038563,
-      "black_scholes_delta": 0.0006891576265534161,
-      "leland_delta": 0.002730323171852067
-    },
-    {
-      "spot": 90.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.25,
-      "neural_position": 0.142631396651268,
-      "black_scholes_delta": 0.06780820814657917,
-      "leland_delta": 0.09834774615116892
-    },
-    {
-      "spot": 90.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.5,
-      "neural_position": 0.1487593948841095,
-      "black_scholes_delta": 0.06780820814657917,
-      "leland_delta": 0.09834774615116892
-    },
-    {
-      "spot": 90.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.75,
-      "neural_position": 0.1547115594148636,
-      "black_scholes_delta": 0.06780820814657917,
-      "leland_delta": 0.09834774615116892
-    },
-    {
-      "spot": 100.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.25,
-      "neural_position": 0.5171645879745483,
-      "black_scholes_delta": 0.5137620857667925,
-      "leland_delta": 0.5157903680613277
-    },
-    {
-      "spot": 100.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.5,
-      "neural_position": 0.5255603194236755,
-      "black_scholes_delta": 0.5137620857667925,
-      "leland_delta": 0.5157903680613277
-    },
-    {
-      "spot": 100.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.75,
-      "neural_position": 0.5357108116149902,
-      "black_scholes_delta": 0.5137620857667925,
-      "leland_delta": 0.5157903680613277
-    },
-    {
-      "spot": 110.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.25,
-      "neural_position": 0.8284920454025269,
-      "black_scholes_delta": 0.9215652454034449,
-      "leland_delta": 0.8931173288952522
-    },
-    {
-      "spot": 110.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.5,
-      "neural_position": 0.8540477752685547,
-      "black_scholes_delta": 0.9215652454034449,
-      "leland_delta": 0.8931173288952522
-    },
-    {
-      "spot": 110.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.75,
-      "neural_position": 0.8800642490386963,
-      "black_scholes_delta": 0.9215652454034449,
-      "leland_delta": 0.8931173288952522
-    },
-    {
-      "spot": 120.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.25,
-      "neural_position": 0.9493764638900757,
-      "black_scholes_delta": 0.9962812611036161,
-      "leland_delta": 0.9904137158553694
-    },
-    {
-      "spot": 120.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.5,
-      "neural_position": 0.9709208607673645,
-      "black_scholes_delta": 0.9962812611036161,
-      "leland_delta": 0.9904137158553694
-    },
-    {
-      "spot": 120.0,
-      "time_fraction": 1.0,
-      "previous_position": 0.75,
-      "neural_position": 0.9915381073951721,
-      "black_scholes_delta": 0.9962812611036161,
-      "leland_delta": 0.9904137158553694
-    },
-    {
-      "spot": 80.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.25,
-      "neural_position": 0.00032707175705581903,
-      "black_scholes_delta": 2.6991156090172552e-06,
-      "leland_delta": 3.788159207923636e-05
-    },
-    {
-      "spot": 80.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.5,
-      "neural_position": 0.0005097632529214025,
-      "black_scholes_delta": 2.6991156090172552e-06,
-      "leland_delta": 3.788159207923636e-05
-    },
-    {
-      "spot": 80.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.75,
-      "neural_position": 0.000759979709982872,
-      "black_scholes_delta": 2.6991156090172552e-06,
-      "leland_delta": 3.788159207923636e-05
-    },
-    {
-      "spot": 90.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.25,
-      "neural_position": 0.05952142924070358,
-      "black_scholes_delta": 0.01638661058963814,
-      "leland_delta": 0.03188545625375094
-    },
-    {
-      "spot": 90.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.5,
-      "neural_position": 0.07106143236160278,
-      "black_scholes_delta": 0.01638661058963814,
-      "leland_delta": 0.03188545625375094
-    },
-    {
-      "spot": 90.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.75,
-      "neural_position": 0.0824398621916771,
-      "black_scholes_delta": 0.01638661058963814,
-      "leland_delta": 0.03188545625375094
-    },
-    {
-      "spot": 100.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.25,
-      "neural_position": 0.5092248320579529,
-      "black_scholes_delta": 0.5097322295051145,
-      "leland_delta": 0.5111669346358799
-    },
-    {
-      "spot": 100.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.5,
-      "neural_position": 0.5300067663192749,
-      "black_scholes_delta": 0.5097322295051145,
-      "leland_delta": 0.5111669346358799
-    },
-    {
-      "spot": 100.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.75,
-      "neural_position": 0.5523695945739746,
-      "black_scholes_delta": 0.5097322295051145,
-      "leland_delta": 0.5111669346358799
-    },
-    {
-      "spot": 110.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.25,
-      "neural_position": 0.8668118119239807,
-      "black_scholes_delta": 0.9760173055525245,
-      "leland_delta": 0.9582086062478601
-    },
-    {
-      "spot": 110.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.5,
-      "neural_position": 0.8953830003738403,
-      "black_scholes_delta": 0.9760173055525245,
-      "leland_delta": 0.9582086062478601
-    },
-    {
-      "spot": 110.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.75,
-      "neural_position": 0.9234041571617126,
-      "black_scholes_delta": 0.9760173055525245,
-      "leland_delta": 0.9582086062478601
-    },
-    {
-      "spot": 120.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.25,
-      "neural_position": 0.9331467151641846,
-      "black_scholes_delta": 0.9999153408419337,
-      "leland_delta": 0.9994888513556761
-    },
-    {
-      "spot": 120.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.5,
-      "neural_position": 0.9551244974136353,
-      "black_scholes_delta": 0.9999153408419337,
-      "leland_delta": 0.9994888513556761
-    },
-    {
-      "spot": 120.0,
-      "time_fraction": 0.5,
-      "previous_position": 0.75,
-      "neural_position": 0.9763243794441223,
-      "black_scholes_delta": 0.9999153408419337,
-      "leland_delta": 0.9994888513556761
-    },
-    {
-      "spot": 80.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.25,
-      "neural_position": 1.244605391548248e-05,
-      "black_scholes_delta": 0.0,
-      "leland_delta": 0.0
-    },
-    {
-      "spot": 80.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.5,
-      "neural_position": 2.1804193238494918e-05,
-      "black_scholes_delta": 0.0,
-      "leland_delta": 0.0
-    },
-    {
-      "spot": 80.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.75,
-      "neural_position": 3.7372170481830835e-05,
-      "black_scholes_delta": 0.0,
-      "leland_delta": 0.0
-    },
-    {
-      "spot": 90.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.25,
-      "neural_position": 0.006484323181211948,
-      "black_scholes_delta": 7.275163146358565e-07,
-      "leland_delta": 1.3628367647289252e-05
-    },
-    {
-      "spot": 90.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.5,
-      "neural_position": 0.010089537128806114,
-      "black_scholes_delta": 7.275163146358565e-07,
-      "leland_delta": 1.3628367647289252e-05
-    },
-    {
-      "spot": 90.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.75,
-      "neural_position": 0.015040460042655468,
-      "black_scholes_delta": 7.275163146358565e-07,
-      "leland_delta": 1.3628367647289252e-05
-    },
-    {
-      "spot": 100.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.25,
-      "neural_position": 0.4700751304626465,
-      "black_scholes_delta": 0.5043527307738797,
-      "leland_delta": 0.5049945268377191
-    },
-    {
-      "spot": 100.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.5,
-      "neural_position": 0.5275678038597107,
-      "black_scholes_delta": 0.5043527307738797,
-      "leland_delta": 0.5049945268377191
-    },
-    {
-      "spot": 100.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.75,
-      "neural_position": 0.582675576210022,
-      "black_scholes_delta": 0.5043527307738797,
-      "leland_delta": 0.5049945268377191
-    },
-    {
-      "spot": 110.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.25,
-      "neural_position": 0.9309858083724976,
-      "black_scholes_delta": 0.9999940270270091,
-      "leland_delta": 0.9999329795074836
-    },
-    {
-      "spot": 110.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.5,
-      "neural_position": 0.9586641788482666,
-      "black_scholes_delta": 0.9999940270270091,
-      "leland_delta": 0.9999329795074836
-    },
-    {
-      "spot": 110.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.75,
-      "neural_position": 0.984494686126709,
-      "black_scholes_delta": 0.9999940270270091,
-      "leland_delta": 0.9999329795074836
-    },
-    {
-      "spot": 120.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.25,
-      "neural_position": 0.9316993355751038,
-      "black_scholes_delta": 1.0,
-      "leland_delta": 0.9999999999998495
-    },
-    {
-      "spot": 120.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.5,
-      "neural_position": 0.9534618258476257,
-      "black_scholes_delta": 1.0,
-      "leland_delta": 0.9999999999998495
-    },
-    {
-      "spot": 120.0,
-      "time_fraction": 0.1,
-      "previous_position": 0.75,
-      "neural_position": 0.9744787812232971,
-      "black_scholes_delta": 1.0,
-      "leland_delta": 0.9999999999998495
-    }
-  ],
-  "path_diagnostics": {
-    "mean_absolute_position_gap_to_leland": 0.028610901907086372,
-    "position_correlation_with_leland": 0.9955627918243408,
-    "selected_steps": [
-      {
-        "step": 0,
-        "mean": 0.5101819038391113,
-        "q05": 0.5101819038391113,
-        "median": 0.5101819038391113,
-        "q95": 0.5101819038391113,
-        "mean_leland_delta": 0.5157904028892517,
-        "mean_trade_notional": 51.0181884765625
+  "development_test": {
+    "seed": 20263000,
+    "size": 100000,
+    "reuse_warning": "jeu r\u00e9utilis\u00e9 pour les diagnostics ; il ne constitue plus l'\u00e9valuation finale",
+    "metrics": {
+      "neural": {
+        "mean_pnl": -0.5850043892860413,
+        "std_pnl": 0.5417076945304871,
+        "loss_probability": 0.8539299964904785,
+        "var_loss_95": 1.3579246997833252,
+        "cvar_loss_95": 1.558609127998352,
+        "mean_transaction_cost": 0.5844478607177734,
+        "mean_turnover_notional": 233.77914428710938
       },
-      {
-        "step": 5,
-        "mean": 0.5267561078071594,
-        "q05": 0.3301297426223755,
-        "median": 0.525642991065979,
-        "q95": 0.728441596031189,
-        "mean_leland_delta": 0.5108969807624817,
-        "mean_trade_notional": 4.130966663360596
+      "delta_black_scholes": {
+        "mean_pnl": -0.6850123405456543,
+        "std_pnl": 0.49606528878211975,
+        "loss_probability": 0.942870020866394,
+        "var_loss_95": 1.5750387907028198,
+        "cvar_loss_95": 1.9174202680587769,
+        "mean_transaction_cost": 0.6844616532325745,
+        "mean_turnover_notional": 273.7846374511719
       },
-      {
-        "step": 10,
-        "mean": 0.525251567363739,
-        "q05": 0.2159833312034607,
-        "median": 0.5262181162834167,
-        "q95": 0.8310319781303406,
-        "mean_leland_delta": 0.5061342716217041,
-        "mean_trade_notional": 4.389195442199707
-      },
-      {
-        "step": 15,
-        "mean": 0.5210255980491638,
-        "q05": 0.11214694380760193,
-        "median": 0.525773286819458,
-        "q95": 0.9063471555709839,
-        "mean_leland_delta": 0.5014503002166748,
-        "mean_trade_notional": 4.5985283851623535
-      },
-      {
-        "step": 20,
-        "mean": 0.5130836963653564,
-        "q05": 0.03512890636920929,
-        "median": 0.5237590670585632,
-        "q95": 0.9611627459526062,
-        "mean_leland_delta": 0.4959954023361206,
-        "mean_trade_notional": 4.739993095397949
-      },
-      {
-        "step": 25,
-        "mean": 0.5040742754936218,
-        "q05": 0.006646452005952597,
-        "median": 0.5169809460639954,
-        "q95": 0.9976798295974731,
-        "mean_leland_delta": 0.49109113216400146,
-        "mean_trade_notional": 4.754088878631592
-      },
-      {
-        "step": 29,
-        "mean": 0.49729859828948975,
-        "q05": 0.0014936208026483655,
-        "median": 0.49559086561203003,
-        "q95": 1.0200567245483398,
-        "mean_leland_delta": 0.4871741831302643,
-        "mean_trade_notional": 4.621464252471924
+      "delta_leland": {
+        "mean_pnl": -0.6568604707717896,
+        "std_pnl": 0.47457388043403625,
+        "loss_probability": 0.9223999977111816,
+        "var_loss_95": 1.4325923919677734,
+        "cvar_loss_95": 1.7184832096099854,
+        "mean_transaction_cost": 0.6563563346862793,
+        "mean_turnover_notional": 262.54254150390625
       }
-    ],
-    "mean_terminal_liquidation_notional": 52.22568893432617
+    },
+    "paired_bootstrap_versus_leland": {
+      "point_improvement": 0.15987403707504266,
+      "reference_cvar": 1.718483099079132,
+      "candidate_cvar": 1.5586090620040893,
+      "bootstrap_mean": 0.15990298932842018,
+      "bootstrap_standard_error": 0.0038713469638791465,
+      "confidence": 0.95,
+      "ci_lower": 0.15214688548564909,
+      "ci_upper": 0.16772595287621023,
+      "probability_improvement_positive": 1.0,
+      "n_bootstrap": 2000,
+      "bootstrap_seed": 20264002,
+      "sample_size": 100000,
+      "tail_size": 5000,
+      "alpha": 0.95
+    }
+  },
+  "reserved_final_test": {
+    "seed": 20269000,
+    "size": 250000,
+    "status": "pr\u00e9enregistr\u00e9 et non ex\u00e9cut\u00e9"
   },
   "history_sampling": "\u00e9poque 1, chaque 25 \u00e9poques et meilleur \u00e9tat",
   "history": [
@@ -1268,11 +860,246 @@
       "cvar_loss_95": 1.5765072107315063,
       "mean_transaction_cost": 0.5836558938026428,
       "mean_turnover_notional": 233.4623565673828
+    },
+    {
+      "epoch": 1525.0,
+      "train_objective": 1.575831413269043,
+      "eta": 1.369354248046875,
+      "mean_pnl": -0.5859502553939819,
+      "std_pnl": 0.5540793538093567,
+      "loss_probability": 0.8449000120162964,
+      "var_loss_95": 1.3725687265396118,
+      "cvar_loss_95": 1.5767818689346313,
+      "mean_transaction_cost": 0.5814180374145508,
+      "mean_turnover_notional": 232.5672149658203
+    },
+    {
+      "epoch": 1550.0,
+      "train_objective": 1.566688060760498,
+      "eta": 1.3664251565933228,
+      "mean_pnl": -0.5874475836753845,
+      "std_pnl": 0.5532459020614624,
+      "loss_probability": 0.8458600044250488,
+      "var_loss_95": 1.3699443340301514,
+      "cvar_loss_95": 1.574338436126709,
+      "mean_transaction_cost": 0.582953929901123,
+      "mean_turnover_notional": 233.1815643310547
+    },
+    {
+      "epoch": 1575.0,
+      "train_objective": 1.5483410358428955,
+      "eta": 1.3671352863311768,
+      "mean_pnl": -0.589695155620575,
+      "std_pnl": 0.5452080368995667,
+      "loss_probability": 0.8503999710083008,
+      "var_loss_95": 1.364502191543579,
+      "cvar_loss_95": 1.5741111040115356,
+      "mean_transaction_cost": 0.5852283835411072,
+      "mean_turnover_notional": 234.0913543701172
+    },
+    {
+      "epoch": 1600.0,
+      "train_objective": 1.581454873085022,
+      "eta": 1.3640044927597046,
+      "mean_pnl": -0.5887939929962158,
+      "std_pnl": 0.5440382957458496,
+      "loss_probability": 0.8507000207901001,
+      "var_loss_95": 1.3633149862289429,
+      "cvar_loss_95": 1.5730195045471191,
+      "mean_transaction_cost": 0.5843449234962463,
+      "mean_turnover_notional": 233.7379608154297
+    },
+    {
+      "epoch": 1625.0,
+      "train_objective": 1.5654658079147339,
+      "eta": 1.3645907640457153,
+      "mean_pnl": -0.5896216630935669,
+      "std_pnl": 0.5447357892990112,
+      "loss_probability": 0.8507199883460999,
+      "var_loss_95": 1.364819884300232,
+      "cvar_loss_95": 1.57265043258667,
+      "mean_transaction_cost": 0.5851512551307678,
+      "mean_turnover_notional": 234.06048583984375
+    },
+    {
+      "epoch": 1650.0,
+      "train_objective": 1.5536783933639526,
+      "eta": 1.364289402961731,
+      "mean_pnl": -0.5891500115394592,
+      "std_pnl": 0.5444328784942627,
+      "loss_probability": 0.8504999876022339,
+      "var_loss_95": 1.3622418642044067,
+      "cvar_loss_95": 1.5711963176727295,
+      "mean_transaction_cost": 0.5847547650337219,
+      "mean_turnover_notional": 233.90191650390625
+    },
+    {
+      "epoch": 1675.0,
+      "train_objective": 1.5722421407699585,
+      "eta": 1.363730549812317,
+      "mean_pnl": -0.5886350274085999,
+      "std_pnl": 0.5455875992774963,
+      "loss_probability": 0.850059986114502,
+      "var_loss_95": 1.3647958040237427,
+      "cvar_loss_95": 1.5716533660888672,
+      "mean_transaction_cost": 0.5841388702392578,
+      "mean_turnover_notional": 233.6555633544922
+    },
+    {
+      "epoch": 1700.0,
+      "train_objective": 1.6077725887298584,
+      "eta": 1.3587685823440552,
+      "mean_pnl": -0.5865731239318848,
+      "std_pnl": 0.5513699054718018,
+      "loss_probability": 0.8462799787521362,
+      "var_loss_95": 1.3715291023254395,
+      "cvar_loss_95": 1.571343183517456,
+      "mean_transaction_cost": 0.5820624828338623,
+      "mean_turnover_notional": 232.8249969482422
+    },
+    {
+      "epoch": 1725.0,
+      "train_objective": 1.582342505455017,
+      "eta": 1.3652887344360352,
+      "mean_pnl": -0.5898865461349487,
+      "std_pnl": 0.5452781319618225,
+      "loss_probability": 0.8502200245857239,
+      "var_loss_95": 1.3649343252182007,
+      "cvar_loss_95": 1.5697154998779297,
+      "mean_transaction_cost": 0.5854395031929016,
+      "mean_turnover_notional": 234.17579650878906
+    },
+    {
+      "epoch": 1750.0,
+      "train_objective": 1.5495352745056152,
+      "eta": 1.3593822717666626,
+      "mean_pnl": -0.5874669551849365,
+      "std_pnl": 0.5482043027877808,
+      "loss_probability": 0.8482199907302856,
+      "var_loss_95": 1.3651658296585083,
+      "cvar_loss_95": 1.5684919357299805,
+      "mean_transaction_cost": 0.5830247402191162,
+      "mean_turnover_notional": 233.20989990234375
+    },
+    {
+      "epoch": 1775.0,
+      "train_objective": 1.5436567068099976,
+      "eta": 1.3573081493377686,
+      "mean_pnl": -0.5873361825942993,
+      "std_pnl": 0.546013355255127,
+      "loss_probability": 0.8489400148391724,
+      "var_loss_95": 1.363452672958374,
+      "cvar_loss_95": 1.5674978494644165,
+      "mean_transaction_cost": 0.5829245448112488,
+      "mean_turnover_notional": 233.16981506347656
+    },
+    {
+      "epoch": 1800.0,
+      "train_objective": 1.5588786602020264,
+      "eta": 1.3618648052215576,
+      "mean_pnl": -0.5895379781723022,
+      "std_pnl": 0.5430450439453125,
+      "loss_probability": 0.8516799807548523,
+      "var_loss_95": 1.3639976978302002,
+      "cvar_loss_95": 1.5686208009719849,
+      "mean_transaction_cost": 0.5850399136543274,
+      "mean_turnover_notional": 234.01597595214844
+    },
+    {
+      "epoch": 1825.0,
+      "train_objective": 1.5613681077957153,
+      "eta": 1.3579264879226685,
+      "mean_pnl": -0.5898032784461975,
+      "std_pnl": 0.5462411642074585,
+      "loss_probability": 0.8497800230979919,
+      "var_loss_95": 1.366520643234253,
+      "cvar_loss_95": 1.5692400932312012,
+      "mean_transaction_cost": 0.5852824449539185,
+      "mean_turnover_notional": 234.11300659179688
+    },
+    {
+      "epoch": 1850.0,
+      "train_objective": 1.5626822710037231,
+      "eta": 1.3609716892242432,
+      "mean_pnl": -0.5886338949203491,
+      "std_pnl": 0.5483253002166748,
+      "loss_probability": 0.8481799960136414,
+      "var_loss_95": 1.367547631263733,
+      "cvar_loss_95": 1.5677943229675293,
+      "mean_transaction_cost": 0.5841342806816101,
+      "mean_turnover_notional": 233.65371704101562
+    },
+    {
+      "epoch": 1875.0,
+      "train_objective": 1.573817253112793,
+      "eta": 1.3593225479125977,
+      "mean_pnl": -0.588209867477417,
+      "std_pnl": 0.5485606789588928,
+      "loss_probability": 0.8485199809074402,
+      "var_loss_95": 1.3696119785308838,
+      "cvar_loss_95": 1.5685222148895264,
+      "mean_transaction_cost": 0.5836753845214844,
+      "mean_turnover_notional": 233.47015380859375
+    },
+    {
+      "epoch": 1900.0,
+      "train_objective": 1.5693514347076416,
+      "eta": 1.3588879108428955,
+      "mean_pnl": -0.5866115689277649,
+      "std_pnl": 0.5515648126602173,
+      "loss_probability": 0.8458999991416931,
+      "var_loss_95": 1.3695749044418335,
+      "cvar_loss_95": 1.5660672187805176,
+      "mean_transaction_cost": 0.5821869969367981,
+      "mean_turnover_notional": 232.8748016357422
+    },
+    {
+      "epoch": 1925.0,
+      "train_objective": 1.5523980855941772,
+      "eta": 1.3584511280059814,
+      "mean_pnl": -0.5875973105430603,
+      "std_pnl": 0.55166095495224,
+      "loss_probability": 0.8462600111961365,
+      "var_loss_95": 1.3708162307739258,
+      "cvar_loss_95": 1.5670807361602783,
+      "mean_transaction_cost": 0.5830937623977661,
+      "mean_turnover_notional": 233.23751831054688
+    },
+    {
+      "epoch": 1950.0,
+      "train_objective": 1.5564135313034058,
+      "eta": 1.359763503074646,
+      "mean_pnl": -0.588533341884613,
+      "std_pnl": 0.543614387512207,
+      "loss_probability": 0.8507000207901001,
+      "var_loss_95": 1.3618890047073364,
+      "cvar_loss_95": 1.5643614530563354,
+      "mean_transaction_cost": 0.5841228365898132,
+      "mean_turnover_notional": 233.6491241455078
+    },
+    {
+      "epoch": 1975.0,
+      "train_objective": 1.5493135452270508,
+      "eta": 1.3620703220367432,
+      "mean_pnl": -0.5899303555488586,
+      "std_pnl": 0.5372189283370972,
+      "loss_probability": 0.8543999791145325,
+      "var_loss_95": 1.3574644327163696,
+      "cvar_loss_95": 1.5648175477981567,
+      "mean_transaction_cost": 0.5855780243873596,
+      "mean_turnover_notional": 234.23121643066406
+    },
+    {
+      "epoch": 2000.0,
+      "train_objective": 1.5585850477218628,
+      "eta": 1.3566741943359375,
+      "mean_pnl": -0.5886971354484558,
+      "std_pnl": 0.5437294244766235,
+      "loss_probability": 0.8506799936294556,
+      "var_loss_95": 1.3614832162857056,
+      "cvar_loss_95": 1.5640325546264648,
+      "mean_transaction_cost": 0.5842925906181335,
+      "mean_turnover_notional": 233.717041015625
     }
-  ],
-  "bootstrap_method": {
-    "method": "bootstrap non param\u00e9trique appari\u00e9, intervalle percentile",
-    "unit": "trajectoire Monte-Carlo ind\u00e9pendante",
-    "interpretation": "incertitude de test conditionnelle au mod\u00e8le entra\u00een\u00e9"
-  }
+  ]
 }
