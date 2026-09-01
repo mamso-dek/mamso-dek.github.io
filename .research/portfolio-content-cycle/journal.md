@@ -692,3 +692,40 @@ Rédiger le rapport technique en s'appuyant sur les cellules exécutées, sans r
 ### Prochain jalon
 
 Transformer le rapport validé en une page Projet concise pour le portfolio, relier le notebook et le rapport comme ressources, puis effectuer le contrôle Jekyll et responsive avant toute publication.
+
+## 2026-09-01 — Exécution 19
+
+### Intégration au portfolio
+
+- Création de `_projets/couverture-neuronale-couts-transaction.md` comme second projet réel du portfolio.
+- Rédaction d'une synthèse autonome : question, cadre simulé, convention de P&L, protocole gelé, résultat confirmatoire, mécanismes appris, robustesse, résultats défavorables, limites et reproductibilité.
+- Conservation des valeurs exactes du test final et de la hausse de variance ; aucune affirmation de domination générale n'a été introduite.
+- Intégration de trois figures clés avec textes alternatifs et légendes spécifiques.
+- Ajout de quatre ressources : rapport PDF, notebook HTML, notebook source et dossier de reproduction sur GitHub.
+- Activation du lecteur PDF intégré sans bouton de téléchargement dans le lecteur, ainsi que du notebook consultable dans la page.
+
+### Intégrité des ressources
+
+Les trois PNG, le rapport PDF, le notebook IPYNB et son rendu HTML ont été copiés dans `assets/projets/couverture-neuronale-couts-transaction/`. Chaque copie possède exactement la même empreinte SHA-256 que son livrable validé dans `.research/portfolio-content-cycle/`.
+
+### Contrôles Jekyll et navigateur
+
+- Construction Jekyll réussie sans erreur de contenu.
+- Présence du projet vérifiée dans la page Travaux et dans l'index de recherche.
+- Les quatre routes locales principales — page Projet, rapport PDF, notebook HTML et notebook IPYNB — répondent avec le statut HTTP 200.
+- Contrôle desktop à 1 440 × 900 : titre, image, faits, navigation, trois figures, tableau, quatre ressources, lecteur PDF et notebook présents ; aucune erreur de console ni débordement horizontal.
+- Parcours testé : Travaux → lien du projet → page Projet → bouton « Lire dans la page » ; le lecteur charge le PDF de dix pages.
+- Recherche testée avec « couverture neuronale » : un résultat de type Projet est affiché avec le bon titre et le bon résumé.
+- Contrôle mobile à 390 × 844 : titre et image contenus dans 358 px, menu hamburger fonctionnel et panneau limité à 240 px, soit 61,5 % de la largeur de l'écran.
+
+### Défaut détecté et corrigé
+
+La première version mobile mesurait 594 px de large à cause de l'empreinte SHA-256 complète affichée en code inline. La page montre désormais une empreinte courte et renvoie vers le rapport et le manifeste pour la valeur intégrale. Le document final mesure exactement 390 px et ne produit plus de défilement horizontal.
+
+### Intégrité scientifique
+
+L'empreinte SHA-256 de `final-test-results.json` reste `966e7ddaf7e546d60e95ae4fbf4d5adc7c1f4ad6978f1ba06d7e35fdf7cabcc3`. Le test final n'a été ni relancé ni régénéré. Aucun contenu n'a encore été poussé ou publié.
+
+### Prochain jalon
+
+Effectuer un audit final de l'ensemble du site : liens internes, ressources, recherche, accessibilité de base, responsive des pages principales et cohérence éditoriale. Corriger les défauts éventuels, reconstruire Jekyll et ne publier qu'après un contrôle final entièrement vert.
