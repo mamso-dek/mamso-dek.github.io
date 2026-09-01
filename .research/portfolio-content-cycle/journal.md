@@ -661,3 +661,34 @@ Le notebook a uniquement relu les artefacts. L'empreinte SHA-256 de `final-test-
 ### Prochain jalon
 
 Rédiger le rapport technique en s'appuyant sur les cellules exécutées, sans recopier mécaniquement le notebook. Structurer la contribution, les résultats confirmatoires, les diagnostics de robustesse et les limites, puis préparer la page Projet et ses ressources avant le contrôle Jekyll final.
+
+## 2026-09-01 — Exécution 18
+
+### Travail réalisé
+
+- Rédaction d'un rapport technique Quarto distinct du notebook, organisé autour de la question scientifique, des conventions, du protocole, des résultats confirmatoires, des mécanismes, de la robustesse et des menaces sur la validité.
+- Ajout de neuf cellules Python qui relisent uniquement les artefacts conservés, contrôlent leurs empreintes et produisent huit tableaux sans appeler les simulateurs ni le script d'évaluation finale.
+- Intégration des cinq figures validées avec leurs textes alternatifs et conservation explicite des résultats défavorables sous changements de volatilité et de modèle.
+- Correction des délimiteurs des cellules et des formules vers la syntaxe native de Quarto, afin qu'aucun code préparatoire n'apparaisse dans les livrables.
+- Ajout de `PyYAML==6.0.3` aux dépendances directes et verrouillées pour rendre l'exécution Quarto reproductible.
+- Production de `report/output/html/rapport-technique.html`, fichier autonome de 2,8 Mo, et de `report/output/pdf/rapport-technique.pdf`, document A4 de dix pages.
+
+### Contrôles des rendus
+
+- Le HTML contient onze titres de premier niveau, dix-huit sous-titres, huit tableaux et cinq figures ; les cinq figures possèdent un texte alternatif.
+- Aucun chemin local, traceback ou fragment de cellule Python n'apparaît dans le texte du HTML ou du PDF.
+- Les dix pages du PDF final ont été rendues en PNG et inspectées visuellement. Les équations, les cinq figures, les légendes et les tableaux tiennent dans les marges.
+- Le premier tableau de traçabilité débordait avec trois empreintes intégrales. Il affiche désormais des empreintes courtes ; les valeurs complètes restent dans le manifeste, et l'empreinte finale complète est reproduite dans la section de gel.
+- La césure française a été activée dans la chaîne LaTeX et le dernier rendu ne produit plus d'avertissement de langue.
+
+### Validation scientifique
+
+- Les 27 tests unitaires réussissent.
+- `pip check` ne signale aucune dépendance cassée.
+- Le marqueur du test final reste au statut `completed`.
+- L'empreinte SHA-256 de `final-test-results.json` reste `966e7ddaf7e546d60e95ae4fbf4d5adc7c1f4ad6978f1ba06d7e35fdf7cabcc3`.
+- Le test final n'a été ni relancé ni régénéré pendant la rédaction, le rendu ou le contrôle du rapport.
+
+### Prochain jalon
+
+Transformer le rapport validé en une page Projet concise pour le portfolio, relier le notebook et le rapport comme ressources, puis effectuer le contrôle Jekyll et responsive avant toute publication.

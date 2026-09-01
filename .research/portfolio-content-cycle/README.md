@@ -7,9 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** le notebook narratif a été exécuté intégralement et son rendu HTML accessible a été produit sans recalculer le test final
+- **Statut :** le rapport technique distinct du notebook a été rédigé, rendu en HTML autonome et en PDF A4 de dix pages, puis contrôlé sans recalculer le test final
 - **Résultat final :** la politique neuronale réduit la CVaR de 0,1615 face à Leland, IC 95 % [0,1565 ; 0,1664], tout en réduisant le turnover de 28,79 ; son écart-type de P&L reste supérieur
-- **Prochain jalon :** rédiger le rapport technique à partir du notebook validé et préparer l'intégration Jekyll sans recalculer le test final
+- **Prochain jalon :** préparer la page Projet et les ressources publiques, puis contrôler l'intégration Jekyll sans recalculer le test final
 - **Temps restant :** quatre jours sur le cycle ; le test final est définitivement fermé
 
 Les fichiers de référence sont :
@@ -20,6 +20,7 @@ Les fichiers de référence sont :
 - `resultats-finaux.md` : interprétation du test final et limites de portée ;
 - `figures/` : générateur, carte, exports PNG/SVG et manifeste d'empreintes ;
 - `notebooks/` : constructeur, notebook narratif exécuté et rendu HTML ;
+- `report/` : rapport technique Quarto, rendu HTML autonome et PDF contrôlé page par page ;
 - `matrice-litterature.md` : sources vérifiées et rôle dans l’étude ;
 - `bibliographie.bib` : métadonnées bibliographiques réutilisables ;
 - `environment.md` : plateforme, dépendances et règles de reproductibilité ;

@@ -54,6 +54,7 @@ pyparsing==3.3.2
 python-dateutil==2.9.0.post0
 pytz==2026.3.post1
 pyzmq==27.2.0
+PyYAML==6.0.3
 referencing==0.37.0
 rpds-py==2026.6.3
 scikit-learn==1.9.0
