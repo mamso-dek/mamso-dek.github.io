@@ -7,9 +7,9 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** environnement reproductible, convention de Leland, cœur différentiable et références classiques validés ; cinq apprentissages longs terminés
-- **Résultat provisoire :** à 1 000 époques, les cinq graines battent Leland sur la CVaR à 95 % et réduisent les transactions ; il s’agit encore d’un résultat interne à un scénario
-- **Prochain jalon :** quantifier l’incertitude Monte-Carlo par comparaison appariée, vérifier la convergence au-delà de 1 000 époques et analyser la politique avant les scénarios de robustesse
+- **Statut :** cinq apprentissages longs, une réplication prolongée à 1 500 époques, un bootstrap apparié et les premiers diagnostics de politique sont terminés
+- **Résultat provisoire :** la réplication prolongée réduit la CVaR de 0,1503 face à Leland ; l’intervalle bootstrap à 95 % est [0,1425 ; 0,1578], conditionnellement au scénario et au modèle entraîné
+- **Prochain jalon :** confirmer le plateau au-delà de 1 500 époques, puis lancer les sensibilités au coût et aux paramètres de marché
 
 Les fichiers de référence sont :
 

@@ -116,3 +116,43 @@ La stabilité entre graines montre que le résultat n’est pas lié à une init
 ### Prochain jalon
 
 Produire les P&L trajectoire par trajectoire pour une analyse bootstrap appariée, prolonger au moins une réplication au-delà de 1 000 époques et construire des diagnostics de politique. Ensuite seulement, lancer les sensibilités au coût et aux paramètres de marché.
+
+## 2026-09-01 — Exécution 4
+
+### Travail réalisé
+
+- Ajout d’une estimation de CVaR indépendante de PyTorch et d’un bootstrap non paramétrique apparié ; trois nouveaux tests portent le total à 14 tests validés.
+- Réentraînement déterministe de la première graine pendant 1 500 époques, avec validation sur 50 000 trajectoires et évaluation sur les 100 000 trajectoires de test déjà fixées.
+- Conservation locale du meilleur état du réseau et enregistrement des paramètres, graines, métriques, historiques échantillonnés et diagnostics.
+- Calcul de 2 000 réplications bootstrap, en réutilisant les mêmes indices de trajectoires pour le réseau et chaque référence.
+- Construction d’une grille de politique selon le spot, le temps restant et l’inventaire précédent, puis comparaison trajectoire par trajectoire à Leland.
+
+### Résultats de convergence
+
+Le meilleur état de validation apparaît à l’époque 1 500. Sa CVaR de validation est de 1,5765 et η vaut 1,3649, proche de la VaR de validation à 1,3685. Sur le test indépendant :
+
+- réseau : CVaR 1,5682, coût moyen 0,5838 et turnover 233,52 ;
+- Leland : CVaR 1,7185, coût moyen 0,6564 et turnover 262,54 ;
+- delta Black–Scholes : CVaR 1,9174, coût moyen 0,6845 et turnover 273,78.
+
+La réduction ponctuelle de CVaR face à Leland est donc de 0,1503, soit environ 8,74 %, avec environ 11 % de turnover en moins.
+
+### Incertitude appariée
+
+L’intervalle percentile à 95 % de l’amélioration de CVaR face à Leland est [0,1425 ; 0,1578], avec une erreur-type bootstrap de 0,0039. Les 2 000 réplications donnent une amélioration positive. Face à la delta classique, l’amélioration est de 0,3492 et son intervalle à 95 % de [0,3388 ; 0,3607].
+
+Cette inférence quantifie uniquement l’incertitude due aux trajectoires de test, conditionnellement au réseau entraîné et au modèle Black–Scholes simulé. Elle n’inclut ni l’incertitude de spécification ni un changement de régime de marché. La stabilité d’optimisation est traitée séparément par les cinq graines de l’exécution précédente.
+
+### Diagnostic de la politique
+
+Les positions neuronales ont une corrélation de 0,9956 avec la delta de Leland et un écart absolu moyen de 0,0286. La politique n’est donc pas une règle opaque sans rapport avec la théorie : elle reste globalement delta-like.
+
+L’inventaire précédent modifie néanmoins l’ajustement. Par exemple, à la monnaie avec 10 % du temps restant, la position cible vaut 0,4701 lorsque l’inventaire précédent est 0,25 et 0,5827 lorsqu’il est 0,75, alors que la delta de Leland vaut 0,5050 dans les deux cas. Le réseau rapproche la position de la delta sans effacer immédiatement l’inventaire, mécanisme cohérent avec une réduction des transactions.
+
+### Limite encore ouverte
+
+Le meilleur état se trouvant exactement à l’époque 1 500, le plateau n’est pas formellement confirmé. L’amélioration ralentit mais reste visible : la CVaR de validation passe de 1,6004 à l’époque 1 000 à 1,5765 à l’époque 1 500. Il serait prématuré de fixer 1 500 comme durée définitive sans un contrôle supplémentaire.
+
+### Prochain jalon
+
+Prolonger une réplication jusqu’à 2 000 époques pour confirmer le plateau, puis figer la durée d’apprentissage. Lancer ensuite l’expérience de sensibilité aux coûts, en réentraînant les politiques plutôt qu’en appliquant le même réseau à des coûts qu’il n’a pas appris.
