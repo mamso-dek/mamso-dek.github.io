@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-09-01T13:46:53.260520+00:00",
+  "final_seed": 20269000,
+  "final_size": 250000,
+  "repository_commit": "9ea3efe94a9d0b1abe34f8ca35303bd848c9f90a",
+  "checkpoint_sha256": "d47f58cf3df225148688c74349cee8988e2750c7067be4f4d7dd9f3d4b6ccd8a",
+  "finished_at_utc": "2026-09-01T13:47:40.572263+00:00",
+  "output": "final-test-results.json",
+  "output_sha256": "966e7ddaf7e546d60e95ae4fbf4d5adc7c1f4ad6978f1ba06d7e35fdf7cabcc3"
+}

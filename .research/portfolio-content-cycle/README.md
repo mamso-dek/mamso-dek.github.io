@@ -7,16 +7,17 @@ Ce dossier contient le journal de travail, les décisions méthodologiques et le
 - **Jour :** 1 sur 5
 - **Type principal retenu :** Projet
 - **Sujet retenu :** couverture neuronale d’une option européenne sous coûts de transaction
-- **Statut :** le modèle et le protocole sont gelés ; le script final protégé est préparé et son audit seul est entièrement vert
-- **Résultat provisoire :** la borne 1,00 améliore très légèrement la CVaR de développement mais accroît le turnover ; la borne centrale 1,25 est conservée pour éviter une sélection rétrospective
-- **Prochain jalon :** ouvrir une seule fois le test préenregistré de 250 000 trajectoires, puis conserver et interpréter tous les résultats
-- **Temps restant :** quatre jours sur le cycle ; le test final préenregistré reste fermé
+- **Statut :** le test final préenregistré a été ouvert une fois et ses résultats intègres sont conservés
+- **Résultat final :** la politique neuronale réduit la CVaR de 0,1615 face à Leland, IC 95 % [0,1565 ; 0,1664], tout en réduisant le turnover de 28,79 ; son écart-type de P&L reste supérieur
+- **Prochain jalon :** construire les figures et tableaux définitifs, puis rédiger le notebook et le rapport technique sans recalculer le test final
+- **Temps restant :** quatre jours sur le cycle ; le test final est définitivement fermé
 
 Les fichiers de référence sont :
 
 - `selection-sujets.md` : comparaison pondérée des sujets candidats ;
 - `protocole.md` : question, hypothèses, expériences et critères d'arrêt ;
 - `gel-protocole.md` : spécification immuable du modèle et de l'analyse avant test final ;
+- `resultats-finaux.md` : interprétation du test final et limites de portée ;
 - `matrice-litterature.md` : sources vérifiées et rôle dans l’étude ;
 - `bibliographie.bib` : métadonnées bibliographiques réutilisables ;
 - `environment.md` : plateforme, dépendances et règles de reproductibilité ;

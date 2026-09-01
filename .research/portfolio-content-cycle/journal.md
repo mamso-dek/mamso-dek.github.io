@@ -537,3 +537,43 @@ La comparaison confirmatoire reste CVaR(Leland) moins CVaR(réseau), avec un int
 La suite complète atteint 27 tests réussis et `pip check` ne signale aucune dépendance cassée. Après enregistrement du script, son mode audit sur dépôt propre a confirmé l'empreinte du checkpoint, ses métadonnées, l'absence d'artefact final et les paramètres réservés, sans créer de trajectoire ni de fichier.
 
 Lors de la prochaine exécution, refaire cet audit puis ouvrir une seule fois le test final de 250 000 trajectoires si tous les contrôles restent verts. Conserver et interpréter tous les résultats sans modifier le modèle.
+
+## 2026-09-01 — Exécution 14
+
+### Ouverture du test final
+
+- Vérification préalable du dépôt propre, des 27 tests, de `pip check`, du checkpoint et de son empreinte.
+- Audit final vert sur le commit `9ea3efe94a9d0b1abe34f8ca35303bd848c9f90a`.
+- Ouverture unique de 250 000 trajectoires avec la graine 20269000.
+- Évaluation des quatre stratégies gelées et calcul des six comparaisons avec 5 000 réplications bootstrap chacune.
+- Écriture achevée du marqueur et du résultat en 47,31 secondes.
+- Vérification de l'empreinte du résultat contre le marqueur : concordance exacte.
+
+### Résultat confirmatoire
+
+| Stratégie | CVaR 95 % | Écart-type du P&L | Coût moyen | Turnover |
+| --- | ---: | ---: | ---: | ---: |
+| Delta Black--Scholes | 1,9230 | 0,4980 | 0,6850 | 274,01 |
+| Delta de Leland | 1,7202 | 0,4771 | 0,6569 | 262,75 |
+| Politique neuronale | 1,5586 | 0,5439 | 0,5849 | 233,96 |
+
+L'amélioration appariée CVaR(Leland) moins CVaR(réseau) vaut 0,1615, IC bootstrap à 95 % [0,1565 ; 0,1664]. La borne inférieure étant strictement positive, le critère confirmatoire préenregistré est satisfait.
+
+Face à la delta Black--Scholes, l'amélioration de CVaR vaut 0,3644, IC [0,3577 ; 0,3710]. Le réseau réduit son turnover de 28,79 face à Leland, IC [28,70 ; 28,88], et de 40,05 face à la delta, IC [39,92 ; 40,18].
+
+### Interprétation prudente
+
+La réduction relative de CVaR atteint 9,39 % face à Leland, tandis que le turnover et le coût diminuent de 10,96 %. En revanche, l'écart-type du P&L neuronal est supérieur de 14,00 %. Le réseau déplace donc le compromis vers la queue ciblée par l'entraînement ; il ne domine pas Leland selon toutes les mesures de dispersion.
+
+Ces résultats sont confirmatoires uniquement dans le GBM gelé. Ils restent conditionnels à une volatilité constante connue, une option et une échéance données, 30 rééquilibrages et 25 points de base. Les résultats Heston de développement interdisent toute affirmation générale de robustesse hors modèle.
+
+### Traçabilité et décision
+
+- Résultat : `benchmarks/final-test-results.json`, SHA-256 `966e7ddaf7e546d60e95ae4fbf4d5adc7c1f4ad6978f1ba06d7e35fdf7cabcc3`.
+- Marqueur : `benchmarks/final-test-opening.json`, statut `completed`.
+- Checkpoint : SHA-256 `d47f58cf3df225148688c74349cee8988e2750c7067be4f4d7dd9f3d4b6ccd8a`.
+- Le test final est désormais définitivement fermé et ne sera pas régénéré.
+
+### Prochain jalon
+
+Construire les figures et tableaux définitifs uniquement à partir des artefacts conservés et des résultats de développement, puis commencer le notebook narratif et le rapport technique. Aucun nouveau réglage du modèle n'est autorisé.
